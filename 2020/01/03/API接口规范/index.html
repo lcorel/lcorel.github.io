@@ -1,0 +1,596 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>API接口规范 - ZZONN</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="LiPan,ZZONN,PanLee,"> 
+    <meta name="description" content="一、协议API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。
+二、域名应该尽量将API部署在专用域名之下：                         https:/,"> 
+    <meta name="author" content="LiPan"> 
+    <link rel="alternative" href="atom.xml" title="ZZONN" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+
+    
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+
+    
+<link rel="stylesheet" href="/css/obsidian.css">
+
+    
+<link rel="stylesheet" href="/css/ball-atom.min.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">ZZONN</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://blog.zzonn.com">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">API接口规范</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(/img/cover.jpg) ">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/其他"><b>「
+                    </b>其他<b> 」</b></a>
+                
+                一月 03, 2020
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" title="API接口规范" class="">API接口规范</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
+                    6.3k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
+                    6 mins.
+                </span>
+                
+                
+                
+                <span id="busuanzi_container_page_pv">
+                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                    <span id="busuanzi_value_page_pv">0</span>
+                </span>
+                
+            </p>
+            
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li></ul>
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
+<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
+<h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
+<ol>
+<li>应该将API的版本号放入URL。</li>
+<li>采用多版本并存，增量发布的方式。</li>
+<li>n代表版本号，分为整型和浮点型<br>整型：    大功能版本，  如v1、v2、v3 …<br>浮点型：  补充功能版本， 如v1.1、v1.2、v2.1、v2.2 …</li>
+<li>对于一个 API 或服务，应在生产中最多保留 3 个最详细的版本</li>
+</ol>
+<h1 id="四、路径规则"><a href="#四、路径规则" class="headerlink" title="四、路径规则"></a>四、路径规则</h1><p>路径又称”终点”（end point），表示API的具体网址。</p>
+<ol>
+<li>在RESTful架构中，每个网址代表一种资源(resource),所以网址中不能有动词，只能有名词。<br> 【所用的名词往往与数据库的表格名对应】</li>
+<li>数据库中的表一般都是同种记录的”集合”(collection),所以API中的名词也应该使用复数。</li>
+</ol>
+<p>例子: <a href="https://api.example.com/v1/products" target="_blank" rel="noopener">https://api.example.com/v1/products</a><br>      <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a><br>      <a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></p>
+<h1 id="五、请求方式"><a href="#五、请求方式" class="headerlink" title="五、请求方式"></a>五、请求方式</h1><p>GET（SELECT）：    从服务器取出资源（一项或多项）。<br>POST（CREATE）：   在服务器新建一个资源。<br>PUT（UPDATE）：    在服务器更新资源（客户端提供改变后的完整资源）。<br>DELETE（DELETE）： 从服务器删除资源。</p>
+<p>例子：<br>GET    /v1/products      获取所有商品<br>GET    /v1/products/ID   获取某个指定商品的信息<br>POST   /v1/products      新建一个商品<br>PUT    /v1/products/ID   更新某个指定商品的信息<br>DELETE /v1/products/ID   删除某个商品,更合理的设计详见【9、非RESTful API的需求】<br>GET    /v1/products/ID/purchases      列出某个指定商品的所有投资者<br>GET    /v1/products/ID/purchases/ID   获取某个指定商品的指定投资者信息</p>
+<h1 id="六、过滤信息"><a href="#六、过滤信息" class="headerlink" title="六、过滤信息"></a>六、过滤信息</h1><p>若记录数量很多，服务器不可能返回全部记录给用户。<br>API应该提供分页参数及其它筛选参数，过滤返回结果。</p>
+<p>/v1/products?page=1&amp;pageSize=20     指定第几页，以及每页的记录数。<br>/v1/products?sortBy=name&amp;order=asc  指定返回结果按照哪个属性排序，以及排序顺序。</p>
+<h1 id="七、传入参数"><a href="#七、传入参数" class="headerlink" title="七、传入参数"></a>七、传入参数</h1><p>传入参数分为4种类型：</p>
+<ol>
+<li>cookie：         一般用于OAuth认证</li>
+<li>request header： 一般用于OAuth认证</li>
+<li>请求body数据：</li>
+<li>地址栏参数：<br> 1）restful 地址栏参数 /v1/products/ID ID为产品编号，获取产品编号为ID的信息<br> 2）get方式的查询字段 见【六、过滤信息】</li>
+</ol>
+<h1 id="八、公共参数"><a href="#八、公共参数" class="headerlink" title="八、公共参数"></a>八、公共参数</h1><h2 id="1-APP-端请求"><a href="#1-APP-端请求" class="headerlink" title="1.APP 端请求"></a>1.APP 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>network</td>
+<td>网络</td>
+<td>WIFI、4G</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>运营商</td>
+<td>中国联通/移动</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>平台</td>
+<td>iOS、Android</td>
+</tr>
+<tr>
+<td>system</td>
+<td>系统</td>
+<td>ios 13.3、android 9</td>
+</tr>
+<tr>
+<td>device</td>
+<td>设备型号</td>
+<td>iPhone XR、小米9</td>
+</tr>
+<tr>
+<td>udid</td>
+<td>设备唯</td>
+<td>标示</td>
+</tr>
+<tr>
+<td>apiVersion</td>
+<td>API 版本号</td>
+<td>v1.1、v1.2</td>
+</tr>
+</tbody></table>
+<h2 id="2-WEB-端请求"><a href="#2-WEB-端请求" class="headerlink" title="2.WEB 端请求"></a>2.WEB 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appKey</td>
+<td>授权Key</td>
+<td>字符串</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[info] 调用方需向服务方申请 appKey（请求时使用） 和 secretKey（加密时使用）。</p>
+</blockquote>
+<h1 id="九、响应参数"><a href="#九、响应参数" class="headerlink" title="九、响应参数"></a>九、响应参数</h1><p>【response】：</p>
+<hr>
+<pre><code class="json">{
+   status: 200,               // 详见【status】
+   data: {
+      code: 1,                // 详见【code】
+      data: {} || [],         // 数据
+      message: &#39;成功&#39;,        // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+      sysMessage: &#39;success&#39;   // 存放响应信息提示,调试使用,中英文都行
+      ...                     // 其它参数，如 total【总记录数】等
+   },
+   msg: &#39;成功&#39;,            // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+   sysMsg: &#39;success&#39;       // 存放响应信息提示,调试使用,中英文都行
+}</code></pre>
+<hr>
+<p>【status】:</p>
+<p>200：OK<br>400：Bad Request<br>401：Unauthorized<br>403：Forbidden<br>404：Not Found<br>500：Internal Server Error</p>
+<p>【code】:</p>
+<p>1：获取数据成功 | 操作成功<br>0：获取数据失败 | 操作失败</p>
+<hr>
+<p> 若有分页数据返回的，格式如下：</p>
+<pre><code class="json">{
+    &quot;code&quot;: 1,
+    &quot;showMsg&quot;: &quot;success&quot;,
+    &quot;errorMsg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+         &quot;list&quot;: [],
+         &quot;pagination&quot;: {
+             &quot;total&quot;: 100,
+             &quot;currentPage&quot;: 1,
+             &quot;prePageCount&quot;: 10
+         }
+     }
+}</code></pre>
+<h1 id="十、非RESTful-API的需求"><a href="#十、非RESTful-API的需求" class="headerlink" title="十、非RESTful API的需求"></a>十、非RESTful API的需求</h1><ol>
+<li>实际业务开展过程中，可能会出现各种的api不是简单的restful 规范能实现的。</li>
+<li>需要有一些api突破restful规范原则。</li>
+<li>特别是移动互联网的api设计，更需要有一些特定的api来优化数据请求的交互。<br> 1)、删除单个 | 批量删除  ： DELETE  /v1/product      body参数{ids：[]}<br> 2)、页面级API           :  把当前页面中需要用到的所有数据通过一个接口一次性返回全部数据</li>
+</ol>
+<h1 id="十一、一致性原则"><a href="#十一、一致性原则" class="headerlink" title="十一、一致性原则"></a>十一、一致性原则</h1><ol>
+<li>前端需要哪些字段，API接口应该返回哪些字段，字段不多也不少。</li>
+<li>更新功能尽量做到：初次返回的原始数据参数与提交更新的数据参数结构一致。</li>
+<li>时间参数，尽量以时间戳13位传递。</li>
+<li>其它参数【待更新】</li>
+</ol>
+<h1 id="十二、接口文档"><a href="#十二、接口文档" class="headerlink" title="十二、接口文档"></a>十二、接口文档</h1><ol>
+<li>尽量采用自动化接口文档，可以做到在线测试，同步更新。</li>
+<li>应包含：接口BASE地址、接口版本、接口模块分类等。</li>
+<li>每个接口应包含：<br>接口地址：不包含接口BASE地址。<br>请求方式: get、post、put、delete等。<br>请求参数：数据格式【默认JSON、可选form data】、数据类型、是否必填、中文描述。<br>响应参数：类型、中文描述。</li>
+</ol>
+<h1 id="十三、参考资料"><a href="#十三、参考资料" class="headerlink" title="十三、参考资料"></a>十三、参考资料</h1><ol>
+<li><a href="https://my.oschina.net/qqlet/blog/1922038" target="_blank" rel="noopener">https://my.oschina.net/qqlet/blog/1922038</a></li>
+<li><a href="https://juejin.im/post/5afee0e86fb9a07ab379b371" target="_blank" rel="noopener">https://juejin.im/post/5afee0e86fb9a07ab379b371</a></li>
+<li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
+</ol>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="true">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+    <div id='gitalk-container' class="comment link"
+        data-ae='true'
+        data-ci='ec894e2b66f752e8b7fb'
+        data-cs='3ccc2e92bb350688fe2c2dc2930189b62622bfb1'
+        data-r='blog-comments'
+        data-o='TriDiamond'
+        data-a='TriDiamond'
+        data-d=''
+    >留言</div>
+
+
+            
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://res.cloudinary.com/tridiamond/image/upload/v1573019751/TriDiamond_logo_ui_xeublz.jpg" height=300 width=300></img>
+                    <p>LiPan</p>
+                    <span>Think like an artist, develop like an artisan</span>
+                    <dl>
+                        <dd><a href="https://github.com/TriDiamond" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="https://twitter.com/TriDiamond6" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                        <dd><a href="https://stackoverflow.com/users/7602324/tridiamond?tab=profile" target="_blank"><span
+                                    class=" iconfont icon-stack-overflow"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">5 <p>文章</p></a></li>
+                    <li><a href="/categories">2 <p>分类</p></a></li>
+                    <li><a href="/tags">4 <p>标签</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>目录</h4>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、协议"><span class="toc-number">1.</span> <span class="toc-text">一、协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、域名"><span class="toc-number">2.</span> <span class="toc-text">二、域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、版本控制"><span class="toc-number">3.</span> <span class="toc-text">三、版本控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、路径规则"><span class="toc-number">4.</span> <span class="toc-text">四、路径规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、请求方式"><span class="toc-number">5.</span> <span class="toc-text">五、请求方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、过滤信息"><span class="toc-number">6.</span> <span class="toc-text">六、过滤信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、传入参数"><span class="toc-number">7.</span> <span class="toc-text">七、传入参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、公共参数"><span class="toc-number">8.</span> <span class="toc-text">八、公共参数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-APP-端请求"><span class="toc-number">8.1.</span> <span class="toc-text">1.APP 端请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-WEB-端请求"><span class="toc-number">8.2.</span> <span class="toc-text">2.WEB 端请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九、响应参数"><span class="toc-number">9.</span> <span class="toc-text">九、响应参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十、非RESTful-API的需求"><span class="toc-number">10.</span> <span class="toc-text">十、非RESTful API的需求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十一、一致性原则"><span class="toc-number">11.</span> <span class="toc-text">十一、一致性原则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十二、接口文档"><span class="toc-number">12.</span> <span class="toc-text">十二、接口文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十三、参考资料"><span class="toc-number">13.</span> <span class="toc-text">十三、参考资料</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2020
+        <span class="gradient-text">
+            LiPan
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+
+    
+<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
+
+    
+<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+
+
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+
+
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/c#/c#.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+
+
+    
+<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+
+
+
+
+    
+<script src="/js/busuanzi.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            if ($('span[id^="busuanzi_"]').length) {
+                initialBusuanzi();
+            }
+        });
+    </script>
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+
+
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+
+
+</html>
