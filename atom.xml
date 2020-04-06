@@ -70,6 +70,33 @@
   </entry>
   
   <entry>
+    <title>常用SQL备忘</title>
+    <link href="http://blog.zzonn.com/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/"/>
+    <id>http://blog.zzonn.com/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</id>
+    <published>2020-01-22T05:43:12.000Z</published>
+    <updated>2020-04-06T08:33:42.614Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p><pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre><p>  结果：2.18</p><pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre><p>结果：2.18</p><pre><code class="sql">select **Round**(2.176544,2)　　</code></pre><p>结果：2.180000</p><p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p><h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre><h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as(    select Id,Pid,Name from 表名    where Id = 1    union all    select t.Id,t.Pid,t.Name from cte c inner join 表名 t    on c.Id = t.Pid)select * from cte</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;保留两位小数&quot;&gt;&lt;a href=&quot;#保留两位小数&quot; class=&quot;headerlink&quot; title=&quot;保留两位小数&quot;&gt;&lt;/a&gt;保留两位小数&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;sql server:&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;sql
+      
+    
+    </summary>
+    
+    
+      <category term="SQL" scheme="http://blog.zzonn.com/categories/SQL/"/>
+    
+    
+      <category term="SQL" scheme="http://blog.zzonn.com/tags/SQL/"/>
+    
+  </entry>
+  
+  <entry>
     <title>数据库设计规范</title>
     <link href="http://blog.zzonn.com/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/"/>
     <id>http://blog.zzonn.com/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/</id>
@@ -121,6 +148,33 @@
     
     
       <category term="规范" scheme="http://blog.zzonn.com/tags/%E8%A7%84%E8%8C%83/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Windows错误代码对应解决方案</title>
+    <link href="http://blog.zzonn.com/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/"/>
+    <id>http://blog.zzonn.com/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</id>
+    <published>2019-11-17T02:21:42.000Z</published>
+    <updated>2020-04-06T08:33:43.851Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol><li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li><li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;错误代码0x80131500&quot;&gt;&lt;a href=&quot;#错误代码0x80131500&quot; class=&quot;headerlink&quot; title=&quot;错误代码0x80131500&quot;&gt;&lt;/a&gt;错误代码0x80131500&lt;/h1&gt;&lt;ol&gt;
+&lt;li&gt;打开“运行”输入 inetcpl
+      
+    
+    </summary>
+    
+    
+      <category term="Windows" scheme="http://blog.zzonn.com/categories/Windows/"/>
+    
+    
+      <category term="Windows" scheme="http://blog.zzonn.com/tags/Windows/"/>
     
   </entry>
   
