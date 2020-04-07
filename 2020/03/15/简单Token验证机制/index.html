@@ -111,11 +111,11 @@ Note right of 服务端: 创建,">
                 </span>
                 
                 
-                
-                <span id="busuanzi_container_page_pv">
+                <span id="/2020/03/15/简单Token验证机制/" class="leancloud_visitors" data-flag-title="简单Token验证机制">
                     <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                    <span id="busuanzi_value_page_pv">0</span>
+                    <span class="leancloud-visitors-count">1000000</span>
                 </span>
+                
                 
             </p>
             
@@ -176,18 +176,7 @@ Note right of 服务端: 验证【token】&gt;&gt;&gt; 通过，处理业务
             
             
             
-    <div id='gitalk-container' class="comment link"
-        data-ae='true'
-        data-ci='0429533df119e83c016c'
-        data-cs='0b7186f18dab9ab2d1c7c532d4477a5e8e5882e0'
-        data-r='lcorel.github.io'
-        data-o='lcorel'
-        data-a='lcorel'
-        data-d=''
-    >留言</div>
-
-
-            
+            <div id="vcomments"></div>
             
         </div>
         <div class="sidebar">
@@ -305,13 +294,6 @@ Note right of 服务端: 验证【token】&gt;&gt;&gt; 通过，处理业务
   }
 </script>
 
-
-
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-
-    
-<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
 
 
 
@@ -467,6 +449,40 @@ Note right of 服务端: 验证【token】&gt;&gt;&gt; 通过，处理业务
     }
 </script>
 
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'zh-CN';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'o2FMPGYHI1WeozWG0693GQkc-gzGzoHsz',
+                appKey: 'zvrwBnltRVir4r8lFRI3WdlI',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'anonymous',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
 
 
 

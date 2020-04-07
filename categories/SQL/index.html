@@ -159,6 +159,11 @@
             </span>
             
             
+            <span id="/2020/01/22/常用SQL备忘/" class="leancloud_visitors" data-flag-title="">
+                <b class="iconfont icon-read"></b> <i>阅读次数</i>
+                <span class="leancloud-visitors-count">1000000</span>
+            </span>
+            
         </p>
         
         
@@ -274,13 +279,6 @@
   }
 </script>
 
-
-
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-
-    
-<script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
 
 
 
@@ -436,6 +434,40 @@
     }
 </script>
 
+
+    
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'zh-CN';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'o2FMPGYHI1WeozWG0693GQkc-gzGzoHsz',
+                appKey: 'zvrwBnltRVir4r8lFRI3WdlI',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'anonymous',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
 
 
 
