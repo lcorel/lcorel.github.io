@@ -1,146 +1,222 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN" class="loading">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>API接口规范 - ZZONN</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="LiPan,ZZONN,PanLee,"> 
-    <meta name="description" content="一、协议API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。
-二、域名应该尽量将API部署在专用域名之下：                         https:/,"> 
-    <meta name="author" content="LiPan"> 
-    <link rel="alternative" href="atom.xml" title="ZZONN" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
-    
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
-
-    
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
-
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
-
-    
-<link rel="stylesheet" href="/css/obsidian.css">
-
-    
-<link rel="stylesheet" href="/css/ball-atom.min.css">
-
-<meta name="generator" content="Hexo 4.2.0"></head>
+<link rel="stylesheet" href="/css/main.css">
 
 
-<body class="loading">
-    <div class="loader">
-        <div class="la-ball-atom la-2x">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="一、协议API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。 二、域名应该尽量将API部署在专用域名之下：                         https:&#x2F;&#x2F;api.example.com如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   https:&#x2F;&#x2F;www.example.com&#x2F;api 三、版本控制https:&#x2F;&#x2F;api.examp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="API接口规范">
+<meta property="og:url" content="http://blog.zzonn.com/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/index.html">
+<meta property="og:site_name" content="ZZONN">
+<meta property="og:description" content="一、协议API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。 二、域名应该尽量将API部署在专用域名之下：                         https:&#x2F;&#x2F;api.example.com如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   https:&#x2F;&#x2F;www.example.com&#x2F;api 三、版本控制https:&#x2F;&#x2F;api.examp">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-01-03T07:11:04.000Z">
+<meta property="article:modified_time" content="2020-04-05T11:48:55.132Z">
+<meta property="article:author" content="LiPan">
+<meta property="article:tag" content="规范">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.zzonn.com/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>API接口规范 | ZZONN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="ZZONN" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-    <span id="config-title" style="display:none">ZZONN</span>
-    <div id="loader"></div>
-    <div id="single">
-    <div class="scrollbar gradient-bg-rev"></div>
-<div id="top" style="display: block;">
-    <div class="bar" style="width: 0;"></div>
-    <div class="navigation animated fadeIn fast delay-1s">
-        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://blog.zzonn.com">
-        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">API接口规范</h3>
-        <div class="social">
-            <!--        <div class="like-icon">-->
-            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
-            <!--        </div>-->
-            <div>
-                <div class="share">
-                    
-                        <a href="javascript:;" class="iconfont icon-share1"></a>
-                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
-                    
-                </div>
-            </div>
-        </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ZZONN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
     </div>
+  </div>
 </div>
 
-    <div class="section">
-        <div class=article-header-wrapper>
-    <div class="article-header">
-        <div class="article-cover animated fadeIn" style="
-            animation-delay: 600ms;
-            animation-duration: 1.2s;
-            background-image: 
-                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(/img/cover.jpg) ">
-        </div>
-        <div class="else">
-            <p class="animated fadeInDown">
-                
-                <a href="/categories/其他"><b>「
-                    </b>其他<b> 」</b></a>
-                
-                一月 03, 2020
-            </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" title="API接口规范" class="">API接口规范</a>
-            </h3>
-            
-            <p class="post-count animated fadeInDown">
-                
-                <span>
-                    <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                    6.3k
-                </span>
-                
-                
-                <span>
-                    <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                    6 mins.
-                </span>
-                
-                
-                <span id="/2020/01/03/API接口规范/" class="leancloud_visitors" data-flag-title="API接口规范">
-                    <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                    <span class="leancloud-visitors-count">1000000</span>
-                </span>
-                
-                
-            </p>
-            
-            
-            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li></ul>
-            
-        </div>
-    </div>
-</div>
 
-<div class="screen-gradient-after">
-    <div class="screen-gradient-content">
-        <div class="screen-gradient-content-inside">
-            <div class="bold-underline-links screen-gradient-sponsor">
-                <p>
-                    <span class="animated fadeIn delay-1s"></span>
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
 
-<div class="article">
-    <div class='main'>
-        <div class="content markdown animated fadeIn">
-            <h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          API接口规范
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-03 15:11:04" itemprop="dateCreated datePublished" datetime="2020-01-03T15:11:04+08:00">2020-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 19:48:55" itemprop="dateModified" datetime="2020-04-05T19:48:55+08:00">2020-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
 <h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
 <h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
 <ol>
@@ -283,330 +359,201 @@
 <li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
 </ol>
 
-            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
-            <audio id="audio" loop="1" preload="auto" controls="controls"
-                data-autoplay="true">
-                <source type="audio/mpeg" src="">
-            </audio>
-            
-            <ul id="audio-list" style="display:none">
-                
-                
-                <li title='0' data-url='/statics/chengdu.mp3'></li>
-                
-                    
-            </ul>
-            
-            
-            
-            <div id="vcomments"></div>
-            
-        </div>
-        <div class="sidebar">
-            <div class="box animated fadeInRight">
-                <div class="subbox">
-                    <img src="https://res.cloudinary.com/tridiamond/image/upload/v1573019751/TriDiamond_logo_ui_xeublz.jpg" height=300 width=300></img>
-                    <p>LiPan</p>
-                    <span>Think like an artist, develop like an artisan</span>
-                    <dl>
-                        <dd><a href="https://github.com/lcorel" target="_blank"><span
-                                    class=" iconfont icon-github"></span></a></dd>
-                        <dd><a href="" target="_blank"><span
-                                    class=" iconfont icon-twitter"></span></a></dd>
-                        <dd><a href="" target="_blank"><span
-                                    class=" iconfont icon-stack-overflow"></span></a></dd>
-                    </dl>
-                </div>
-                <ul>
-                    <li><a href="/">8 <p>文章</p></a></li>
-                    <li><a href="/categories">5 <p>分类</p></a></li>
-                    <li><a href="/tags">7 <p>标签</p></a></li>
-                </ul>
-            </div>
-            
-            
-            
-            <div class="box sticky animated fadeInRight faster">
-                <div id="toc" class="subbox">
-                    <h4>目录</h4>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#一、协议"><span class="toc-number">1.</span> <span class="toc-text">一、协议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二、域名"><span class="toc-number">2.</span> <span class="toc-text">二、域名</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#三、版本控制"><span class="toc-number">3.</span> <span class="toc-text">三、版本控制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#四、路径规则"><span class="toc-number">4.</span> <span class="toc-text">四、路径规则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#五、请求方式"><span class="toc-number">5.</span> <span class="toc-text">五、请求方式</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#六、过滤信息"><span class="toc-number">6.</span> <span class="toc-text">六、过滤信息</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#七、传入参数"><span class="toc-number">7.</span> <span class="toc-text">七、传入参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#八、公共参数"><span class="toc-number">8.</span> <span class="toc-text">八、公共参数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-APP-端请求"><span class="toc-number">8.1.</span> <span class="toc-text">1.APP 端请求</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-WEB-端请求"><span class="toc-number">8.2.</span> <span class="toc-text">2.WEB 端请求</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#九、响应参数"><span class="toc-number">9.</span> <span class="toc-text">九、响应参数</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十、非RESTful-API的需求"><span class="toc-number">10.</span> <span class="toc-text">十、非RESTful API的需求</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十一、一致性原则"><span class="toc-number">11.</span> <span class="toc-text">十一、一致性原则</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十二、接口文档"><span class="toc-number">12.</span> <span class="toc-text">十二、接口文档</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#十三、参考资料"><span class="toc-number">13.</span> <span class="toc-text">十三、参考资料</span></a></li></ol>
-                </div>
-            </div>
-            
-            
-        </div>
     </div>
-</div>
 
-    </div>
-</div>
-    <div id="back-to-top" class="animated fadeIn faster">
-        <div class="flow"></div>
-        <span class="percentage animated fadeIn faster">0%</span>
-        <span class="iconfont icon-top02 animated fadeIn faster"></span>
-    </div>
-</body>
-<footer>
-    <p class="copyright" id="copyright">
-        &copy; 2020
-        <span class="gradient-text">
-            LiPan
-        </span>.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme
-        <span class="gradient-text">
-            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
-        </span>
-        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
-    </p>
-</footer>
+    
+    
+    
 
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%A7%84%E8%8C%83/" rel="tag"># 规范</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="prev" title="Windows错误代码对应解决方案">
+      <i class="fa fa-chevron-left"></i> Windows错误代码对应解决方案
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" rel="next" title="数据库设计规范">
+      数据库设计规范 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
 <script>
-  MathJax.Hub.Config({
-    "HTML-CSS": {
-      preferredFont: "TeX",
-      availableFonts: ["STIX", "TeX"],
-      linebreaks: {
-        automatic: true
-      },
-      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-      inlineMath: [
-        ["$", "$"],
-        ["\\(", "\\)"]
-      ],
-      processEscapes: true,
-      ignoreClass: "tex2jax_ignore|dno",
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      noUndefined: {
-        attributes: {
-          mathcolor: "red",
-          mathbackground: "#FFEEEE",
-          mathsize: "90%"
-        }
-      },
-      Macros: {
-        href: "{}"
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
-    },
-    messageStyle: "none"
+    }
   });
-</script>
-<script>
-  function initialMathJax() {
-    MathJax.Hub.Queue(function () {
-      var all = MathJax.Hub.getAllJax(),
-        i;
-      // console.log(all);
-      for (i = 0; i < all.length; i += 1) {
-        console.log(all[i].SourceElement().parentNode)
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
   }
-
-  function reprocessMathJax() {
-    if (typeof MathJax !== 'undefined') {
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    }
-  }
 </script>
 
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/obsidian.js"></script>
-<script src="/js/jquery.truncate.js"></script>
-<script src="/js/search.js"></script>
-
-
-<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
-
-
-<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-
-
-<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/c#/c#.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
-
-
-
-
-    
-<script src="/js/busuanzi.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            if ($('span[id^="busuanzi_"]').length) {
-                initialBusuanzi();
-            }
-        });
-    </script>
-
-
-
-<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
-
-
-<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
         </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、协议"><span class="nav-number">1.</span> <span class="nav-text">一、协议</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、域名"><span class="nav-number">2.</span> <span class="nav-text">二、域名</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、版本控制"><span class="nav-number">3.</span> <span class="nav-text">三、版本控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、路径规则"><span class="nav-number">4.</span> <span class="nav-text">四、路径规则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、请求方式"><span class="nav-number">5.</span> <span class="nav-text">五、请求方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、过滤信息"><span class="nav-number">6.</span> <span class="nav-text">六、过滤信息</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、传入参数"><span class="nav-number">7.</span> <span class="nav-text">七、传入参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#八、公共参数"><span class="nav-number">8.</span> <span class="nav-text">八、公共参数</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-APP-端请求"><span class="nav-number">8.1.</span> <span class="nav-text">1.APP 端请求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-WEB-端请求"><span class="nav-number">8.2.</span> <span class="nav-text">2.WEB 端请求</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#九、响应参数"><span class="nav-number">9.</span> <span class="nav-text">九、响应参数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十、非RESTful-API的需求"><span class="nav-number">10.</span> <span class="nav-text">十、非RESTful API的需求</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十一、一致性原则"><span class="nav-number">11.</span> <span class="nav-text">十一、一致性原则</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十二、接口文档"><span class="nav-number">12.</span> <span class="nav-text">十二、接口文档</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#十三、参考资料"><span class="nav-number">13.</span> <span class="nav-text">十三、参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">LiPan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
 
 
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiPan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
 
 
 
 
-<script>
-    function initialTyped () {
-        var typedTextEl = $('.typed-text');
-        if (typedTextEl && typedTextEl.length > 0) {
-            var typed = new Typed('.typed-text', {
-                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
-                typeSpeed: 90,
-                loop: true,
-                loopCount: Infinity,
-                backSpeed: 20,
-            });
-        }
-    }
-
-    if ($('.article-header') && $('.article-header').length) {
-        $(document).ready(function () {
-            initialTyped();
-        });
-    }
-</script>
-
-
-    
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-    <script>
-
-        var valine = new Valine();
-
-        function initValine(path) {
-            if (!path) path = window.location.pathname;
-            let language = 'zh-CN';
-            if (!language) {
-                language = 'en';
-            } else {
-                language = language.toLowerCase();
-            }
-            valine.init({
-                el: '#vcomments',
-                appId: 'o2FMPGYHI1WeozWG0693GQkc-gzGzoHsz',
-                appKey: 'zvrwBnltRVir4r8lFRI3WdlI',
-                notify: 'false',
-                verify: 'false',
-                avatar: 'anonymous',
-                placeholder: '请输入你的评论内容~',
-                visitor: 'true',
-                path: path,
-                lang: language
-            });
-        }
-
-        $(document).ready(function () {
-            initValine();
-        });
-    </script>
 
 
 
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
 </html>

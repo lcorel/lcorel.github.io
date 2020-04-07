@@ -1,858 +1,1241 @@
-
 <!DOCTYPE html>
-<html lang="zh-CN" class="loading">
+<html lang="zh-CN">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ZZONN - blog</title>
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="google" content="notranslate" />
-    <meta name="keywords" content="LiPan,ZZONN,PanLee,"> 
-    
-    <meta name="author" content="LiPan"> 
-    <link rel="alternative" href="atom.xml" title="ZZONN" type="application/atom+xml"> 
-    <link rel="icon" href="/img/favicon.png"> 
-    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
-    
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
 
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
-
-    
-<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
-
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
-
-    
-<link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
-
-    
-<link rel="stylesheet" href="/css/obsidian.css">
-
-    
-<link rel="stylesheet" href="/css/ball-atom.min.css">
-
-<meta name="generator" content="Hexo 4.2.0"></head>
+<link rel="stylesheet" href="/css/main.css">
 
 
-<body class="loading">
-    <div class="loader">
-        <div class="la-ball-atom la-2x">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta property="og:type" content="website">
+<meta property="og:title" content="ZZONN">
+<meta property="og:url" content="http://blog.zzonn.com/index.html">
+<meta property="og:site_name" content="ZZONN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="LiPan">
+<meta property="article:tag" content="lipan">
+<meta property="article:tag" content="zzonn">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://blog.zzonn.com/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>ZZONN</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="ZZONN" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
     </div>
-    <span id="config-title" style="display:none">ZZONN</span>
-    <div id="loader"></div>
-    <div class="nav">
-    <ul id="menu-menu" class="menu">
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/categories/" title="分类" external="false">分类</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/tags/" title="标签" external="false">标签</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/archives/" title="时光轴" external="false">时光轴</a>
-        </li>
-        
-        <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-            <a href="/whoami/" title="关于我" external="false">关于我</a>
-        </li>
-        
-    </ul>
-    <p class="copyright" id="copyright">
-        &copy; 2020 LiPan.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
-    </p>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">ZZONN</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">blog</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
 </div>
 
-<div id="container">
-    
-<div class="search-box">
-    <form class="site-search-form">
-        <span class="iconfont icon-search"></span>
-        <input type="text" id="local-search-input" class="st-search-input" />
-        <div class="iconfont icon-cross search-box-close"></div>
-    </form>
-    <div class="search-scrollable">
-        <div id="local-search-result" class="local-search-result-cls" data-initialise="首次搜索，正在载入索引文件，请稍后……"
-            data-start="输入关键词搜索。" data-empty="没有找到内容，请尝试更换检索词。">
-            <span>输入关键词搜索。</span>
-        </div>
-    </div>
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
 </div>
-<div id="header">
-    <div>
-        <div class="logo animated fadeInDown">
-            <img src="/img/favicon.png" alt="">
-            <a class="image-logo" href="/"></a>
-        </div>
-        <ul id="menu-menu" class="menu text-menu">
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/categories/" title="分类" external="false" class="menu-link">分类</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/tags/" title="标签" external="false" class="menu-link">标签</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/archives/" title="时光轴" external="false" class="menu-link">时光轴</a>
-            </li>
-            
-            <li class="animated fadeInDown menu-item menu-item-type-post_type menu-item-object-page">
-                <a href="/whoami/" title="关于我" external="false" class="menu-link">关于我</a>
-            </li>
-            
-            
-            <li class="animated fadeInDown search-bar iconfont icon-search"></li>
-            
-        </ul>
-        <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
-    </div>
-</div>
-<div id="screen">
-    <div id="mark">
-        <div class="cover animated fadeIn" style="
-            animation-delay: 900ms;
-            animation-duration: 2.8s;
-            background-image:
-                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.56), #100e17),
-                url(/img/cover.jpg);">
-        </div>
-    </div>
+    </header>
+
     
-    <div id="post0" class="else">
-        <p class="animated fadeInDown">
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content index posts-expand">
             
-            <a href="/categories/工具"><b>「
-                </b>工具<b> 」</b></a>
-            
-            三月 01, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown">
-            <a href="/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/" title="搭建NuGet服务并使用" class="posttitle">搭建NuGet服务并使用</a></h3>
-        
-        <p class="post-count animated fadeInDown">
-            
-            <span>
-                <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                1.2k
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">搭建NuGet服务并使用</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-01 20:06:44" itemprop="dateCreated datePublished" datetime="2020-03-01T20:06:44+08:00">2020-03-01</time>
             </span>
-            
-            
-            <span>
-                <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                1 mins.
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-03-05 17:24:06" itemprop="dateModified" datetime="2020-03-05T17:24:06+08:00">2020-03-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
             </span>
-            
-            
-            <span id="/2020/03/01/搭建NuGet服务并使用/" class="leancloud_visitors" data-flag-title="">
-                <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                <span class="leancloud-visitors-count">1000000</span>
-            </span>
-            
-        </p>
-        
-        
-        <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%9C%8D%E5%8A%A1/" rel="tag">服务</a></li></ul>
-        
-        <div class="md-content animated fadeIn">
-            
-            <p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服...</a></p>
-            
-            <span class="read-more"><a href="/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/" title="查看全文" class="posttitle">查看全文</a>
-                <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+
+          
+
         </div>
-    </div>
+      </header>
+
     
-</div>
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="screen-gradient-after">
-    <div class="screen-gradient-content">
-        <div class="screen-gradient-content-inside">
-            <div class="bold-underline-links screen-gradient-sponsor">
-                <p>
-                    <span class="typed-text"></span>
-                </p>
-            </div>
+      
+          <h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
+<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
+<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
+<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
+<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
+<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
+<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
+<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
+<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/02/15/%E7%AE%80%E5%8D%95Token%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/15/%E7%AE%80%E5%8D%95Token%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/" class="post-title-link" itemprop="url">简单Token验证机制</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-15 11:36:18" itemprop="dateCreated datePublished" datetime="2020-02-15T11:36:18+08:00">2020-02-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-07 22:24:45" itemprop="dateModified" datetime="2020-04-07T22:24:45+08:00">2020-04-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AE%89%E5%85%A8/" itemprop="url" rel="index"><span itemprop="name">安全</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-</div>
+      </header>
 
-    <div id="primary">
-        
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/安全">
-                  <b>「 </b>安全<b> 」</b>
-                </a>
-            
-            二月 15, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/02/15/%E7%AE%80%E5%8D%95Token%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/" title="简单Token验证机制" class="posttitle">简单Token验证机制</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        813
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-                    <span id="/2020/02/15/简单Token验证机制/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Token/" rel="tag">Token</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p></p>
-<h4 id="验证token成功"><a href="#验证token成功" class="headerlink" title="验证token成功"></a>验证token成功</h4><p></p>
-<h4 id="验证token失败"><a href="#验证token失败" class="headerlink" title="验证token失败"></a>验证token失败</h4><p></p>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="登录接口"><a href="#登录接口" class="headerlink" title="登录接口"></a>登录接口</h2><p><img src="https://blog.zzonn.com/images/1586269134119.png" alt="登录认证"></p>
+<h2 id="其他接口"><a href="#其他接口" class="headerlink" title="其他接口"></a>其他接口</h2><h4 id="验证token成功"><a href="#验证token成功" class="headerlink" title="验证token成功"></a>验证token成功</h4><p><img src="https://blog.zzonn.com/images/1586269223307.png" alt="验证token成功"></p>
+<h4 id="验证token失败"><a href="#验证token失败" class="headerlink" title="验证token失败"></a>验证token失败</h4><p><img src="https://blog.zzonn.com/images/1586269281641.png" alt="验证token失败"></p>
 <h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ol>
 <li>refreshToken过期则要求用户重新登录</li>
 <li>每次使用的时候，更新refreshToken的过期时间</li>
 <li>使用JWT实现无状态Token时，需要尽量缩短Token的有效期，并使refreshToken在服务端有状态（便于控制，注销时可及时作废令牌）</li>
 </ol>
 
-            
-            <span class="read-more"><a href="/2020/02/15/%E7%AE%80%E5%8D%95Token%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/" class="post-title-link" itemprop="url">开源工具推荐：Postwoman</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-27 20:16:49" itemprop="dateCreated datePublished" datetime="2020-01-27T20:16:49+08:00">2020-01-27</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 20:17:54" itemprop="dateModified" datetime="2020-04-05T20:17:54+08:00">2020-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-</div>
+      </header>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/工具">
-                  <b>「 </b>工具<b> 」</b>
-                </a>
-            
-            一月 27, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/" title="开源工具推荐：Postwoman" class="posttitle">开源工具推荐：Postwoman</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.2k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-                    <span id="/2020/01/27/开源工具推荐：Postwoman/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E6%8E%A5%E5%8F%A3/" rel="tag">接口</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
+      
+          <h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
 <li>快速：实时发送请求并获取/复制响应</li>
 <li>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</li>
 <li>支持验证</li>
 <li>实时，发送请求即可获取响应。</li>
 </ul>
-<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了...</p>
-            
-            <span class="read-more"><a href="/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
+<ul>
+<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
+<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
+<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
+<li>支持身份验证，具有更高的安全性</li>
+<li>实时，发送请求即可获取响应。</li>
+<li>轻松，快速地创建和共享动态API文档</li>
+</ul>
+<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/" class="post-title-link" itemprop="url">常用SQL备忘</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-22 13:43:12" itemprop="dateCreated datePublished" datetime="2020-01-22T13:43:12+08:00">2020-01-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-06 16:33:42" itemprop="dateModified" datetime="2020-04-06T16:33:42+08:00">2020-04-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-</div>
+      </header>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/SQL">
-                  <b>「 </b>SQL<b> 」</b>
-                </a>
-            
-            一月 22, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/" title="常用SQL备忘" class="posttitle">常用SQL备忘</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-                    <span id="/2020/01/22/常用SQL备忘/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/SQL/" rel="tag">SQL</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p><strong>sql server:</strong></p>
+      
+          <h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
 <pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
 <p>  结果：2.18</p>
 <pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
 <p>结果：2.18</p>
 <pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
-<p>结果：...</p>
-            
-            <span class="read-more"><a href="/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+<p>结果：2.180000</p>
+<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
+<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
+where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
+<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
+(
+    select Id,Pid,Name from 表名
+    where Id = 1
+    union all
+    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
+    on c.Id = t.Pid
+)
+select * from cte</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">数据库设计规范</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-15 09:57:54" itemprop="dateCreated datePublished" datetime="2020-01-15T09:57:54+08:00">2020-01-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 20:00:05" itemprop="dateModified" datetime="2020-04-05T20:00:05+08:00">2020-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-</div>
+      </header>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/其他">
-                  <b>「 </b>其他<b> 」</b>
-                </a>
-            
-            一月 15, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" title="数据库设计规范" class="posttitle">数据库设计规范</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        10k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        9 mins.
-                    </span>
-                
-                
-                    <span id="/2020/01/15/数据库设计规范/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>1.【推荐】字段允许适当冗余，以提高查询性能，但必须考虑数据一致。冗余字段应遵循:</p>
+      
+          <h1 id="设计规范"><a href="#设计规范" class="headerlink" title="设计规范"></a>设计规范</h1><p>1.【推荐】字段允许适当冗余，以提高查询性能，但必须考虑数据一致。冗余字段应遵循:</p>
 <blockquote>
 <p>不是频繁修改的字段。<br>不是 varchar 超长字段，更不能是 text 字段。<br>正例:商品类目名称使用频率高，字段长度短，名称基本一成不变，可在相关联的表中冗余存 储类目名称，避免关联查询。</p>
 </blockquote>
-<p>2.【推荐】单表行数超...</p>
-            
-            <span class="read-more"><a href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+<p>2.【推荐】单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。 说明:如果预计2年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。<br>3.【推荐】id必须是主键，每个表必须有主键，且保持增长趋势的， 小型系统可以依赖于 MySQL 的自增主键，大型系统或者需要分库分表时才使用内置的 ID 生成器<br>4.【强制】id类型没有特殊要求，必须使用bigint unsigned，禁止使用int，即使现在的数据量很小。id如果是数字类型的话，必须是8个字节。</p>
+<blockquote>
+<p>方便对接外部系统，还有可能产生很多废数据<br>避免废弃数据对系统id的影响<br>未来分库分表，自动生成id，一般也是8个字节</p>
+</blockquote>
+<p>5.【推荐】字段尽量设置为 NOT NULL， 为字段提供默认值。 如字符型的默认值为一个空字符值串’’;数值型默认值为数值 0;逻辑型的默认值为数值 0;<br>6.【推荐】每个字段和表必须提供清晰的注释<br>7.【推荐】时间统一格式:‘YYYY-MM-DD HH:MM:SS’ 日期统一格式：‘YYYY-MM-DD‘<br>8.【强制】更新数据表记录时，必须同时更新记录对应的 UpdateTime 字段值为当前时间,<br>9.【推荐】不建立表之间主外键约束关系和字段属性约束， 用业务代码控制。<br>10.【推荐】字段不可再分 原则。如：1,2,3,4 存放在一个字段中。我们应该尽量采用表存储。<br>11.【推荐】一张数据表尽量只存储单一实体类型的数据</p>
+<h1 id="命名规范"><a href="#命名规范" class="headerlink" title="命名规范"></a>命名规范</h1><p>1.【强制】表达是与否概念的字段，必须使用 isxxx 的方式命名，数据类型是 bit ( 1表示是，0表示否)。</p>
+<blockquote>
+<p>正例:表达逻辑删除的字段名 isdeleted，1 表示删除，0 表示未删除。</p>
+</blockquote>
+<p>2.【强制】表名、字段名必须使用字母或数字，字母均小写，禁止出现数字开头，禁止两个下划线中间只出现数字。数据库字段名的修改代价很大，因为无法进行预发布，所以字段名称需要慎重考虑。</p>
+<blockquote>
+<p>说明:MySQL 在 Windows 下不区分大小写，但在 Linux 下默认是区分大小写。因此，数据库 名、表名、字段名，都不允许出现任何大写字母，避免节外生枝。 正例:health_user，rdc_config，level3_name 反例:HealthUser，rdcConfig，level_3_name</p>
+</blockquote>
+<p>3.【强制】表名不使用复数名词。 </p>
+<blockquote>
+<p>说明:表名应该仅仅表示表里面的实体内容，不应该表示实体数量，对应于 DO 类名也是单数 形式，符合表达习惯。</p>
+</blockquote>
+<p>4.【强制】禁用保留字，如 desc、range、match、delayed 等，请参考 MySQL 官方保留字。<br>5.【强制】主键索引名为 pk_表名_字段名;唯一索引名为 uk_表名_字段名;普通索引名则为 idx_表名_字段名。</p>
+<blockquote>
+<p>说明:pk_ 即 primary key;uk_ 即 unique key;idx_ 即 index 的简称。</p>
+</blockquote>
+<p>6.【强制】表必备三字段:id, createtime, updatetime。需要逻辑删除数据表 isdeleted。 </p>
+<blockquote>
+<p>说明:其中id必为主键，类型为unsigned bigint、单表时自增、步长为1。createtime, updatetime 的类型均为 datetime 类型，前者现在时表示主动创建，后者过去分词表示被动更新。isdeleted 表示记录是否被逻辑删除，数据类型是bit ，1为是，0 为否。</p>
+</blockquote>
+<p>7.【强制】所有命名必须使用全名，有默认约定的除外，如果超过 30 个字符，使用缩写，请尽量名字易懂简短，</p>
+<blockquote>
+<p>如 description –&gt; desc;information –&gt; info;address –&gt; addr 等.单词之前下划线分割。</p>
+</blockquote>
+<p>8.【推荐】表的命名最好是加上“业务名称_表的作用”。 </p>
+<blockquote>
+<p>正例:health_user / trade_config</p>
+</blockquote>
+<p>9.【推荐】库名与应用名称尽量一致。如health<br>10.【推荐】如果修改字段含义或对字段表示的状态追加时，需要及时更新字段注释。<br>11.[强制]表之前有主从关系的。从表需要前匹配主表。</p>
+<blockquote>
+<p>如：sas_statisticstype，sas_statisticstypetable</p>
+</blockquote>
+<h2 id="数据库对象的前缀命名规范"><a href="#数据库对象的前缀命名规范" class="headerlink" title="数据库对象的前缀命名规范"></a>数据库对象的前缀命名规范</h2><p>以IMS系统统计分析为例，分析业务码sas</p>
+<h3 id="表（业务码-表名）"><a href="#表（业务码-表名）" class="headerlink" title="表（业务码_表名）"></a>表（业务码_表名）</h3><blockquote>
+<p>如：sas_statisticstype,IMS系统统计分析统计指标表。</p>
+</blockquote>
+<h3 id="视图-（v-业务码-名称）"><a href="#视图-（v-业务码-名称）" class="headerlink" title="视图 （v_业务码_名称）"></a>视图 （v_业务码_名称）</h3><p>v_业务码_名称</p>
+<h3 id="存储过程（p-业务码-存储过程名称）"><a href="#存储过程（p-业务码-存储过程名称）" class="headerlink" title="存储过程（p_业务码_存储过程名称）"></a>存储过程（p_业务码_存储过程名称）</h3><h3 id="函数（f-业务码-函数名称）"><a href="#函数（f-业务码-函数名称）" class="headerlink" title="函数（f_业务码_函数名称）"></a>函数（f_业务码_函数名称）</h3><h1 id="类型规范"><a href="#类型规范" class="headerlink" title="类型规范"></a>类型规范</h1><p>1.表示状态字段(0-255)的使用 TINYINT UNSINGED，禁止使用枚举类型，注释必须清晰地说明每个枚举的含义，以及是否多选等<br>2.表示boolean类型的都使用bit,因为mysql本身是没有boolean类型的，在自动生成代码的时候，DO对象的字段就是boolean类型，</p>
+<blockquote>
+<p>例如 isdelete;其余所有时候都使用TINYINT(4)<br>TINYINT(4),这个括号里面的数值并不是表示使用多大空间存储，而是最大显示宽度，并且只有字段指定zerofill时有用，没有zerofill，(m)就是无用的,例如id BIGINT ZEROFILL NOT NULL,所以建表时就使用默认就好了，不需要加括号了，除非有特殊需求，例如TINYINT(1)代表boolean类型。<br>TINYINT(1)，TINYINT(4)都是存储一个字节，并不会因为括号里的数字改变。例如TINYINT(4)存储22则会显示0022，因为最大宽度为4，达不到的情况下用0来补充。</p>
+</blockquote>
+<p>3.【参考】合适的字符存储长度，不但节约数据库表空间、节约索引存储，更重要的是提升检索速度。</p>
+<blockquote>
+<p>类型    字节    表示范围<br>tinyint    1    无符号值: 0～255;有符号值： -128<del>127<br>smallint    2    无符号值: 0～65536;有符号值： -32768</del>32767<br>mediumint    3    无符号值: 0～16777215;有符号值： -8388608<del>8388607<br>int    4    无符号值: 0</del>4294967295;有符号值： -2147483648<del>2147483647<br>bigint    8    无符号值: 0</del>((2³²×²)-1);有符号值： -(2³²×²)/2 ~ (2³²×²)/2-1</p>
+</blockquote>
+<p>4.非负的数字类型字段，都添加上 UNSINGED, 如可以使用 INT UNSINGED 字段存 IPV4<br>5.时间字段使用时间日期类型，不要使用字符串类型存储，日期使用DATE类型，日期时间使用DATETIME<br>6.【强制】小数类型为 decimal，禁止使用 float 和 double。</p>
+<blockquote>
+<p>说明:float 和 double 在存储的时候，存在精度损失的问题，很可能在值的比较时，得到不 正确的结果。如果存储的数据范围超过 decimal 的范围，建议将数据拆成整数和小数分开存储。decimal（18,0），decimal（18,2），decimal（18,4），decimal（18,6）</p>
+</blockquote>
+<p>7.【强制】如果存储的字符串长度几乎相等，使用 char 定长字符串类型。<br>8.【强制】字符串VARCHAR(N), 其中 N表示字符个数，请尽量减少 N 的大小，varchar，nvarchar 是可变长字符串，不预先分配存储空间，长度不要超过 4000，如果存储长 度大于此值，定义字段类型为 text，独立出来一张表，用主键来对应，避免影响其它字段索 引效率。 </p>
+<blockquote>
+<p>参考：<br>varchar，nvarchar：<br>varchar（20），varchar（50），varchar（100），varchar（200），varchar（500），varchar（1000），varchar（2000），varchar（4000）。</p>
+</blockquote>
+<p>9.image 和 Text 类型所存储的数据量大，删除和修改操作容易在数 据表里产生大量的碎片，避免使用 image 或 Text 类型。</p>
+<h1 id="索引规范"><a href="#索引规范" class="headerlink" title="索引规范"></a>索引规范</h1><p>1.【推荐】业务上具有唯一特性的字段，即使是多个字段的组合，也必须建成唯一索引。并不一定是聚集索引。<br>不要以为唯一索引影响了 insert 速度，这个速度损耗可以忽略，但提高查找速度是明 显的;另外，即使在应用层做了非常完善的校验控制，只要没有唯一索引，根据墨菲定律，必然有脏数据产生。</p>
+<p>2.【强制】超过三个表不建议join,需要join 的字段，数据类型必须绝对一致;多表关联查询时， 保证被关联的字段需要有索引。即使双表 join 也要注意表索引、SQL 性能。</p>
+<p>3.【强制】在 varchar 字段上建立索引时，必须指定索引长度，没必要对全字段建立索引，根据 实际文本区分度决定索引长度即可。 说明:索引的长度与区分度是一对矛盾体，一般对字符串类型数据，长度为 20 的索引，区分度会高达 90%以上，可以使用 count(distinct left(列名, 索引长度))/count(*)的区分度来确定。</p>
+<p>4.【强制】页面搜索严禁左模糊或者全模糊，如果需要请走搜索引擎来解决。<br>索引文件具有 B-Tree 的最左前缀匹配特性，如果左边的值未确定，那么无法使用此索引。</p>
+<p>5.【推荐】如果有 order by 的场景，请注意利用索引的有序性。order by 最后的字段是组合索引的一部分，并且放在索引组合顺序的最后，避免出现 file_sort 的情况，影响查询性能。</p>
+<blockquote>
+<p>正例:where a=? and b=? order by c; 索引:a_b_c 反例:索引中有范围查找，那么索引有序性无法利用，如:WHERE a&gt;10 ORDER BY b; 索引 a_b 无法排序。</p>
+</blockquote>
+<p>6.【推荐】利用覆盖索引来进行查询操作，避免回表。<br>说明:如果一本书需要知道第11章是什么标题，会翻开第11章对应的那一页吗?目录浏览一下就好，这个目录就是起到覆盖索引的作用。</p>
+<blockquote>
+<p>正例:能够建立索引的种类:主键索引、唯一索引、普通索引，而覆盖索引是一种查询的效果，用explain的结果，extra列会出现:using index。</p>
+</blockquote>
+<p>7.【推荐】利用延迟关联或者子查询优化超多分页场景。</p>
+<blockquote>
+<p>说明:MySQL并不是跳过 offset 行，而是取 offset+N 行，然后返回放弃前 offset 行，返回 N 行，那当 offset 特别大的时候，效率就非常的低下，要么控制返回的总页数，要么对超过特定阈值的页数进行 SQL 改写。<br>正例:先快速定位需要获取的 id 段，然后再关联:<br>SELECT a.* FROM 表 1 a, (select id from 表 1 where 条件 LIMIT 100000,20 ) b where a.id=b.id</p>
+</blockquote>
+<p>8.【推荐】SQL 性能优化的目标:至少要达到 range 级别，要求是 ref 级别，如果可以是 consts 最好。</p>
+<blockquote>
+<p>说明:<br>consts 单表中最多只有一个匹配行(主键或者唯一索引)，在优化阶段即可读取到数据。<br>ref 指的是使用普通的索引(normal index)。<br>range 对索引进行范围检索。<br>反例:explain 表的结果，type=index，索引物理文件全扫描，速度非常慢，这个 index 级 别比较 range 还低，与全表扫描是小巫见大巫。</p>
+</blockquote>
+<p>9.【推荐】建组合索引的时候，区分度最高的在最左边。</p>
+<blockquote>
+<p>正例:如果 where a=? and b=? ，a 列的几乎接近于唯一值，那么只需要单建 idx_a 索引即 可。<br>说明:存在非等号和等号混合判断条件时，在建索引时，请把等号条件的列前置。如:where a&gt;? and b=? 那么即使 a 的区分度更高，也必须把 b 放在索引的最前列。</p>
+</blockquote>
+<p>10【推荐】防止因字段类型不同造成的隐式转换，导致索引失效。存在索引计算转换。</p>
+<p>11.【参考】创建索引时避免有如下极端误解</p>
+<blockquote>
+<p>宁滥勿缺。认为一个查询就需要建一个索引。<br>宁缺勿滥。认为索引会消耗空间、严重拖慢更新和新增速度。<br>抵制惟一索引。认为业务的惟一性一律需要在应用层通过“先查后插”方式解决。</p>
+</blockquote>
+<ol start="12">
+<li><p>总结</p>
+<ul>
+<li>• 索引占磁盘空间，不要重复的索引，尽量短<br>• 只给常用的查询条件加索引<br>• 过滤性高的列建索引，取值范围固定的列不建索引<br>• 唯一的记录添加唯一索引<br>• 频繁更新的列不要建索引<br>• 不要对索引列运算<br>• 同样过滤效果下，保持索引长度最小<br>• 合理利用组合索引，注意索引字段先后顺序<br>• 多列组合索引，过滤性高的字段最前<br>• order by 字段建立索引，避免 filesort<br>• 组合索引，不同的排序顺序不能使用索引<br>• &lt;&gt;!=无法使用索引</li>
+</ul>
+</li>
+</ol>
+<h1 id="SQL规范"><a href="#SQL规范" class="headerlink" title="SQL规范"></a>SQL规范</h1><p>1.【强制】不要使用 count(列名)或 count(常量)来替代 count()，count()是 SQL92 定义的 标准统计行数的语法，跟数据库无关，跟 NULL 和非 NULL 无关。count(*)会统计值为 NULL 的行，而 count(列名)不会统计此列为 NULL 值的行。</p>
+<p>2.【强制】count(主键) 计算该列除 NULL 之外的不重复行数，count(distinct col1, col2) 如果其中一列全为NULL，那么即使另一列有不同的值，也返回为0。<br>3.【强制】当某一列col的值全是 NULL 时，count(col)的返回结果为 0，但 sum(col)的返回结果为 NULL，因此使用 sum()时需注意 NPE 问题。</p>
+<blockquote>
+<p>正例:可以使用如下方式来避免sum的NPE问题:SELECT IF(ISNULL(SUM(g)),0,SUM(g)) FROM table;</p>
+</blockquote>
+<p>4.【强制】使用 ISNULL()来判断是否为 NULL 值。 </p>
+<blockquote>
+<p>说明:NULL 与任何值的直接比较都为 NULL。<br>NULL&lt;&gt;NULL的返回结果是NULL，而不是false。<br>NULL=NULL的返回结果是NULL，而不是true。<br>NULL&lt;&gt;1的返回结果是NULL，而不是true。</p>
+</blockquote>
+<p>5.【强制】 在代码中写分页查询逻辑时，若 count 为 0 应直接返回，避免执行后面的分页语句。<br>6.【强制】不得使用外键与级联，一切外键概念必须在应用层解决。</p>
+<blockquote>
+<p>说明:以学生和成绩的关系为例，学生表中的 student_id 是主键，那么成绩表中的 student_id 则为外键。如果更新学生表中的 student_id，同时触发成绩表中的 student_id 更新，即为 级联更新。外键与级联更新适用于单机低并发，不适合分布式、高并发集群;级联更新是强阻 塞，存在数据库更新风暴的风险;外键影响数据库的插入速度。</p>
+</blockquote>
+<p>7.<del>【强制】禁止使用存储过程，存储过程难以调试和扩展，更没有移植性。<br>~</del><br>8.【强制】数据订正时，删除和修改记录时，要先 select，避免出现误删除，确认无误才能执行更新语句。</p>
+<p>9.【推荐】in操作能避免则避免，若实在避免不了，需要仔细评估 in 后边的集合元素数量，控<br>制在 <del>1000</del> （300）个之内。</p>
+<p>10.【参考】如果有全球化需要，所有的字符存储与表示，均以 utf-8 编码，注意字符统计函数 的区别。</p>
+<blockquote>
+<p>查看SQLserver编码格式的SQL语句<br>SELECT  COLLATIONPROPERTY(‘Chinese_PRC_CI_AS’, ‘CodePage’)<br>下面是查询结果：<br>*<em>936 简体中文GBK *</em><br>950 繁体中文BIG5<br>437 美国/加拿大英语<br>932 日文<br>949 韩文<br>866 俄文<br>65001 unicode UFT-8</p>
+</blockquote>
+<p>11.【参考】TRUNCATE TABLE 比 DELETE 速度快，且使用的系统和事务日志资源少，但 TRUNCATE 无事务且不触发trigger，有可能造成事故，故不建议在开发代码中使用此语句。</p>
+<blockquote>
+<p>说明:TRUNCATE TABLE 在功能上与不带 WHERE 子句的 DELETE 语句相同。</p>
+</blockquote>
+<p>12.【推荐】不要写一个大而全的数据更新接口。传入为 POJO 类，不管是不是自己的目标更新字 段，都进行 update table set c1=value1,c2=value2,c3=value3; 这是不对的。执行 SQL 时，不要更新无改动的字段，一是易出错;二是效率低;三是增加 binlog 存储。<br>13.[推荐]更新删除数据尽量通过主键操作。<br>13.总结</p>
+<p>• 能够快速缩小结果集的 WHERE 条件写在前面，如果有恒量条 件，也尽量放在前面 ，例如 where 1=1<br>• 避免使用 GROUP BY、DISTINCT 等语句的使用，避免联表查 询和子查询<br>• 能够使用索引的字段尽量进行有效的合理排列<br>• 针对索引字段使用 &gt;, &gt;=, =, &lt;, &lt;=, IF NULL 和 BETWEEN 将会 使用索引，如果对某个索引字段进行 LIKE 查询，使用 LIKE   ‘%abc%’ 不能使用索引，使用 LIKE ‘abc%’ 将能够使用索引<br>• 如果在 SQL 里使用了 MySQL部分自带函数，索引将失效<br>• 避免直接使用 select *,只取需要的字段，增加使用覆盖索引使用的可能<br>• 对于大数据量的查询，尽量避免在 SQL 语句中使用 order by 字。</p>
+<h4 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h4><p><a href="http://www.kokojia.com/article/25670.html" target="_blank" rel="noopener">http://www.kokojia.com/article/25670.html</a><br><a href="https://developer.aliyun.com/article/709387" target="_blank" rel="noopener">https://developer.aliyun.com/article/709387</a></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">API接口规范</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-03 15:11:04" itemprop="dateCreated datePublished" datetime="2020-01-03T15:11:04+08:00">2020-01-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 19:48:55" itemprop="dateModified" datetime="2020-04-05T19:48:55+08:00">2020-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-</div>
+      </header>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
+      
+          <h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
+<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
+<h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
+<ol>
+<li>应该将API的版本号放入URL。</li>
+<li>采用多版本并存，增量发布的方式。</li>
+<li>n代表版本号，分为整型和浮点型<br>整型：    大功能版本，  如v1、v2、v3 …<br>浮点型：  补充功能版本， 如v1.1、v1.2、v2.1、v2.2 …</li>
+<li>对于一个 API 或服务，应在生产中最多保留 3 个最详细的版本</li>
+</ol>
+<h1 id="四、路径规则"><a href="#四、路径规则" class="headerlink" title="四、路径规则"></a>四、路径规则</h1><p>路径又称”终点”（end point），表示API的具体网址。</p>
+<ol>
+<li>在RESTful架构中，每个网址代表一种资源(resource),所以网址中不能有动词，只能有名词。<br> 【所用的名词往往与数据库的表格名对应】</li>
+<li>数据库中的表一般都是同种记录的”集合”(collection),所以API中的名词也应该使用复数。</li>
+</ol>
+<p>例子: <a href="https://api.example.com/v1/products" target="_blank" rel="noopener">https://api.example.com/v1/products</a><br>      <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a><br>      <a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></p>
+<h1 id="五、请求方式"><a href="#五、请求方式" class="headerlink" title="五、请求方式"></a>五、请求方式</h1><p>GET（SELECT）：    从服务器取出资源（一项或多项）。<br>POST（CREATE）：   在服务器新建一个资源。<br>PUT（UPDATE）：    在服务器更新资源（客户端提供改变后的完整资源）。<br>DELETE（DELETE）： 从服务器删除资源。</p>
+<p>例子：<br>GET    /v1/products      获取所有商品<br>GET    /v1/products/ID   获取某个指定商品的信息<br>POST   /v1/products      新建一个商品<br>PUT    /v1/products/ID   更新某个指定商品的信息<br>DELETE /v1/products/ID   删除某个商品,更合理的设计详见【9、非RESTful API的需求】<br>GET    /v1/products/ID/purchases      列出某个指定商品的所有投资者<br>GET    /v1/products/ID/purchases/ID   获取某个指定商品的指定投资者信息</p>
+<h1 id="六、过滤信息"><a href="#六、过滤信息" class="headerlink" title="六、过滤信息"></a>六、过滤信息</h1><p>若记录数量很多，服务器不可能返回全部记录给用户。<br>API应该提供分页参数及其它筛选参数，过滤返回结果。</p>
+<p>/v1/products?page=1&amp;pageSize=20     指定第几页，以及每页的记录数。<br>/v1/products?sortBy=name&amp;order=asc  指定返回结果按照哪个属性排序，以及排序顺序。</p>
+<h1 id="七、传入参数"><a href="#七、传入参数" class="headerlink" title="七、传入参数"></a>七、传入参数</h1><p>传入参数分为4种类型：</p>
+<ol>
+<li>cookie：         一般用于OAuth认证</li>
+<li>request header： 一般用于OAuth认证</li>
+<li>请求body数据：</li>
+<li>地址栏参数：<br> 1）restful 地址栏参数 /v1/products/ID ID为产品编号，获取产品编号为ID的信息<br> 2）get方式的查询字段 见【六、过滤信息】</li>
+</ol>
+<h1 id="八、公共参数"><a href="#八、公共参数" class="headerlink" title="八、公共参数"></a>八、公共参数</h1><h2 id="1-APP-端请求"><a href="#1-APP-端请求" class="headerlink" title="1.APP 端请求"></a>1.APP 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>network</td>
+<td>网络</td>
+<td>WIFI、4G</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>运营商</td>
+<td>中国联通/移动</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>平台</td>
+<td>iOS、Android</td>
+</tr>
+<tr>
+<td>system</td>
+<td>系统</td>
+<td>ios 13.3、android 9</td>
+</tr>
+<tr>
+<td>device</td>
+<td>设备型号</td>
+<td>iPhone XR、小米9</td>
+</tr>
+<tr>
+<td>udid</td>
+<td>设备唯</td>
+<td>标示</td>
+</tr>
+<tr>
+<td>apiVersion</td>
+<td>API 版本号</td>
+<td>v1.1、v1.2</td>
+</tr>
+</tbody></table>
+<h2 id="2-WEB-端请求"><a href="#2-WEB-端请求" class="headerlink" title="2.WEB 端请求"></a>2.WEB 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appKey</td>
+<td>授权Key</td>
+<td>字符串</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[info] 调用方需向服务方申请 appKey（请求时使用） 和 secretKey（加密时使用）。</p>
+</blockquote>
+<h1 id="九、响应参数"><a href="#九、响应参数" class="headerlink" title="九、响应参数"></a>九、响应参数</h1><p>【response】：</p>
+<hr>
+<pre><code class="json">{
+   status: 200,               // 详见【status】
+   data: {
+      code: 1,                // 详见【code】
+      data: {} || [],         // 数据
+      message: &#39;成功&#39;,        // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+      sysMessage: &#39;success&#39;   // 存放响应信息提示,调试使用,中英文都行
+      ...                     // 其它参数，如 total【总记录数】等
+   },
+   msg: &#39;成功&#39;,            // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+   sysMsg: &#39;success&#39;       // 存放响应信息提示,调试使用,中英文都行
+}</code></pre>
+<hr>
+<p>【status】:</p>
+<p>200：OK<br>400：Bad Request<br>401：Unauthorized<br>403：Forbidden<br>404：Not Found<br>500：Internal Server Error</p>
+<p>【code】:</p>
+<p>1：获取数据成功 | 操作成功<br>0：获取数据失败 | 操作失败</p>
+<hr>
+<p> 若有分页数据返回的，格式如下：</p>
+<pre><code class="json">{
+    &quot;code&quot;: 1,
+    &quot;showMsg&quot;: &quot;success&quot;,
+    &quot;errorMsg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+         &quot;list&quot;: [],
+         &quot;pagination&quot;: {
+             &quot;total&quot;: 100,
+             &quot;currentPage&quot;: 1,
+             &quot;prePageCount&quot;: 10
+         }
+     }
+}</code></pre>
+<h1 id="十、非RESTful-API的需求"><a href="#十、非RESTful-API的需求" class="headerlink" title="十、非RESTful API的需求"></a>十、非RESTful API的需求</h1><ol>
+<li>实际业务开展过程中，可能会出现各种的api不是简单的restful 规范能实现的。</li>
+<li>需要有一些api突破restful规范原则。</li>
+<li>特别是移动互联网的api设计，更需要有一些特定的api来优化数据请求的交互。<br> 1)、删除单个 | 批量删除  ： DELETE  /v1/product      body参数{ids：[]}<br> 2)、页面级API           :  把当前页面中需要用到的所有数据通过一个接口一次性返回全部数据</li>
+</ol>
+<h1 id="十一、一致性原则"><a href="#十一、一致性原则" class="headerlink" title="十一、一致性原则"></a>十一、一致性原则</h1><ol>
+<li>前端需要哪些字段，API接口应该返回哪些字段，字段不多也不少。</li>
+<li>更新功能尽量做到：初次返回的原始数据参数与提交更新的数据参数结构一致。</li>
+<li>时间参数，尽量以时间戳13位传递。</li>
+<li>其它参数【待更新】</li>
+</ol>
+<h1 id="十二、接口文档"><a href="#十二、接口文档" class="headerlink" title="十二、接口文档"></a>十二、接口文档</h1><ol>
+<li>尽量采用自动化接口文档，可以做到在线测试，同步更新。</li>
+<li>应包含：接口BASE地址、接口版本、接口模块分类等。</li>
+<li>每个接口应包含：<br>接口地址：不包含接口BASE地址。<br>请求方式: get、post、put、delete等。<br>请求参数：数据格式【默认JSON、可选form data】、数据类型、是否必填、中文描述。<br>响应参数：类型、中文描述。</li>
+</ol>
+<h1 id="十三、参考资料"><a href="#十三、参考资料" class="headerlink" title="十三、参考资料"></a>十三、参考资料</h1><ol>
+<li><a href="https://my.oschina.net/qqlet/blog/1922038" target="_blank" rel="noopener">https://my.oschina.net/qqlet/blog/1922038</a></li>
+<li><a href="https://juejin.im/post/5afee0e86fb9a07ab379b371" target="_blank" rel="noopener">https://juejin.im/post/5afee0e86fb9a07ab379b371</a></li>
+<li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
+</ol>
+
+      
     </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/其他">
-                  <b>「 </b>其他<b> 」</b>
-                </a>
-            
-            一月 03, 2020
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" title="API接口规范" class="posttitle">API接口规范</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        6.3k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        6 mins.
-                    </span>
-                
-                
-                    <span id="/2020/01/03/API接口规范/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E8%A7%84%E8%8C%83/" rel="tag">规范</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
-<p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
-<p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https:/...</a></p>
-            
-            <span class="read-more"><a href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">Windows错误代码对应解决方案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-17 10:21:42" itemprop="dateCreated datePublished" datetime="2019-11-17T10:21:42+08:00">2019-11-17</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-06 16:33:43" itemprop="dateModified" datetime="2020-04-06T16:33:43+08:00">2020-04-06</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+                </span>
+            </span>
+
+          
+
         </div>
-    </div>
-</div>
+      </header>
 
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/Windows">
-                  <b>「 </b>WINDOWS<b> 」</b>
-                </a>
-            
-            十一月 17, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="Windows错误代码对应解决方案" class="posttitle">Windows错误代码对应解决方案</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        234
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        1 mins.
-                    </span>
-                
-                
-                    <span id="/2019/11/17/Windows错误代码对应解决方案/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/Windows/" rel="tag">Windows</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <ol>
+      
+          <h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
 <li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
 <li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
 </ol>
 
-            
-            <span class="read-more"><a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
+      
     </div>
-</div>
 
-
-<div class="post" id="post">
-    <div class="post-cover animated fadeIn" style="
-            background-image:
-            radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-            url(/img/welcome-cover.jpg);">
-    </div>
-    <div class="else">
-        <p class="animated fadeInDown">
-            
-                <a href="/categories/其他">
-                  <b>「 </b>其他<b> 」</b>
-                </a>
-            
-            十月 03, 2019
-        </p>
-        <h3 class="post-title animated fadeInDown"><a href="/2019/10/03/hello-world/" title="Hello World" class="posttitle">Hello World</a></h3>
-        
-            <p class="post-count animated fadeInDown">
-                
-                    <span>
-                        <b class="iconfont icon-text2"></b> <i>文章字数</i>
-                        1.8k
-                    </span>
-                
-                
-                    <span>
-                        <b class="iconfont icon-timer__s"></b> <i>阅读约需</i>
-                        2 mins.
-                    </span>
-                
-                
-                    <span id="/2019/10/03/hello-world/" class="leancloud_visitors" data-flag-title="">
-                        <b class="iconfont icon-read"></b> <i>阅读次数</i>
-                        <span class="leancloud-visitors-count">1000000</span>
-                    </span>
-                
-            </p>
-            
-                <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%85%B6%E4%BB%96/" rel="tag">其他</a></li></ul>
-            
-        
-        <div class="md-content animated fadeIn">
-            
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in ...</p>
-            
-            <span class="read-more"><a href="/2019/10/03/hello-world/" title="查看全文" class="posttitle">查看全文</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
-        </div>
-    </div>
-</div>
-
-
-    </div>
     
-</div>
-<div id="preview"></div>
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
 
-    <div id="back-to-top" class="animated fadeIn faster">
-        <div class="flow"></div>
-        <span class="percentage animated fadeIn faster">0%</span>
-        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://blog.zzonn.com/2019/10/03/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-03 16:31:04" itemprop="dateCreated datePublished" datetime="2019-10-03T16:31:04+08:00">2019-10-03</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-04-05 20:24:29" itemprop="dateModified" datetime="2020-04-05T20:24:29+08:00">2020-04-05</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+
+      
     </div>
-</body>
-<footer>
-    <p class="copyright" id="copyright">
-        &copy; 2020
-        <span class="gradient-text">
-            LiPan
-        </span>.
-        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
-        Theme
-        <span class="gradient-text">
-            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
-        </span>
-        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
-    </p>
-</footer>
 
-<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+
+  
+
+
+
+          </div>
+          
+
 <script>
-  MathJax.Hub.Config({
-    "HTML-CSS": {
-      preferredFont: "TeX",
-      availableFonts: ["STIX", "TeX"],
-      linebreaks: {
-        automatic: true
-      },
-      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
-    },
-    tex2jax: {
-      inlineMath: [
-        ["$", "$"],
-        ["\\(", "\\)"]
-      ],
-      processEscapes: true,
-      ignoreClass: "tex2jax_ignore|dno",
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      noUndefined: {
-        attributes: {
-          mathcolor: "red",
-          mathbackground: "#FFEEEE",
-          mathsize: "90%"
-        }
-      },
-      Macros: {
-        href: "{}"
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
       }
-    },
-    messageStyle: "none"
+    }
   });
-</script>
-<script>
-  function initialMathJax() {
-    MathJax.Hub.Queue(function () {
-      var all = MathJax.Hub.getAllJax(),
-        i;
-      // console.log(all);
-      for (i = 0; i < all.length; i += 1) {
-        console.log(all[i].SourceElement().parentNode)
-        all[i].SourceElement().parentNode.className += ' has-jax';
-      }
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
     });
   }
-
-  function reprocessMathJax() {
-    if (typeof MathJax !== 'undefined') {
-      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
-    }
-  }
 </script>
 
-
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="/js/plugin.js"></script>
-<script src="/js/obsidian.js"></script>
-<script src="/js/jquery.truncate.js"></script>
-<script src="/js/search.js"></script>
-
-
-<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
-
-
-<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
-
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
-
-
-<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/c#/c#.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
-
-
-    
-<script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
-
-
-
-
-    
-<script src="/js/busuanzi.min.js"></script>
-
-    <script>
-        $(document).ready(function () {
-            if ($('span[id^="busuanzi_"]').length) {
-                initialBusuanzi();
-            }
-        });
-    </script>
-
-
-
-<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
-<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
-
-
-<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
-<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
-
-
-<!-- Root element of PhotoSwipe. Must have class pswp. -->
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <!-- Background of PhotoSwipe. 
-         It's a separate element as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-        <!-- Container that holds slides. 
-            PhotoSwipe keeps only 3 of them in the DOM to save memory.
-            Don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
         </div>
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-            <div class="pswp__top-bar">
-                <!--  Controls are self-explanatory. Order can be changed. -->
-                <div class="pswp__counter"></div>
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                      <div class="pswp__preloader__cut">
-                        <div class="pswp__preloader__donut"></div>
-                      </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div> 
-            </div>
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-        </div>
-    </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">LiPan</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
 </div>
 
 
 
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">LiPan</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
 
 
 
 
-<script>
-    function initialTyped () {
-        var typedTextEl = $('.typed-text');
-        if (typedTextEl && typedTextEl.length > 0) {
-            var typed = new Typed('.typed-text', {
-                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
-                typeSpeed: 90,
-                loop: true,
-                loopCount: Infinity,
-                backSpeed: 20,
-            });
-        }
-    }
-
-    if ($('.article-header') && $('.article-header').length) {
-        $(document).ready(function () {
-            initialTyped();
-        });
-    }
-</script>
-
-
-    
-<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-
-    <script>
-
-        var valine = new Valine();
-
-        function initValine(path) {
-            if (!path) path = window.location.pathname;
-            let language = 'zh-CN';
-            if (!language) {
-                language = 'en';
-            } else {
-                language = language.toLowerCase();
-            }
-            valine.init({
-                el: '#vcomments',
-                appId: 'o2FMPGYHI1WeozWG0693GQkc-gzGzoHsz',
-                appKey: 'zvrwBnltRVir4r8lFRI3WdlI',
-                notify: 'false',
-                verify: 'false',
-                avatar: 'anonymous',
-                placeholder: '请输入你的评论内容~',
-                visitor: 'true',
-                path: path,
-                lang: language
-            });
-        }
-
-        $(document).ready(function () {
-            initValine();
-        });
-    </script>
 
 
 
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
 </html>
