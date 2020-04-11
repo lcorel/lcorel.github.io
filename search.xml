@@ -442,10 +442,10 @@ select * from cte</code></pre>
   <entry>
     <title>职级评定标准</title>
     <url>/2020/04/10/%E8%81%8C%E7%BA%A7%E8%AF%84%E5%AE%9A%E6%A0%87%E5%87%86/</url>
-    <content><![CDATA[<h1 id="一、助理"><a href="#一、助理" class="headerlink" title="一、助理"></a>一、助理</h1><h3 id="能力要求"><a href="#能力要求" class="headerlink" title="能力要求"></a>能力要求</h3><ol>
+    <content><![CDATA[<h1 id="助理"><a href="#助理" class="headerlink" title="助理"></a>助理</h1><h3 id="能力要求"><a href="#能力要求" class="headerlink" title="能力要求"></a>能力要求</h3><ol>
 <li>具有较强的学习能力，可以编写代码，达到公司的工作要求</li>
 </ol>
-<h1 id="二、初级"><a href="#二、初级" class="headerlink" title="二、初级"></a>二、初级</h1><h3 id="硬性指标"><a href="#硬性指标" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
+<h1 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h1><h3 id="硬性指标"><a href="#硬性指标" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
 <li>具备一年以上软件开发经验</li>
 </ol>
 <h3 id="能力要求-1"><a href="#能力要求-1" class="headerlink" title="能力要求"></a>能力要求</h3><ol>
@@ -466,7 +466,7 @@ select * from cte</code></pre>
 
 </li>
 </ol>
-<h1 id="三、中级"><a href="#三、中级" class="headerlink" title="三、中级"></a>三、中级</h1><h3 id="硬性指标-1"><a href="#硬性指标-1" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
+<h1 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h1><h3 id="硬性指标-1"><a href="#硬性指标-1" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
 <li>连续两个季度考核成绩不低于75分</li>
 <li>具备两年以上软件开发经验</li>
 <li>近一年内，无重大技术失误</li>
@@ -482,7 +482,7 @@ select * from cte</code></pre>
 <li>可以参与产品开发过程中的难题攻关，能够提出自己的可行性建议；（攻关能力）</li>
 <li>细致、认真，具备一定的文档能力，具有良好的软件编程习惯；（基本素养）</li>
 </ol>
-<h1 id="四、中高级"><a href="#四、中高级" class="headerlink" title="四、中高级"></a>四、中高级</h1><h3 id="硬性指标-2"><a href="#硬性指标-2" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
+<h1 id="中高级"><a href="#中高级" class="headerlink" title="中高级"></a>中高级</h1><h3 id="硬性指标-2"><a href="#硬性指标-2" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
 <li>连续两个季度考核成绩不低于80分</li>
 <li>具备三年以上软件开发经验</li>
 <li>近一年内，无重大技术失误</li>
@@ -498,7 +498,7 @@ select * from cte</code></pre>
 <li>在他人的指导下，对产品开发过程中遇到的新问题可以提出可行的解决方案；(攻关能力)</li>
 <li>细致、认真，具有规范的文档能力，具有极好的软件编程习惯；(基本素养)</li>
 </ol>
-<h1 id="五、高级"><a href="#五、高级" class="headerlink" title="五、高级"></a>五、高级</h1><h3 id="硬性指标-3"><a href="#硬性指标-3" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
+<h1 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h1><h3 id="硬性指标-3"><a href="#硬性指标-3" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
 <li>连续两个季度考核成绩不低于85分</li>
 <li>对员工的专业培训课时80分以上的不少于1个课时</li>
 <li>具备五年以上软件开发经验</li>
@@ -515,7 +515,7 @@ select * from cte</code></pre>
 <li>对产品开发过程中遇到的新问题可以提出可行的解诀方案，能在新项目中担任主力工程师角色(攻关能力)</li>
 <li>细致、认真，具备规范的文档能力，具有良好的软件工程习惯；(基本素养)</li>
 </ol>
-<h1 id="六、资深"><a href="#六、资深" class="headerlink" title="六、资深"></a>六、资深</h1><h3 id="硬性指标-4"><a href="#硬性指标-4" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
+<h1 id="资深"><a href="#资深" class="headerlink" title="资深"></a>资深</h1><h3 id="硬性指标-4"><a href="#硬性指标-4" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
 <li>连续两个季度考核成绩不低于85分</li>
 <li>对员工的专业培训课时80分以上的不少于10个课时</li>
 <li>具备七年以上软件开发经验</li>
@@ -532,7 +532,7 @@ select * from cte</code></pre>
 <li>极强的攻关能力，具备协调组织解决产品中关键难题的能力；(攻关能力)</li>
 <li>细致、认真，具有良好的软件工程设计和管理思想； (基本素养)</li>
 </ol>
-<h1 id="七、专家"><a href="#七、专家" class="headerlink" title="七、专家"></a>七、专家</h1><h3 id="硬性指标-5"><a href="#硬性指标-5" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
+<h1 id="专家"><a href="#专家" class="headerlink" title="专家"></a>专家</h1><h3 id="硬性指标-5"><a href="#硬性指标-5" class="headerlink" title="硬性指标"></a>硬性指标</h3><ol>
 <li>连续两个季度考核成绩不低于85分</li>
 <li>独立带队完成产品级开发3个以上</li>
 <li>对员工的专业培训课时80分以上的不少于20个课时</li>
