@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.zzonn.com/"/>
-  <updated>2020-04-10T09:32:04.000Z</updated>
+  <updated>2020-04-17T02:39:20.981Z</updated>
   <id>http://blog.zzonn.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>服务架构技术栈</title>
+    <link href="http://blog.zzonn.com/2020/04/17/%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/"/>
+    <id>http://blog.zzonn.com/2020/04/17/%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/</id>
+    <published>2020-04-17T02:35:10.923Z</published>
+    <updated>2020-04-17T02:39:20.981Z</updated>
+    
+    <content type="html"><![CDATA[<p>title: 服务架构技术栈<br>date: 2020-04-03 11:36:18<br>updated: 2020-04-03  11:36:55<br>toc: true<br>categories: 架构<br>tags: 微服务</p><h2 id="微服务的前世今生"><a href="#微服务的前世今生" class="headerlink" title="微服务的前世今生"></a>微服务的前世今生</h2><p>与微服务架构相对的，叫单体架构。这是我们最熟悉的开发方式，就是一个项目搞定业务全过程，在同一个进程里面完成。随着业务发展，数据量和并发上去了，一般会选择右边的垂直拆分，拆分后的每个系统，依旧是单体架构的。</p><p>![]( <a href="https://blog.zzonn.com/images/wfwjgjsz">https://blog.zzonn.com/images/wfwjgjsz</a> (1).png)</p><p>垂直拆分后，子系统都能独立做集群，承载能力大大提升。但随着业务进一步发展，子系统会越来臃肿，而且根据二八原则，80%的请求其实都集中在20%的业务上，不同的子系统也都有很多重复的功能模块。于是乎分布式就诞生了，将高频重复的功能拆成独立的服务部署，各系统都通过调用服务来完成功能。</p><p>![]( <a href="https://blog.zzonn.com/images/wfwjgjsz">https://blog.zzonn.com/images/wfwjgjsz</a> (2).png)</p><p>分布式拆出服务独立部署和维护， 既完成了功能的复用，又能保证高频服务的伸缩性和高可用，代表着更高的生产力。然而欲戴王冠必承其重，分布式带来的问题跟提供的价值一样多，比如分布式锁、一致性、可用性、复杂度等要命问题。</p><p>图3</p><p>随着时间推移，业务倒逼技术进步，在大数据高并发的要求下，分布式技术慢慢开始成熟，针对各种问题都形成了行之有效的办法，然后分布式也成了架构设计系统的常规手段。基于服务的形式来完成对业务的解耦，提供高可用和伸缩性的特性，满足了日益增长的业务需求。随着业务的不断拆分，粒度越来越细，一个新的称谓微服务(Microservice)就应运而生！</p><p>图4</p><p>什么是微服务架构？我理解为是一种架构设计系统的风格，基于小粒度的服务来完成对业务的解耦，将业务流程拆分成多个服务组装。就像以前三层架构里面，一个业务会调用多个BLL方法，而现在换成了调用多个服务。这就是微服务了，当然，小伙伴儿认真想想会发现，真的要落地微服务，问题太多了！下面，我就以.Net Core技术栈下，对微服务架构落地的种种问题和解决方案来一一探讨！</p><h2 id="落地微服务架构"><a href="#落地微服务架构" class="headerlink" title="落地微服务架构"></a>落地微服务架构</h2><h3 id="一-、进程间通信"><a href="#一-、进程间通信" class="headerlink" title="一 、进程间通信"></a>一 、进程间通信</h3><p>这个是构建微服务的基础，通常有以下三大类：</p><ol><li>基于第三方存储共享的通讯(数据库/Redis/队列等)</li><li>基于Http协议的服务(WebService/WCF/WebApi)</li><li>远程调用模式(FX下的RPC和.Net Core下的gRPC)</li></ol><h3 id="二、服务注册与发现"><a href="#二、服务注册与发现" class="headerlink" title="二、服务注册与发现"></a><strong>二、服务注册与发现</strong></h3><p>微服务架构是搭建在底层服务实例基础上，必须通过集群来保证服务的高可用和动态伸缩，因此服务注册，服务发现，健康检查，异常下线功能都是必须的，在.Net Core下可以考虑选择Consul(首选)、etcd或者ZooKeeper。</p><p>图5</p><h3 id="三、网关Gateway"><a href="#三、网关Gateway" class="headerlink" title="三、网关Gateway"></a><strong>三、网关Gateway</strong></h3><p>微服务架构支持多客户端共用服务，而且底层服务数目众多，不可能全部都暴露给外部客户端(安全隐患/公网IP)，而且多客户端也不可能维护无止境的服务实例地址，因此网关gateway是必须的！就像门面模式Façade一样管理好底层服务，通过路由映射底层服务实例，客户端一律通过网关来完成服务调用。此外，由于请求都从网关走，那么也可以在网关这里完成鉴权授权、限流、熔断、降级等进阶功能。</p><p>图6</p><h3 id="四、鉴权授权"><a href="#四、鉴权授权" class="headerlink" title="四、鉴权授权"></a><strong>四、鉴权授权</strong></h3><p>微服务架构里到处都是服务实例，还都是集群化部署，甚至还兼容不同技术平台的服务实例，传统的session共享式做权限验证已经行不通了，当下都是使用token来做用户识别。大致原理如下图，由鉴权中心颁发token，然后带着token去访问各服务实例。在.Net Core里面首选IdentityServer4或者JWT。在真实落地微服务时，一般会建立个独立的鉴权中心，然后在网关层完成鉴权授权，非常方便。</p><p>图7</p><p><strong>以上是系统架构，往下是功能性需求</strong></p><h3 id="五、瞬态故障处理"><a href="#五、瞬态故障处理" class="headerlink" title="五、瞬态故障处理"></a><strong>五、瞬态故障处理</strong></h3><p>真的去写代码时，你会发现调用服务总没有调用方法那么方便，会因为网络、延迟等造成种种意外，因此需要一种优雅的方式来执行请求重试、超时处理、故障恢复等策略，目前.Net Core下推荐使用Polly，常见应用是集成到gateway或者AOP的模式插入到客户端里面。</p><p>图8</p><h3 id="六、分布式追踪"><a href="#六、分布式追踪" class="headerlink" title="六、分布式追踪"></a><strong>六、分布式追踪</strong></h3><p>一个请求会涉及多个服务，而服务本身还有依赖，整个请求路径就构成了一个网状的调用链，想象一下其实挺害怕！在整个调用链中一旦某个节点发生异常，整个调用链的稳定性就会受到影响，因此必须得有跟踪请求，性能分析的工具，以便快速定位和解决问题。SkyWalking (推荐)、Cat、Zipkin、Pinpoint都是可选项，这里就不建议大家自己造轮子了。</p><p>图9</p><h3 id="七、日志收集与分析"><a href="#七、日志收集与分析" class="headerlink" title="七、日志收集与分析"></a><strong>七、日志收集与分析</strong></h3><p>微服务下的日志已经不是单机系统日志那么简单，茫茫多的服务节点，复杂的依赖调用关系，会带来海量的日志，一套优秀的分布式日志收集和分析框架是必须入手的，这里我给大家推荐的是ExceptionLess，入手简单资料齐全。</p><p>图10</p><h3 id="八、统一配置中心"><a href="#八、统一配置中心" class="headerlink" title="八、统一配置中心"></a><strong>八、统一配置中心</strong></h3><p>配置管理平台是必不可少的，那么多服务那么多集群，一个个人肉管理会疯掉的。Apollo能够集中化管理应用不同环境、不同集群的配置，配置修改后能够实时推送到应用端，并且具备规范的权限、流程治理等特性，是由携程框架部门研发的开源配置管理中心，.Net社区的骄傲，点赞！</p><p>图11</p><h3 id="九、分布式锁"><a href="#九、分布式锁" class="headerlink" title="九、分布式锁"></a><strong>九、分布式锁</strong></h3><p>单体架构下，多线程操作同一个对象，可以用lock锁保证只有一个线程能进入，微服务架构多进程下，怎么管控？核心思路是基于第三方的共享数据访问加上互斥逻辑来完成管控，像数据库/Nosql/Consul等介质均可。实践中，Redis是首选不解释。</p><p>图12</p><h3 id="十、分布式事务"><a href="#十、分布式事务" class="headerlink" title="十、分布式事务"></a><strong>十、分布式事务</strong></h3><p>CAP有言，在分布式的情况下，系统的可用性和一致性是没法同时满足的。微服务体系下，一个业务请求都需要N个服务节点协作，可用性是最高优先级，否则系统没法正常运转了。那如何数据的一致性怎么办？当下主流的模式有3种，2PC/3PC，TCC以及本地消息表，前一个是牺牲可用性去保障一致性，用的较少，后面都是保障数据最终一致性。目前在互联网公司主流选择是下图的基于消息队列的分布式事务实现。</p><p>图13</p><h3 id="十一、Jenkins-CI-CD"><a href="#十一、Jenkins-CI-CD" class="headerlink" title="十一、Jenkins-CI/CD"></a><strong>十一、Jenkins-CI/CD</strong></h3><p>持续集成持续交付(CI/CD)是敏捷开发的核心，在微服务架构下也是常备的。简单来说，就是能持续的合并代码分支纳入新功能，能持续的交付产出给下游，让整个项目进展肉眼可见。不过静心想想就知道有很多麻烦事儿，所以这一切就交给专业的工具来完成了，Jenkins值得拥有。</p><p>图14</p><h3 id="十二、Docker容器部署"><a href="#十二、Docker容器部署" class="headerlink" title="十二、Docker容器部署"></a><strong>十二、Docker容器部署</strong></h3><p>微服务架构里，需要快捷启动服务实例，支持不同系统环境，不同运行环境，不同语言的各种服务实例，独立的物理服务器是不现实的，虚拟化技术的成本太高，快捷的沙箱环境+高效的资源利用+可复制快速启动的容器Docker 成为首选，Build Once,Run AnyWhere!不会docker的程序员，已经不是一个好的工程师了。</p><p>图15</p><h3 id="十三、容器编排Kubernetes"><a href="#十三、容器编排Kubernetes" class="headerlink" title="十三、容器编排Kubernetes"></a><strong>十三、容器编排Kubernetes</strong></h3><p>有了Docker，我们可以肆无忌惮轻松惬意的扩充服务实例，乐极生悲，容器实例可能会膨胀到你控制不住的地步，可能一个月后整个团队就没人能搞清楚服务和容器间错综复杂的关系了。所以你需要一个管理工具，那就是Kubernete，用于编排容器，是管理应用的全生命周期的工具，可以理解为docker管家。</p><p>图16</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;title: 服务架构技术栈&lt;br&gt;date: 2020-04-03 11:36:18&lt;br&gt;updated: 2020-04-03  11:36:55&lt;br&gt;toc: true&lt;br&gt;categories: 架构&lt;br&gt;tags: 微服务&lt;/p&gt;
+&lt;h2 id=&quot;微服务的
+      
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>职级评定标准</title>
