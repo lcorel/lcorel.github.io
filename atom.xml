@@ -23,14 +23,12 @@
     <published>2020-04-18T08:24:04.000Z</published>
     <updated>2020-04-28T08:24:04.000Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p><h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p><h2 id="建立继承关系"><a href="#建立继承关系" class="headerlink" title="建立继承关系"></a>建立继承关系</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n2.png" alt=""></p><h2 id="配置生成PDM的方式"><a href="#配置生成PDM的方式" class="headerlink" title="配置生成PDM的方式"></a>配置生成PDM的方式</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n3.png" alt=""></p><h2 id="生成PDM-映射成数据库表"><a href="#生成PDM-映射成数据库表" class="headerlink" title="生成PDM(映射成数据库表)"></a>生成PDM(映射成数据库表)</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n4.png" alt=""></p><h2 id="查看生成结果"><a href="#查看生成结果" class="headerlink" title="查看生成结果"></a>查看生成结果</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n5.png" alt=""></p>]]></content>
+    <content type="html"><![CDATA[<h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p><h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p> <a id="more"></a> <h2 id="建立继承关系"><a href="#建立继承关系" class="headerlink" title="建立继承关系"></a>建立继承关系</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n2.png" alt=""></p><h2 id="配置生成PDM的方式"><a href="#配置生成PDM的方式" class="headerlink" title="配置生成PDM的方式"></a>配置生成PDM的方式</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n3.png" alt=""></p><h2 id="生成PDM-映射成数据库表"><a href="#生成PDM-映射成数据库表" class="headerlink" title="生成PDM(映射成数据库表)"></a>生成PDM(映射成数据库表)</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n4.png" alt=""></p><h2 id="查看生成结果"><a href="#查看生成结果" class="headerlink" title="查看生成结果"></a>查看生成结果</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n5.png" alt=""></p>]]></content>
     
     <summary type="html">
     
-      
-      
-        &lt;h2 id=&quot;创建CDM&quot;&gt;&lt;a href=&quot;#创建CDM&quot; class=&quot;headerlink&quot; title=&quot;创建CDM&quot;&gt;&lt;/a&gt;创建CDM&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://blog.zzonn.com/images/1c2ev34b1d95n1.png
-      
+      &lt;h2 id=&quot;创建CDM&quot;&gt;&lt;a href=&quot;#创建CDM&quot; class=&quot;headerlink&quot; title=&quot;创建CDM&quot;&gt;&lt;/a&gt;创建CDM&lt;/h2&gt;&lt;p&gt;&lt;img src=&quot;https://blog.zzonn.com/images/1c2ev34b1d95n1.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;CDM类继承关系&quot;&gt;&lt;a href=&quot;#CDM类继承关系&quot; class=&quot;headerlink&quot; title=&quot;CDM类继承关系&quot;&gt;&lt;/a&gt;CDM类继承关系&lt;/h2&gt;&lt;p&gt;Concrete Table Inheritance(具体表继承)&lt;br&gt;Single Table Inheritance（单表继承）&lt;br&gt;Class Table Inheritance （类表继承）&lt;/p&gt;
     
     </summary>
     
