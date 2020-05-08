@@ -24,12 +24,12 @@
     var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":true,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="[TOC] 虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？当我在master分支执行hard reset、force push到 origin、在.git文件夹执行rimraf的时候，为什么我的同事都哭了？ 我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，">
+  <meta name="description" content="虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？当我在master分支执行hard reset、force push到 origin、在.git文件夹执行rimraf的时候，为什么我的同事都哭了？ 我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，很多都有可选">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用Git命令动画演示">
 <meta property="og:url" content="http://blog.zzonn.com/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/index.html">
 <meta property="og:site_name" content="ZZONN">
-<meta property="og:description" content="[TOC] 虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？当我在master分支执行hard reset、force push到 origin、在.git文件夹执行rimraf的时候，为什么我的同事都哭了？ 我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，">
+<meta property="og:description" content="虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？当我在master分支执行hard reset、force push到 origin、在.git文件夹执行rimraf的时候，为什么我的同事都哭了？ 我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，很多都有可选">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.zzonn.com/UsefulGitCommands/UsefulGitCommands1.gif">
 <meta property="og:image" content="https://blog.zzonn.com/UsefulGitCommands/UsefulGitCommands2.gif">
@@ -288,8 +288,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>[TOC]</p>
-<p>虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！<br>当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？<br>当我在<code>master</code>分支执行<code>hard reset</code>、<code>force push</code>到 <code>origin</code>、在<code>.git</code>文件夹执行<code>rimraf</code>的时候，为什么我的同事都哭了？</p>
+        <p>虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！<br>当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？<br>当我在<code>master</code>分支执行<code>hard reset</code>、<code>force push</code>到 <code>origin</code>、在<code>.git</code>文件夹执行<code>rimraf</code>的时候，为什么我的同事都哭了？</p>
 <p>我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，很多都有可选参数，用于改变命令的行为。文中的示例只讨论命令的默认行为，不会涉及太多的配置选项。这些命令包括 <code>merge</code>，<code>rebase</code>，<code>reset</code>， <code>revert</code>，<code>cherry-pick</code>，<code>fetch</code>，<code>pull</code>，<code>reflog</code>  等。</p>
 <a id="more"></a>
 
