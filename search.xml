@@ -779,7 +779,7 @@ type: &quot;links&quot;
 
 </code></pre>
 <h3 id="添加友链布局文件"><a href="#添加友链布局文件" class="headerlink" title="添加友链布局文件"></a>添加友链布局文件</h3><p>在 <code>hexo/themes/next/layout</code> 目录下新建 <code>links.njk</code>文件，写入以下代码</p>
-<pre><code class="html">
+<pre><code class="scss">
 {% block content %}
   {######################}
   {### LINKS BLOCK ###}
