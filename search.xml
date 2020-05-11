@@ -156,6 +156,254 @@
       </tags>
   </entry>
   <entry>
+    <title>Hexo博客Next主题添加友链页面</title>
+    <url>/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/</url>
+    <content><![CDATA[<h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
+<pre><code>links: /links/ || fa fa-link</code></pre><p>主题语言配置文件 <code>hexo/themes/next/languages/zh-Hans.yml</code>文件中<code>menu</code>下增加中文描述： </p>
+<pre><code class="js">links: 友链</code></pre>
+<h3 id="添加友链页面"><a href="#添加友链页面" class="headerlink" title="添加友链页面"></a>添加友链页面</h3><pre><code>hexo new page links</code></pre><h3 id="修改友链页面内容"><a href="#修改友链页面内容" class="headerlink" title="修改友链页面内容"></a>修改友链页面内容</h3><p>在 <code>hexo/blog/source/links</code> 目录下<code>index.md</code></p>
+<a id="more"></a>
+
+<pre><code class="markdown">----
+title: 友情链接
+date: 2020-05-11 15:42:13
+type: &quot;links&quot;
+---
+
+---
+
+### 申请要求：
+
+1、内容持续更新且可以稳定访问
+2、网页整洁无繁杂广告推广
+3、博客主页被百度或谷歌等搜索引擎收录
+4、头像能够快速加载
+5、拥有独立域名
+
+
+### 友链声明：
+
+1、本站会主动保存您的 HTTPS 形式的头像图片链接
+2、本站会定期清理无法访问的友链，如果更换了链接信息请至评论区留言，谢谢合作！
+3、本站会定期查看双方是否互为友链，如果取消本站友链，本站也会将您的友链移除
+
+### 申请方式：
+
+先将本站的友链添加到您的友链，相关信息如下
+然后按照以下格式在本站留言区留言，待博主为您添上友链
+
+&gt;名称：ZZONN
+&gt;
+&gt;主页链接：https://blog.zzonn.com/ 
+&gt;
+&gt;头像链接：https://blog.zzonn.com/images/avatar2.gif
+&gt;
+&gt;说明信息：提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我
+
+
+</code></pre>
+<h3 id="添加友链布局文件"><a href="#添加友链布局文件" class="headerlink" title="添加友链布局文件"></a>添加友链布局文件</h3><p>在 <code>hexo/themes/next/layout</code> 目录下新建 <code>links.njk</code>文件，写入以下代码</p>
+<pre><code class="scss">
+{% block content %}
+  {######################}
+  {### LINKS BLOCK ###}
+  {######################}
+
+    <div id="links">
+        <style>
+
+            #links{
+               margin-top: 5rem;
+            }
+
+            .links-content{
+                margin-top:1rem;
+            }
+
+            .link-navigation::after {
+                content: " ";
+                display: block;
+                clear: both;
+            }
+
+            .card {
+                width: 300px;
+                font-size: 1rem;
+                padding: 10px 20px;
+                border-radius: 4px;
+                transition-duration: 0.15s;
+                margin-bottom: 1rem;
+                display:flex;
+            }
+            .card:nth-child(odd) {
+                float: left;
+            }
+            .card:nth-child(even) {
+                float: right;
+            }
+            .card:hover {
+                transform: scale(1.1);
+                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
+            }
+            .card a {
+                border:none;
+            }
+            .card .ava {
+                width: 3rem!important;
+                height: 3rem!important;
+                margin:0!important;
+                margin-right: 1em!important;
+                border-radius:4px;
+
+            }
+            .card .card-header {
+                font-style: italic;
+                overflow: hidden;
+                width: 236px;
+            }
+            .card .card-header a {
+                font-style: normal;
+                color: #2bbc8a;
+                font-weight: bold;
+                text-decoration: none;
+            }
+            .card .card-header a:hover {
+                color: #d480aa;
+                text-decoration: none;
+            }
+            .card .card-header .info {
+                font-style:normal;
+                color:#a3a3a3;
+                font-size:14px;
+                min-width: 0;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+            }
+			span.focus-links {
+                font-style: normal;
+                margin-left: 10px;
+                position: unset;
+                left: 0;
+                padding: 0 7px 0 5px;
+                font-size: 11px;
+                border-color: #42c02e;
+                border-radius: 40px;
+                line-height: 24px;
+                height: 22px;
+                color: #fff !important;
+                background-color: #42c02e;
+                display: inline-block;
+            }
+            span.focus-links:hover{
+                background-color: #318024;
+            }
+        </style>
+        <div class="links-content">
+
+             <div class="no-icon note warning"><div class="link-info">👨‍🎓 跟着大佬走，成为小大佬</div></div>
+            <div class="link-navigation">
+                    {% for link in theme.defaultlinks %}
+
+                    <div class="card">
+                        <img class="ava nofancybox" src="{{ link.avatar }}"/>
+                        <div class="card-header">
+                        <div><a href="{{ link.site }}" target="_blank"> {{ link.nickname }}</a> <a href="{{ link.site }}"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
+                        <div class="info">{{ link.info }}</div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            <div class="no-icon note primary"><div class="link-info">🍭 五湖四海的朋友们</div></div>
+
+             <div class="link-navigation">
+                    {% for link in theme.friendslinks %}
+
+                    <div class="card">
+                        <img class="ava nofancybox" src="{{ link.avatar }}"/>
+                        <div class="card-header">
+                        <div><a href="{{ link.site }}" target="_blank"> {{ link.nickname }}</a> <a href="{{ link.site }}"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
+                        <div class="info">{{ link.info }}</div>
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+            {{ page.content }}
+            </div>
+        </div>
+
+  {##########################}
+  {### END LINKS BLOCK ###}
+  {##########################}
+{% endblock %}
+
+</code></pre>
+<h3 id="修改page布局文件"><a href="#修改page布局文件" class="headerlink" title="修改page布局文件"></a>修改page布局文件</h3><p>同样在 <code>hexo/themes/next/layout</code> 目录下</p>
+<ol>
+<li><p>找到代码</p>
+<pre><code>  {%- elif page.type === 'schedule' and not page.title %}
+    {{- __('title.schedule') + page_title_suffix }}</code></pre></li>
+<li><p>在后面加入代码</p>
+<pre><code>{%- elif page.type === 'links' and not page.title %}
+    {{- __('title.links') + page_title_suffix }}</code></pre></li>
+<li><p>找到代码</p>
+<pre><code>{% elif page.type === 'schedule' %}
+          &lt;div class=&quot;event-list&quot;&gt;
+          &lt;/div&gt;
+          {% include '_scripts/pages/schedule.njk' %}</code></pre></li>
+<li><p>在后面加入代码(引入刚刚新建的links布局文件)</p>
+<pre><code>{% elif page.type === 'links' %}
+          {% include 'links.njk' %}</code></pre></li>
+</ol>
+<h3 id="修改主题配置文件"><a href="#修改主题配置文件" class="headerlink" title="修改主题配置文件"></a>修改主题配置文件</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 末尾添加： </p>
+<pre><code># 友情链接
+defaultlinks:
+  - nickname: ZZONN     # 昵称
+      site: https://blog.zzonn.com/ #友链地址
+    avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
+    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我
+
+friendslinks:
+  - nickname: ZZONN     # 昵称
+      site: https://blog.zzonn.com/ #友链地址
+    avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
+    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我</code></pre><p><code>defaultlinks:</code>呼应的是<code>link.swig</code>文件中 <code>👨‍🎓 跟着大佬走，成为小大佬</code>段落，此处链接写大佬的博客；<br><code>friendslinks:</code>呼应的是<code>link.swig</code>文件中 <code>🍭 五湖四海的朋友们</code>段落，此处链接写朋友的博客。<br>此处内容可以根据自己需要自行修改 </p>
+]]></content>
+      <categories>
+        <category>博客</category>
+      </categories>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>PowerDesigner设计CDM类继承关系</title>
+    <url>/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p>
+<h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p>
+ <a id="more"></a> 
+
+
+
+<h2 id="建立继承关系"><a href="#建立继承关系" class="headerlink" title="建立继承关系"></a>建立继承关系</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n2.png" alt=""></p>
+<h2 id="配置生成PDM的方式"><a href="#配置生成PDM的方式" class="headerlink" title="配置生成PDM的方式"></a>配置生成PDM的方式</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n3.png" alt=""></p>
+<h2 id="生成PDM-映射成数据库表"><a href="#生成PDM-映射成数据库表" class="headerlink" title="生成PDM(映射成数据库表)"></a>生成PDM(映射成数据库表)</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n4.png" alt=""></p>
+<h2 id="查看生成结果"><a href="#查看生成结果" class="headerlink" title="查看生成结果"></a>查看生成结果</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n5.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Windows错误代码对应解决方案</title>
     <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
@@ -190,6 +438,85 @@
       </categories>
       <tags>
         <tag>其他</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用Git命令动画演示</title>
+    <url>/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/</url>
+    <content><![CDATA[<p>虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！<br>当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？<br>当我在<code>master</code>分支执行<code>hard reset</code>、<code>force push</code>到 <code>origin</code>、在<code>.git</code>文件夹执行<code>rimraf</code>的时候，为什么我的同事都哭了？</p>
+<p>我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，很多都有可选参数，用于改变命令的行为。文中的示例只讨论命令的默认行为，不会涉及太多的配置选项。这些命令包括 <code>merge</code>，<code>rebase</code>，<code>reset</code>， <code>revert</code>，<code>cherry-pick</code>，<code>fetch</code>，<code>pull</code>，<code>reflog</code>  等。</p>
+<a id="more"></a>
+
+<h2 id="merge（合并）"><a href="#merge（合并）" class="headerlink" title="merge（合并）"></a>merge（合并）</h2><p>多分支可以非常方便地将新的改动互相隔离，并确保你不会意外地将未经批准或破坏性的变更推到生产环境。一旦变更被批准，我们就能在生产分支中得到这些变更。</p>
+<p>从一个分支获取变更到另一个分支的方式之一是执行<code>git merge</code>命令。Git 有两类合并操作：<code>fast-forward</code> 和<code>no-fast-forward</code>。</p>
+<p>这么说你可能没什么概念，我们来看看区别吧。</p>
+<h3 id="fast-forward-ff"><a href="#fast-forward-ff" class="headerlink" title="fast-forward (--ff)"></a>fast-forward (<code>--ff</code>)</h3><p>如果当前分支与即将合并过来的分支相比，没有额外的提交，这种就是<code>fast-forward</code>合并。Git 很会偷懒，它会首先尝试最简单的方案，即<code>fast-forward</code>。这种合并方式不会创建新的提交，只是把另一个分支的提交记录直接合并到当前分支。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands1.gif" alt="fast-forward merge" title="fast-forward merge"></p>
+<p>现在我们在<code>master</code>分支上有了<code>dev</code>分支上的所有变更。那么，<code>no-fast-forward</code> 又是什么呢？</p>
+<h3 id="no-fast-foward-no-ff"><a href="#no-fast-foward-no-ff" class="headerlink" title="no-fast-foward (--no-ff)"></a>no-fast-foward (<code>--no-ff</code>)</h3><p>跟即将合并过来的分支比较，当前分支如果没有额外的提交，这固然很好，但实际情况往往不是这样！如果我们在当前分支上也提交了一些改动，那么 Git 就会执行<code>no-fast-forward</code>合并。</p>
+<p>对于 <code>no-fast-forward</code> 合并，Git 会在当前分支上创建一个新的<strong>合并提交</strong>。该提交的父提交同时指向当前分支和合并过来的分支。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands2.gif" alt="no-fast-forward" title="no-fast-forward"></p>
+<p>现在master分支上有了我们在dev分支上做的所有变更。</p>
+<h2 id="Merge-Conflicts-合并冲突"><a href="#Merge-Conflicts-合并冲突" class="headerlink" title="Merge Conflicts(合并冲突)"></a>Merge Conflicts(合并冲突)</h2><p>虽然 Git 擅长决定如何合并分支和更改文件，但它也不是总能自己做出决定。当我们试图合并的两个分支在同一文件的同一行上都有改动时，或者一个分支删除了文件，另一个分支又修改了它，都可能发生这种情况。</p>
+<p>这种情况下，Git 会要求你帮助决定要保留哪边的改动。假设在两个分支上，我们都编辑了<code>README.md</code>文件的第一行：</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands3.jpg" alt="README.md" title="README.md"></p>
+<p>如果把<code>dev</code>合并到 <code>master</code>，会导致合并冲突：你是要 <code>Hello!</code> 呢，还是要 <code>Hey!</code> ？</p>
+<p>合并分支时，Git 会显示冲突的位置。我们可以手动删除不想保留的改动，然后保存，再添加改动后的文件（<code>git add</code>）并提交。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands4.gif" alt="合并冲突" title="合并冲突"></p>
+<p>合并冲突虽然很烦人，但也是合理的：Git 不应该自作主张保留哪边的改动。</p>
+<h2 id="rebase（变基）"><a href="#rebase（变基）" class="headerlink" title="rebase（变基）"></a>rebase（变基）</h2><p>刚刚我们看到了如何通过执行<code>git merge</code>将一个分支的改动应用到另一个分支。另一种方式是使用<code>git rebase</code>。</p>
+<p><code>git rebase</code>命令复制当前分支的提交，然后把这些提交放到指定分支之上。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands5.gif" alt="git rebase" title="git rebase"></p>
+<p>现在 <code>master</code> 分支上的所有改动都跑到<code>dev</code>分支上了！</p>
+<p>与<code>merge</code>相比，最大的区别是 Git 不会去找出哪些文件需要保留，哪些文件不需要保留。我们要<code>rebase</code>的分支总是包含了我们想要保留的最新改动。这种方式不会有合并冲突，并且保持了良好的线性 Git 历史记录。</p>
+<p>这个例子演示了在 <code>master</code>分支上执行<code>rebase</code>。不过，在大项目里你可能不会这么做。<code>git rebase</code>命令会修改项目历史记录，因为复制的提交会产生新的 <strong>hash</strong>。</p>
+<p>当你在特性分支上开发时，<code>master</code>分支有更新的时候，<code>rebase</code>很有用。这样你在当前分支就能拿到所有更新，避免了将来可能的合并冲突。</p>
+<h2 id="Interactive-Rebase（交互式变基）"><a href="#Interactive-Rebase（交互式变基）" class="headerlink" title="Interactive Rebase（交互式变基）"></a>Interactive Rebase（交互式变基）</h2><p>在 <code>rebase</code> 之前，我们还可以修改！这是通过<strong>交互式</strong> <code>rebase</code> 实现的。<strong>交互式</strong> <code>rebase</code> 也可以用于当前正在处理的分支，在希望修改某些提交的时候。<br>对于即将 <code>rebase</code> 的提交，可以执行 6 种操作：</p>
+<p><code>reword</code>：修改提交说明<br><code>edit</code>：修改提交内容（amend）<br><code>squash</code>：将该提交合并到前一个提交<br><code>fixup</code>: 将该提交合并到前一个提交，不保留提交的日志消息<br><code>exec</code>: 在想要 rebase 的每一个提交上执行命令<br><code>drop</code>: 删除提交</p>
+<p>这样，我们就能完全控制提交记录了。如果想删除某个提交，只要 <code>drop</code> 它就行了。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands6.gif" alt="Interactive Rebase" title="Interactive Rebase"></p>
+<p>或者，如果我们想要把多个提交合并到一起，这样历史记录会更清晰，也没问题！</p>
+<p>交互式 <code>rebase</code> 给了你对想要 <code>rebase</code> 的提交很多控制权，哪怕是当前的活动分支。</p>
+<h2 id="reset（重置）"><a href="#reset（重置）" class="headerlink" title="reset（重置）"></a>reset（重置）</h2><p>有时候我们提交了一些改动，后来又不想要了。有可能是 <strong>WIP</strong> 提交，也可能是某个引入了 <strong>bug</strong> 的提交。这种情况，我们可以执行<code>git reset</code>。</p>
+<p><code>git reset</code>会丢弃当前所有暂存的文件，并让我们决定 <code>HEAD</code> 应该指向哪里。</p>
+<h3 id="soft-reset"><a href="#soft-reset" class="headerlink" title="soft reset"></a>soft reset</h3><p><code>soft reset</code> 将HEAD 移动到指定的提交（或者相对于 <code>HEAD</code> 的位置索引），同时不会丢弃这些提交带来的改动。</p>
+<p>假设我们不想保留添加了<code>style.css</code>文件的提交 <code>9e78i</code>，也不想保留添加了<code>index.js</code>文件的提交 <code>035cc</code> 。但是，我们却想要保留新增的<code>style.css</code>和<code>index.js</code>文件。这里用 <code>soft reset</code> 就非常合适。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands7.gif" alt="soft reset" title="soft reset"></p>
+<p>执行<code>git status</code>，你会看到我们依然能够查看之前提交所做的改动。这很有用，因为这样我们就能继续修改文件内容，后续再次提交了。</p>
+<h3 id="hard-reset"><a href="#hard-reset" class="headerlink" title="hard reset"></a>hard reset</h3><p>有时候，我们不想保留某些提交带来的改动。跟 <code>soft reset</code> 不一样，我们不再需要访问这些变动了。Git 应该简单地重置到指定的提交，并且会重置工作区和暂存区的文件。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands8.gif" alt="hard reset" title="hard reset"></p>
+<p>Git 已经丢弃了<code>9e78i</code> 和 <code>035cc</code> 两个提交引起的改动，并把状态重置到了提交<code>ec5be</code>的位置。</p>
+<h2 id="revert（回滚）"><a href="#revert（回滚）" class="headerlink" title="revert（回滚）"></a>revert（回滚）</h2><p>撤销改动的另一种方式是执行<code>git revert</code>。复原某个提交后，会创建一个新的提交，包含了恢复后的改动。</p>
+<p>假设提交 <code>ec5be</code> 添加了一个<code>index.js</code>文件。随后，我们发现实际上不再需要这个改动了，就可以恢复<code>ec5be</code>这个提交。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands9.gif" alt="revert" title="revert"></p>
+<p>提交<code>9e78i</code>恢复了 <code>ec5be</code> 这个提交带来的改动。执行 <code>git revert</code>对于撤销某个提交非常有用，同时又不会修改分支的历史。</p>
+<h2 id="cherry-pick（提交拣选）"><a href="#cherry-pick（提交拣选）" class="headerlink" title="cherry-pick（提交拣选）"></a>cherry-pick（提交拣选）</h2><p>当活动分支需要某个分支的某个提交包含的改动时，我们可以用<code>cherry-pick</code>命令。通过<code>cherry-pick</code>某个提交，在当前活动分支上会创建一个新提交，包含了前者带来的改动。</p>
+<p>假设 <code>dev</code> 分支上的提交<code>76d12</code>改动了<code>index.js</code>文件，我们在<code>master</code>分支上也需要。我们不需要整个分支上的改动，只要这个提交。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands10.gif" alt="cherry-pick" title="cherry-pick"></p>
+<p><code>master</code>分支现在也包含了<code>76d12</code>提交的改动了。</p>
+<h2 id="fetch（提取-获取）"><a href="#fetch（提取-获取）" class="headerlink" title="fetch（提取/获取）"></a>fetch（提取/获取）</h2><p>如果存在远程分支，远程分支可能有些提交是当前的本地分支没有的。有可能是其他分支合并过去了，或者你的同事推送了某些改动，等等。</p>
+<p>我们可以用<code>git fetch</code> 把这些改动获取到本地。这不会影响本地分支，<code>fetch</code> 只是下载数据。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands11.gif" alt="fetch" title="fetch"></p>
+<p>现在就可以看到从最近一次推送以来的所有变动。本地有了这些新数据，我们就可以决定如何使用了。</p>
+<h2 id="pull-（拉取）"><a href="#pull-（拉取）" class="headerlink" title="pull （拉取）"></a>pull （拉取）</h2><p>除了用<code>git fetch</code> 获取远程分支信息外，还可以用<code>git pull</code>。<code>git pull</code>实际上是两个命令合而为一：<code>git fetch</code>和<code>git merge</code>。当我们从 <code>origin</code> 拉取改动时，先是像<code>git fetch</code>一样获取所有数据，然后最新改动会自动合并到本地分支。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands12.gif" alt="pull" title="pull"></p>
+<p>这样就跟远程分支保持同步了，包含了所有的最新改动。</p>
+<h2 id="reflog-（操作日志）"><a href="#reflog-（操作日志）" class="headerlink" title="reflog （操作日志）"></a>reflog （操作日志）</h2><p>每个人都会犯错误，这完全没有关系！有时候你可能觉得自己把仓库搞得一团糟，只想把它删了完事。</p>
+<p><code>git reflog</code>是个非常有用的命令，可以显示所有操作的日志。包括 <code>merge</code>，<code>reset</code>，<code>revert</code> 等，基本上包括了对分支的任何更改。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands13.gif" alt="reflog" title="reflog"></p>
+<p>如果出错了，你可以根据<code>reflog</code>提供的信息通过重置 <strong>HEAD</strong> 来撤销改动。</p>
+<p>比如，我们实际上并不想合并分支。当我们执行 <code>git reflog</code> 命令时，我们看到在合并前仓库位于<code>HEAD@{1}</code>。我们执行下<code>git reset</code>命令，让 <strong>HEAD</strong> 重新指回原来的<code>HEAD@{1}</code> 位置。</p>
+<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands14.gif" alt="reflog" title="reflog"></p>
+<p>我们可以看到，最新的操作也记录到 <code>reflog</code> 里了。</p>
+<p>Git 还有很多有用的命令，篇幅所限不能一一列举。希望通过上面这些形象的动画演示，能够更好地理解这些分支操作。</p>
+<p><strong>参考</strong></p>
+<p><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1https://hexo.io/docs/one-command-deployment.html</a>)</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>Git</tag>
       </tags>
   </entry>
   <entry>
@@ -629,333 +956,6 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>其他</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>PowerDesigner设计CDM类继承关系</title>
-    <url>/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p>
-<h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p>
- <a id="more"></a> 
-
-
-
-<h2 id="建立继承关系"><a href="#建立继承关系" class="headerlink" title="建立继承关系"></a>建立继承关系</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n2.png" alt=""></p>
-<h2 id="配置生成PDM的方式"><a href="#配置生成PDM的方式" class="headerlink" title="配置生成PDM的方式"></a>配置生成PDM的方式</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n3.png" alt=""></p>
-<h2 id="生成PDM-映射成数据库表"><a href="#生成PDM-映射成数据库表" class="headerlink" title="生成PDM(映射成数据库表)"></a>生成PDM(映射成数据库表)</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n4.png" alt=""></p>
-<h2 id="查看生成结果"><a href="#查看生成结果" class="headerlink" title="查看生成结果"></a>查看生成结果</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n5.png" alt=""></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用Git命令动画演示</title>
-    <url>/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/</url>
-    <content><![CDATA[<p>虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！<br>当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？<br>当我在<code>master</code>分支执行<code>hard reset</code>、<code>force push</code>到 <code>origin</code>、在<code>.git</code>文件夹执行<code>rimraf</code>的时候，为什么我的同事都哭了？</p>
-<p>我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，很多都有可选参数，用于改变命令的行为。文中的示例只讨论命令的默认行为，不会涉及太多的配置选项。这些命令包括 <code>merge</code>，<code>rebase</code>，<code>reset</code>， <code>revert</code>，<code>cherry-pick</code>，<code>fetch</code>，<code>pull</code>，<code>reflog</code>  等。</p>
-<a id="more"></a>
-
-<h2 id="merge（合并）"><a href="#merge（合并）" class="headerlink" title="merge（合并）"></a>merge（合并）</h2><p>多分支可以非常方便地将新的改动互相隔离，并确保你不会意外地将未经批准或破坏性的变更推到生产环境。一旦变更被批准，我们就能在生产分支中得到这些变更。</p>
-<p>从一个分支获取变更到另一个分支的方式之一是执行<code>git merge</code>命令。Git 有两类合并操作：<code>fast-forward</code> 和<code>no-fast-forward</code>。</p>
-<p>这么说你可能没什么概念，我们来看看区别吧。</p>
-<h3 id="fast-forward-ff"><a href="#fast-forward-ff" class="headerlink" title="fast-forward (--ff)"></a>fast-forward (<code>--ff</code>)</h3><p>如果当前分支与即将合并过来的分支相比，没有额外的提交，这种就是<code>fast-forward</code>合并。Git 很会偷懒，它会首先尝试最简单的方案，即<code>fast-forward</code>。这种合并方式不会创建新的提交，只是把另一个分支的提交记录直接合并到当前分支。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands1.gif" alt="fast-forward merge" title="fast-forward merge"></p>
-<p>现在我们在<code>master</code>分支上有了<code>dev</code>分支上的所有变更。那么，<code>no-fast-forward</code> 又是什么呢？</p>
-<h3 id="no-fast-foward-no-ff"><a href="#no-fast-foward-no-ff" class="headerlink" title="no-fast-foward (--no-ff)"></a>no-fast-foward (<code>--no-ff</code>)</h3><p>跟即将合并过来的分支比较，当前分支如果没有额外的提交，这固然很好，但实际情况往往不是这样！如果我们在当前分支上也提交了一些改动，那么 Git 就会执行<code>no-fast-forward</code>合并。</p>
-<p>对于 <code>no-fast-forward</code> 合并，Git 会在当前分支上创建一个新的<strong>合并提交</strong>。该提交的父提交同时指向当前分支和合并过来的分支。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands2.gif" alt="no-fast-forward" title="no-fast-forward"></p>
-<p>现在master分支上有了我们在dev分支上做的所有变更。</p>
-<h2 id="Merge-Conflicts-合并冲突"><a href="#Merge-Conflicts-合并冲突" class="headerlink" title="Merge Conflicts(合并冲突)"></a>Merge Conflicts(合并冲突)</h2><p>虽然 Git 擅长决定如何合并分支和更改文件，但它也不是总能自己做出决定。当我们试图合并的两个分支在同一文件的同一行上都有改动时，或者一个分支删除了文件，另一个分支又修改了它，都可能发生这种情况。</p>
-<p>这种情况下，Git 会要求你帮助决定要保留哪边的改动。假设在两个分支上，我们都编辑了<code>README.md</code>文件的第一行：</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands3.jpg" alt="README.md" title="README.md"></p>
-<p>如果把<code>dev</code>合并到 <code>master</code>，会导致合并冲突：你是要 <code>Hello!</code> 呢，还是要 <code>Hey!</code> ？</p>
-<p>合并分支时，Git 会显示冲突的位置。我们可以手动删除不想保留的改动，然后保存，再添加改动后的文件（<code>git add</code>）并提交。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands4.gif" alt="合并冲突" title="合并冲突"></p>
-<p>合并冲突虽然很烦人，但也是合理的：Git 不应该自作主张保留哪边的改动。</p>
-<h2 id="rebase（变基）"><a href="#rebase（变基）" class="headerlink" title="rebase（变基）"></a>rebase（变基）</h2><p>刚刚我们看到了如何通过执行<code>git merge</code>将一个分支的改动应用到另一个分支。另一种方式是使用<code>git rebase</code>。</p>
-<p><code>git rebase</code>命令复制当前分支的提交，然后把这些提交放到指定分支之上。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands5.gif" alt="git rebase" title="git rebase"></p>
-<p>现在 <code>master</code> 分支上的所有改动都跑到<code>dev</code>分支上了！</p>
-<p>与<code>merge</code>相比，最大的区别是 Git 不会去找出哪些文件需要保留，哪些文件不需要保留。我们要<code>rebase</code>的分支总是包含了我们想要保留的最新改动。这种方式不会有合并冲突，并且保持了良好的线性 Git 历史记录。</p>
-<p>这个例子演示了在 <code>master</code>分支上执行<code>rebase</code>。不过，在大项目里你可能不会这么做。<code>git rebase</code>命令会修改项目历史记录，因为复制的提交会产生新的 <strong>hash</strong>。</p>
-<p>当你在特性分支上开发时，<code>master</code>分支有更新的时候，<code>rebase</code>很有用。这样你在当前分支就能拿到所有更新，避免了将来可能的合并冲突。</p>
-<h2 id="Interactive-Rebase（交互式变基）"><a href="#Interactive-Rebase（交互式变基）" class="headerlink" title="Interactive Rebase（交互式变基）"></a>Interactive Rebase（交互式变基）</h2><p>在 <code>rebase</code> 之前，我们还可以修改！这是通过<strong>交互式</strong> <code>rebase</code> 实现的。<strong>交互式</strong> <code>rebase</code> 也可以用于当前正在处理的分支，在希望修改某些提交的时候。<br>对于即将 <code>rebase</code> 的提交，可以执行 6 种操作：</p>
-<p><code>reword</code>：修改提交说明<br><code>edit</code>：修改提交内容（amend）<br><code>squash</code>：将该提交合并到前一个提交<br><code>fixup</code>: 将该提交合并到前一个提交，不保留提交的日志消息<br><code>exec</code>: 在想要 rebase 的每一个提交上执行命令<br><code>drop</code>: 删除提交</p>
-<p>这样，我们就能完全控制提交记录了。如果想删除某个提交，只要 <code>drop</code> 它就行了。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands6.gif" alt="Interactive Rebase" title="Interactive Rebase"></p>
-<p>或者，如果我们想要把多个提交合并到一起，这样历史记录会更清晰，也没问题！</p>
-<p>交互式 <code>rebase</code> 给了你对想要 <code>rebase</code> 的提交很多控制权，哪怕是当前的活动分支。</p>
-<h2 id="reset（重置）"><a href="#reset（重置）" class="headerlink" title="reset（重置）"></a>reset（重置）</h2><p>有时候我们提交了一些改动，后来又不想要了。有可能是 <strong>WIP</strong> 提交，也可能是某个引入了 <strong>bug</strong> 的提交。这种情况，我们可以执行<code>git reset</code>。</p>
-<p><code>git reset</code>会丢弃当前所有暂存的文件，并让我们决定 <code>HEAD</code> 应该指向哪里。</p>
-<h3 id="soft-reset"><a href="#soft-reset" class="headerlink" title="soft reset"></a>soft reset</h3><p><code>soft reset</code> 将HEAD 移动到指定的提交（或者相对于 <code>HEAD</code> 的位置索引），同时不会丢弃这些提交带来的改动。</p>
-<p>假设我们不想保留添加了<code>style.css</code>文件的提交 <code>9e78i</code>，也不想保留添加了<code>index.js</code>文件的提交 <code>035cc</code> 。但是，我们却想要保留新增的<code>style.css</code>和<code>index.js</code>文件。这里用 <code>soft reset</code> 就非常合适。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands7.gif" alt="soft reset" title="soft reset"></p>
-<p>执行<code>git status</code>，你会看到我们依然能够查看之前提交所做的改动。这很有用，因为这样我们就能继续修改文件内容，后续再次提交了。</p>
-<h3 id="hard-reset"><a href="#hard-reset" class="headerlink" title="hard reset"></a>hard reset</h3><p>有时候，我们不想保留某些提交带来的改动。跟 <code>soft reset</code> 不一样，我们不再需要访问这些变动了。Git 应该简单地重置到指定的提交，并且会重置工作区和暂存区的文件。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands8.gif" alt="hard reset" title="hard reset"></p>
-<p>Git 已经丢弃了<code>9e78i</code> 和 <code>035cc</code> 两个提交引起的改动，并把状态重置到了提交<code>ec5be</code>的位置。</p>
-<h2 id="revert（回滚）"><a href="#revert（回滚）" class="headerlink" title="revert（回滚）"></a>revert（回滚）</h2><p>撤销改动的另一种方式是执行<code>git revert</code>。复原某个提交后，会创建一个新的提交，包含了恢复后的改动。</p>
-<p>假设提交 <code>ec5be</code> 添加了一个<code>index.js</code>文件。随后，我们发现实际上不再需要这个改动了，就可以恢复<code>ec5be</code>这个提交。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands9.gif" alt="revert" title="revert"></p>
-<p>提交<code>9e78i</code>恢复了 <code>ec5be</code> 这个提交带来的改动。执行 <code>git revert</code>对于撤销某个提交非常有用，同时又不会修改分支的历史。</p>
-<h2 id="cherry-pick（提交拣选）"><a href="#cherry-pick（提交拣选）" class="headerlink" title="cherry-pick（提交拣选）"></a>cherry-pick（提交拣选）</h2><p>当活动分支需要某个分支的某个提交包含的改动时，我们可以用<code>cherry-pick</code>命令。通过<code>cherry-pick</code>某个提交，在当前活动分支上会创建一个新提交，包含了前者带来的改动。</p>
-<p>假设 <code>dev</code> 分支上的提交<code>76d12</code>改动了<code>index.js</code>文件，我们在<code>master</code>分支上也需要。我们不需要整个分支上的改动，只要这个提交。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands10.gif" alt="cherry-pick" title="cherry-pick"></p>
-<p><code>master</code>分支现在也包含了<code>76d12</code>提交的改动了。</p>
-<h2 id="fetch（提取-获取）"><a href="#fetch（提取-获取）" class="headerlink" title="fetch（提取/获取）"></a>fetch（提取/获取）</h2><p>如果存在远程分支，远程分支可能有些提交是当前的本地分支没有的。有可能是其他分支合并过去了，或者你的同事推送了某些改动，等等。</p>
-<p>我们可以用<code>git fetch</code> 把这些改动获取到本地。这不会影响本地分支，<code>fetch</code> 只是下载数据。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands11.gif" alt="fetch" title="fetch"></p>
-<p>现在就可以看到从最近一次推送以来的所有变动。本地有了这些新数据，我们就可以决定如何使用了。</p>
-<h2 id="pull-（拉取）"><a href="#pull-（拉取）" class="headerlink" title="pull （拉取）"></a>pull （拉取）</h2><p>除了用<code>git fetch</code> 获取远程分支信息外，还可以用<code>git pull</code>。<code>git pull</code>实际上是两个命令合而为一：<code>git fetch</code>和<code>git merge</code>。当我们从 <code>origin</code> 拉取改动时，先是像<code>git fetch</code>一样获取所有数据，然后最新改动会自动合并到本地分支。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands12.gif" alt="pull" title="pull"></p>
-<p>这样就跟远程分支保持同步了，包含了所有的最新改动。</p>
-<h2 id="reflog-（操作日志）"><a href="#reflog-（操作日志）" class="headerlink" title="reflog （操作日志）"></a>reflog （操作日志）</h2><p>每个人都会犯错误，这完全没有关系！有时候你可能觉得自己把仓库搞得一团糟，只想把它删了完事。</p>
-<p><code>git reflog</code>是个非常有用的命令，可以显示所有操作的日志。包括 <code>merge</code>，<code>reset</code>，<code>revert</code> 等，基本上包括了对分支的任何更改。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands13.gif" alt="reflog" title="reflog"></p>
-<p>如果出错了，你可以根据<code>reflog</code>提供的信息通过重置 <strong>HEAD</strong> 来撤销改动。</p>
-<p>比如，我们实际上并不想合并分支。当我们执行 <code>git reflog</code> 命令时，我们看到在合并前仓库位于<code>HEAD@{1}</code>。我们执行下<code>git reset</code>命令，让 <strong>HEAD</strong> 重新指回原来的<code>HEAD@{1}</code> 位置。</p>
-<p><img src="https://blog.zzonn.com//images/UsefulGitCommands/UsefulGitCommands14.gif" alt="reflog" title="reflog"></p>
-<p>我们可以看到，最新的操作也记录到 <code>reflog</code> 里了。</p>
-<p>Git 还有很多有用的命令，篇幅所限不能一一列举。希望通过上面这些形象的动画演示，能够更好地理解这些分支操作。</p>
-<p><strong>参考</strong></p>
-<p><a href="https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">https://dev.to/lydiahallie/cs-visualized-useful-git-commands-37p1https://hexo.io/docs/one-command-deployment.html</a>)</p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo博客Next主题添加友链页面</title>
-    <url>/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/</url>
-    <content><![CDATA[<h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
-<pre><code>links: /links/ || fa fa-link</code></pre><p>主题语言配置文件 <code>hexo/themes/next/languages/zh-Hans.yml</code>文件中<code>menu</code>下增加中文描述： </p>
-<pre><code class="js">links: 友链</code></pre>
-<h3 id="添加友链页面"><a href="#添加友链页面" class="headerlink" title="添加友链页面"></a>添加友链页面</h3><pre><code>hexo new page links</code></pre><h3 id="修改友链页面内容"><a href="#修改友链页面内容" class="headerlink" title="修改友链页面内容"></a>修改友链页面内容</h3><p>在 <code>hexo/blog/source/links</code> 目录下<code>index.md</code></p>
-<a id="more"></a>
-
-<pre><code class="markdown">----
-title: 友情链接
-date: 2020-05-11 15:42:13
-type: &quot;links&quot;
----
-
----
-
-### 申请要求：
-
-1、内容持续更新且可以稳定访问
-2、网页整洁无繁杂广告推广
-3、博客主页被百度或谷歌等搜索引擎收录
-4、头像能够快速加载
-5、拥有独立域名
-
-
-### 友链声明：
-
-1、本站会主动保存您的 HTTPS 形式的头像图片链接
-2、本站会定期清理无法访问的友链，如果更换了链接信息请至评论区留言，谢谢合作！
-3、本站会定期查看双方是否互为友链，如果取消本站友链，本站也会将您的友链移除
-
-### 申请方式：
-
-先将本站的友链添加到您的友链，相关信息如下
-然后按照以下格式在本站留言区留言，待博主为您添上友链
-
-&gt;名称：ZZONN
-&gt;
-&gt;主页链接：https://blog.zzonn.com/ 
-&gt;
-&gt;头像链接：https://blog.zzonn.com/images/avatar2.gif
-&gt;
-&gt;说明信息：提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我
-
-
-</code></pre>
-<h3 id="添加友链布局文件"><a href="#添加友链布局文件" class="headerlink" title="添加友链布局文件"></a>添加友链布局文件</h3><p>在 <code>hexo/themes/next/layout</code> 目录下新建 <code>links.njk</code>文件，写入以下代码</p>
-<pre><code class="scss">
-{% block content %}
-  {######################}
-  {### LINKS BLOCK ###}
-  {######################}
-
-    <div id="links">
-        <style>
-
-            #links{
-               margin-top: 5rem;
-            }
-
-            .links-content{
-                margin-top:1rem;
-            }
-
-            .link-navigation::after {
-                content: " ";
-                display: block;
-                clear: both;
-            }
-
-            .card {
-                width: 300px;
-                font-size: 1rem;
-                padding: 10px 20px;
-                border-radius: 4px;
-                transition-duration: 0.15s;
-                margin-bottom: 1rem;
-                display:flex;
-            }
-            .card:nth-child(odd) {
-                float: left;
-            }
-            .card:nth-child(even) {
-                float: right;
-            }
-            .card:hover {
-                transform: scale(1.1);
-                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
-            }
-            .card a {
-                border:none;
-            }
-            .card .ava {
-                width: 3rem!important;
-                height: 3rem!important;
-                margin:0!important;
-                margin-right: 1em!important;
-                border-radius:4px;
-
-            }
-            .card .card-header {
-                font-style: italic;
-                overflow: hidden;
-                width: 236px;
-            }
-            .card .card-header a {
-                font-style: normal;
-                color: #2bbc8a;
-                font-weight: bold;
-                text-decoration: none;
-            }
-            .card .card-header a:hover {
-                color: #d480aa;
-                text-decoration: none;
-            }
-            .card .card-header .info {
-                font-style:normal;
-                color:#a3a3a3;
-                font-size:14px;
-                min-width: 0;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-            }
-			span.focus-links {
-                font-style: normal;
-                margin-left: 10px;
-                position: unset;
-                left: 0;
-                padding: 0 7px 0 5px;
-                font-size: 11px;
-                border-color: #42c02e;
-                border-radius: 40px;
-                line-height: 24px;
-                height: 22px;
-                color: #fff !important;
-                background-color: #42c02e;
-                display: inline-block;
-            }
-            span.focus-links:hover{
-                background-color: #318024;
-            }
-        </style>
-        <div class="links-content">
-
-             <div class="no-icon note warning"><div class="link-info">👨‍🎓 跟着大佬走，成为小大佬</div></div>
-            <div class="link-navigation">
-                    {% for link in theme.defaultlinks %}
-
-                    <div class="card">
-                        <img class="ava nofancybox" src="{{ link.avatar }}"/>
-                        <div class="card-header">
-                        <div><a href="{{ link.site }}" target="_blank"> {{ link.nickname }}</a> <a href="{{ link.site }}"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
-                        <div class="info">{{ link.info }}</div>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-            <div class="no-icon note primary"><div class="link-info">🍭 五湖四海的朋友们</div></div>
-
-             <div class="link-navigation">
-                    {% for link in theme.friendslinks %}
-
-                    <div class="card">
-                        <img class="ava nofancybox" src="{{ link.avatar }}"/>
-                        <div class="card-header">
-                        <div><a href="{{ link.site }}" target="_blank"> {{ link.nickname }}</a> <a href="{{ link.site }}"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
-                        <div class="info">{{ link.info }}</div>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-            {{ page.content }}
-            </div>
-        </div>
-
-  {##########################}
-  {### END LINKS BLOCK ###}
-  {##########################}
-{% endblock %}
-
-</code></pre>
-<h3 id="修改page布局文件"><a href="#修改page布局文件" class="headerlink" title="修改page布局文件"></a>修改page布局文件</h3><p>同样在 <code>hexo/themes/next/layout</code> 目录下</p>
-<ol>
-<li><p>找到代码</p>
-<pre><code>  {%- elif page.type === 'schedule' and not page.title %}
-    {{- __('title.schedule') + page_title_suffix }}</code></pre></li>
-<li><p>在后面加入代码</p>
-<pre><code>{%- elif page.type === 'links' and not page.title %}
-    {{- __('title.links') + page_title_suffix }}</code></pre></li>
-<li><p>找到代码</p>
-<pre><code>{% elif page.type === 'schedule' %}
-          &lt;div class=&quot;event-list&quot;&gt;
-          &lt;/div&gt;
-          {% include '_scripts/pages/schedule.njk' %}</code></pre></li>
-<li><p>在后面加入代码(引入刚刚新建的links布局文件)</p>
-<pre><code>{% elif page.type === 'links' %}
-          {% include 'links.njk' %}</code></pre></li>
-</ol>
-<h3 id="修改主题配置文件"><a href="#修改主题配置文件" class="headerlink" title="修改主题配置文件"></a>修改主题配置文件</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 末尾添加： </p>
-<pre><code># 友情链接
-defaultlinks:
-  - nickname: ZZONN     # 昵称
-      site: https://blog.zzonn.com/ #友链地址
-    avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
-    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我
-
-friendslinks:
-  - nickname: ZZONN     # 昵称
-      site: https://blog.zzonn.com/ #友链地址
-    avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
-    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我</code></pre><p><code>defaultlinks:</code>呼应的是<code>link.swig</code>文件中 <code>👨‍🎓 跟着大佬走，成为小大佬</code>段落，此处链接写大佬的博客；<br><code>friendslinks:</code>呼应的是<code>link.swig</code>文件中 <code>🍭 五湖四海的朋友们</code>段落，此处链接写朋友的博客。<br>此处内容可以根据自己需要自行修改 </p>
-]]></content>
-      <categories>
-        <category>博客</category>
-      </categories>
-      <tags>
-        <tag>Hexo</tag>
       </tags>
   </entry>
 </search>
