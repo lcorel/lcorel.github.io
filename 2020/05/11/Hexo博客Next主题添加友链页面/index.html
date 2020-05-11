@@ -23,12 +23,12 @@
     var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="配置菜单及汉化 主题配置文件hexo&#x2F;themes&#x2F;next&#x2F;_config.xml 中menu下添加：  links: &#x2F;links&#x2F; || fa fa-link主题语言配置文件 hexo&#x2F;themes&#x2F;next&#x2F;languages&#x2F;zh-Hans.yml文件中menu下增加中文描述：  links: 友链 添加友链页面hexo new page links修改友链页面内容在 hexo&#x2F;blog">
+  <meta name="description" content="Next版本（v8.0）配置菜单及汉化 主题配置文件hexo&#x2F;themes&#x2F;next&#x2F;_config.xml 中menu下添加：  links: &#x2F;links&#x2F; || fa fa-link主题语言配置文件 hexo&#x2F;themes&#x2F;next&#x2F;languages&#x2F;zh-Hans.yml文件中menu下增加中文描述：  links: 友链 添加友链页面hexo new page links修改友链页面内">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo博客Next主题添加友链页面">
 <meta property="og:url" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/index.html">
 <meta property="og:site_name" content="ZZONN">
-<meta property="og:description" content="配置菜单及汉化 主题配置文件hexo&#x2F;themes&#x2F;next&#x2F;_config.xml 中menu下添加：  links: &#x2F;links&#x2F; || fa fa-link主题语言配置文件 hexo&#x2F;themes&#x2F;next&#x2F;languages&#x2F;zh-Hans.yml文件中menu下增加中文描述：  links: 友链 添加友链页面hexo new page links修改友链页面内容在 hexo&#x2F;blog">
+<meta property="og:description" content="Next版本（v8.0）配置菜单及汉化 主题配置文件hexo&#x2F;themes&#x2F;next&#x2F;_config.xml 中menu下添加：  links: &#x2F;links&#x2F; || fa fa-link主题语言配置文件 hexo&#x2F;themes&#x2F;next&#x2F;languages&#x2F;zh-Hans.yml文件中menu下增加中文描述：  links: 友链 添加友链页面hexo new page links修改友链页面内">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/%7B%7B%20link.avatar%20%7D%7D">
 <meta property="og:image" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/%7B%7B%20link.avatar%20%7D%7D">
@@ -293,7 +293,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
+        <h3 id="Next版本（v8-0）"><a href="#Next版本（v8-0）" class="headerlink" title="Next版本（v8.0）"></a>Next版本（v8.0）</h3><h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
 <pre><code>links: /links/ || fa fa-link</code></pre><p>主题语言配置文件 <code>hexo/themes/next/languages/zh-Hans.yml</code>文件中<code>menu</code>下增加中文描述： </p>
 <pre><code class="js">links: 友链</code></pre>
 <h3 id="添加友链页面"><a href="#添加友链页面" class="headerlink" title="添加友链页面"></a>添加友链页面</h3><pre><code>hexo new page links</code></pre><h3 id="修改友链页面内容"><a href="#修改友链页面内容" class="headerlink" title="修改友链页面内容"></a>修改友链页面内容</h3><p>在 <code>hexo/blog/source/links</code> 目录下<code>index.md</code></p>
@@ -590,7 +590,7 @@ friendslinks:
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置菜单及汉化"><span class="nav-number">1.</span> <span class="nav-text">配置菜单及汉化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加友链页面"><span class="nav-number">2.</span> <span class="nav-text">添加友链页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改友链页面内容"><span class="nav-number">3.</span> <span class="nav-text">修改友链页面内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加友链布局文件"><span class="nav-number">4.</span> <span class="nav-text">添加友链布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改page布局文件"><span class="nav-number">5.</span> <span class="nav-text">修改page布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主题配置文件"><span class="nav-number">6.</span> <span class="nav-text">修改主题配置文件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Next版本（v8-0）"><span class="nav-number">1.</span> <span class="nav-text">Next版本（v8.0）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置菜单及汉化"><span class="nav-number">2.</span> <span class="nav-text">配置菜单及汉化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加友链页面"><span class="nav-number">3.</span> <span class="nav-text">添加友链页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改友链页面内容"><span class="nav-number">4.</span> <span class="nav-text">修改友链页面内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加友链布局文件"><span class="nav-number">5.</span> <span class="nav-text">添加友链布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改page布局文件"><span class="nav-number">6.</span> <span class="nav-text">修改page布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主题配置文件"><span class="nav-number">7.</span> <span class="nav-text">修改主题配置文件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
