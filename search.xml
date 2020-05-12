@@ -441,38 +441,6 @@ friendslinks:
       </tags>
   </entry>
   <entry>
-    <title>常用SQL备忘</title>
-    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
-    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
-<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
-<p>  结果：2.18</p>
-<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
-<p>结果：2.18</p>
-<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
-<p>结果：2.180000</p>
- <a id="more"></a> 
-
-<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
-<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
-where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
-<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
-(
-    select Id,Pid,Name from 表名
-    where Id = 1
-    union all
-    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
-    on c.Id = t.Pid
-)
-select * from cte</code></pre>
-]]></content>
-      <categories>
-        <category>SQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>常用Git命令动画演示</title>
     <url>/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/</url>
     <content><![CDATA[<p>虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！<br>当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？<br>当我在<code>master</code>分支执行<code>hard reset</code>、<code>force push</code>到 <code>origin</code>、在<code>.git</code>文件夹执行<code>rimraf</code>的时候，为什么我的同事都哭了？</p>
@@ -552,36 +520,35 @@ select * from cte</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>开源工具推荐：Postwoman</title>
-    <url>/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/</url>
-    <content><![CDATA[<h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
-<li><p>快速：实时发送请求并获取/复制响应</p>
-</li>
-<li><p>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</p>
-</li>
-<li><p>支持验证</p>
-</li>
-<li><p>实时，发送请求即可获取响应。</p>
+    <title>常用SQL备忘</title>
+    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
+    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
+<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
+<p>  结果：2.18</p>
+<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
+<p>结果：2.18</p>
+<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
+<p>结果：2.180000</p>
  <a id="more"></a> 
 
-</li>
-</ul>
-<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
-<ul>
-<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
-<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
-<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
-<li>支持身份验证，具有更高的安全性</li>
-<li>实时，发送请求即可获取响应。</li>
-<li>轻松，快速地创建和共享动态API文档</li>
-</ul>
-<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
+<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
+<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
+where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
+<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
+(
+    select Id,Pid,Name from 表名
+    where Id = 1
+    union all
+    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
+    on c.Id = t.Pid
+)
+select * from cte</code></pre>
 ]]></content>
       <categories>
-        <category>工具</category>
+        <category>SQL</category>
       </categories>
       <tags>
-        <tag>接口</tag>
+        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
@@ -635,6 +602,39 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>微服务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开源工具推荐：Postwoman</title>
+    <url>/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/</url>
+    <content><![CDATA[<h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
+<li><p>快速：实时发送请求并获取/复制响应</p>
+</li>
+<li><p>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</p>
+</li>
+<li><p>支持验证</p>
+</li>
+<li><p>实时，发送请求即可获取响应。</p>
+ <a id="more"></a> 
+
+</li>
+</ul>
+<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
+<ul>
+<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
+<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
+<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
+<li>支持身份验证，具有更高的安全性</li>
+<li>实时，发送请求即可获取响应。</li>
+<li>轻松，快速地创建和共享动态API文档</li>
+</ul>
+<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>接口</tag>
       </tags>
   </entry>
   <entry>
