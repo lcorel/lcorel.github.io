@@ -1409,7 +1409,7 @@ pre code {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #fbe94d;
+  background: #ff048c;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2907,7 +2907,7 @@ ul.breadcrumb li + li:last-child {
 }
 /* 页面背景图 */
 body {
-  background: url("https://source.unsplash.com/random/1600x900/?sunset-glow,starry-sky,sea");
+  background: url("/images/img_background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
