@@ -419,6 +419,38 @@ friendslinks:
       </tags>
   </entry>
   <entry>
+    <title>常用SQL备忘</title>
+    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
+    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
+<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
+<p>  结果：2.18</p>
+<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
+<p>结果：2.18</p>
+<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
+<p>结果：2.180000</p>
+ <a id="more"></a> 
+
+<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
+<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
+where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
+<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
+(
+    select Id,Pid,Name from 表名
+    where Id = 1
+    union all
+    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
+    on c.Id = t.Pid
+)
+select * from cte</code></pre>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/10/03/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
@@ -517,38 +549,6 @@ friendslinks:
       </categories>
       <tags>
         <tag>Git</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用SQL备忘</title>
-    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
-    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
-<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
-<p>  结果：2.18</p>
-<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
-<p>结果：2.18</p>
-<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
-<p>结果：2.180000</p>
- <a id="more"></a> 
-
-<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
-<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
-where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
-<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
-(
-    select Id,Pid,Name from 表名
-    where Id = 1
-    union all
-    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
-    on c.Id = t.Pid
-)
-select * from cte</code></pre>
-]]></content>
-      <categories>
-        <category>SQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
       </tags>
   </entry>
   <entry>
