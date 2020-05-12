@@ -1391,7 +1391,7 @@ pre code {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #70fff2;
+  background: #f4f;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2889,7 +2889,7 @@ ul.breadcrumb li + li:last-child {
 }
 /* 页面背景图 */
 body {
-  background: url("/images/img_background.jpg");
+  background: url("https://source.unsplash.com/random/1600x900");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: 50% 50%;
@@ -2898,4 +2898,11 @@ body {
   body {
     background-size: cover;
   }
+}
+.main-inner {
+  margin-top: 60px;
+  padding: 60px 60px 60px 60px;
+  background: #fff;
+  opacity: 0.8;
+  min-height: 500px;
 }
