@@ -1391,7 +1391,7 @@ pre code {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffa25b;
+  background: #f1ffda;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2894,14 +2894,4 @@ body {
   background-attachment: fixed;
   background-position: 50% 50%;
   background-size: cover;
-}
-.header-inner {
-  opacity: 0.9;
-}
-.sidebar {
-  transition-duration: 0.4s;
-  opacity: 0.9;
-}
-.content {
-  opacity: 0.9;
 }
