@@ -26,7 +26,7 @@
   <meta name="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ZZONN">
-<meta property="og:url" content="https://blog.zzonn.com/index.html">
+<meta property="og:url" content="https://blog.zzonn.com/page/3/index.html">
 <meta property="og:site_name" content="ZZONN">
 <meta property="og:description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
 <meta property="og:locale" content="zh_CN">
@@ -38,7 +38,7 @@
 <meta property="article:tag" content="PanLee">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blog.zzonn.com/">
+<link rel="canonical" href="https://blog.zzonn.com/page/3/">
 
 
 <script id="page-configurations">
@@ -212,7 +212,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar2.gif">
@@ -226,7 +226,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/" class="post-title-link" itemprop="url">Hexo博客Next主题添加友链页面</a>
+            <a href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">数据库设计规范</a>
         </h2>
 
         <div class="post-meta">
@@ -236,222 +236,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-11 16:40:01" itemprop="dateCreated datePublished" datetime="2020-05-11T16:40:01+08:00">2020-05-11</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="Next版本（v8-0）"><a href="#Next版本（v8-0）" class="headerlink" title="Next版本（v8.0）"></a>Next版本（v8.0）</h3><h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
-<pre><code>links: /links/ || fa fa-link</code></pre><p>主题语言配置文件 <code>hexo/themes/next/languages/zh-Hans.yml</code>文件中<code>menu</code>下增加中文描述： </p>
-<pre><code class="js">links: 友链</code></pre>
-<h3 id="添加友链页面"><a href="#添加友链页面" class="headerlink" title="添加友链页面"></a>添加友链页面</h3><pre><code>hexo new page links</code></pre><h3 id="修改友链页面内容"><a href="#修改友链页面内容" class="headerlink" title="修改友链页面内容"></a>修改友链页面内容</h3><p>在 <code>hexo/blog/source/links</code> 目录下<code>index.md</code></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar2.gif">
-      <meta itemprop="name" content="LiPan">
-      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZZONN">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/" class="post-title-link" itemprop="url">常用Git命令动画演示</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-05-08 16:23:04" itemprop="dateCreated datePublished" datetime="2020-05-08T16:23:04+08:00">2020-05-08</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>3.6k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>虽然 Git 是一个强大的工具，但是我觉得大部分人用起来都会认为很复杂，还容易犯错！<br>当我执行某个命令的时候，分支之间是如何交互的？又是如何影响提交历史的？<br>当我在<code>master</code>分支执行<code>hard reset</code>、<code>force push</code>到 <code>origin</code>、在<code>.git</code>文件夹执行<code>rimraf</code>的时候，为什么我的同事都哭了？</p>
-<p>我认为创建一些最常见、最实用的命令的可视化示例是最佳使用指南！接下来介绍的这些命令，很多都有可选参数，用于改变命令的行为。文中的示例只讨论命令的默认行为，不会涉及太多的配置选项。这些命令包括 <code>merge</code>，<code>rebase</code>，<code>reset</code>， <code>revert</code>，<code>cherry-pick</code>，<code>fetch</code>，<code>pull</code>，<code>reflog</code>  等。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar2.gif">
-      <meta itemprop="name" content="LiPan">
-      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZZONN">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">PowerDesigner设计CDM类继承关系</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-04-18 16:24:04" itemprop="dateCreated datePublished" datetime="2020-04-18T16:24:04+08:00">2020-04-18</time>
+              <time title="创建时间：2020-01-15 09:57:54" itemprop="dateCreated datePublished" datetime="2020-01-15T09:57:54+08:00">2020-01-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-28 16:24:04" itemprop="dateModified" datetime="2020-04-28T16:24:04+08:00">2020-04-28</time>
+                <time title="修改时间：2020-01-18 11:42:25" itemprop="dateModified" datetime="2020-01-18T11:42:25+08:00">2020-01-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -459,7 +251,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
                 </span>
             </span>
 
@@ -472,8 +264,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -483,14 +275,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>135</span>
+              <span>6.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>6 分钟</span>
             </span>
 
         </div>
@@ -502,11 +294,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p>
-<h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p>
+          <h1 id="设计规范"><a href="#设计规范" class="headerlink" title="设计规范"></a>设计规范</h1><p>1.【推荐】字段允许适当冗余，以提高查询性能，但必须考虑数据一致。冗余字段应遵循:</p>
+<blockquote>
+<p>不是频繁修改的字段。<br>不是 varchar 超长字段，更不能是 text 字段。<br>正例:商品类目名称使用频率高，字段长度短，名称基本一成不变，可在相关联的表中冗余存 储类目名称，避免关联查询。</p>
+</blockquote>
+<p>2.【推荐】单表行数超过 500 万行或者单表容量超过 2GB，才推荐进行分库分表。 说明:如果预计2年后的数据量根本达不到这个级别，请不要在创建表时就分库分表。<br>3.【推荐】id必须是主键，每个表必须有主键，且保持增长趋势的， 小型系统可以依赖于 MySQL 的自增主键，大型系统或者需要分库分表时才使用内置的 ID 生成器</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/#more" rel="contents">
+              <a class="btn" href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -530,7 +325,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/04/10/%E8%81%8C%E7%BA%A7%E8%AF%84%E5%AE%9A%E6%A0%87%E5%87%86/">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar2.gif">
@@ -544,7 +339,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2020/04/10/%E8%81%8C%E7%BA%A7%E8%AF%84%E5%AE%9A%E6%A0%87%E5%87%86/" class="post-title-link" itemprop="url">职级评定标准</a>
+            <a href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">API接口规范</a>
         </h2>
 
         <div class="post-meta">
@@ -553,9 +348,8 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-04-10 17:30:04 / 修改时间：17:32:04" itemprop="dateCreated datePublished" datetime="2020-04-10T17:30:04+08:00">2020-04-10</time>
+              <time title="创建时间：2020-01-03 15:11:04" itemprop="dateCreated datePublished" datetime="2020-01-03T15:11:04+08:00">2020-01-03</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -576,128 +370,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/04/10/%E8%81%8C%E7%BA%A7%E8%AF%84%E5%AE%9A%E6%A0%87%E5%87%86/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/10/%E8%81%8C%E7%BA%A7%E8%AF%84%E5%AE%9A%E6%A0%87%E5%87%86/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>2.5k</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>2 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="🌀助理"><a href="#🌀助理" class="headerlink" title="🌀助理"></a>🌀助理</h2><h3 id="💥能力要求"><a href="#💥能力要求" class="headerlink" title="💥能力要求"></a>💥能力要求</h3><ol>
-<li>具有较强的学习能力，可以编写代码，达到公司的工作要求</li>
-</ol>
-<h2 id="🌀初级"><a href="#🌀初级" class="headerlink" title="🌀初级"></a>🌀初级</h2><h3 id="💥硬性指标"><a href="#💥硬性指标" class="headerlink" title="💥硬性指标"></a>💥硬性指标</h3><ol>
-<li>具备一年以上软件开发经验</li>
-</ol>
-<h3 id="💥能力要求-1"><a href="#💥能力要求-1" class="headerlink" title="💥能力要求"></a>💥能力要求</h3><ol>
-<li><p>能够独立完成项目中功能级代码开发；(完成任务能力)</p>
-</li>
-<li><p>具备计算机和软件开发的基础知识，熟练掌握至少一种软件开发工具；熟练掌握至少一门编程语言；(知识水平)</p>
-</li>
-<li><p>能够根据工作需要，在老员工的帮助下，快速掌握新的开发语言和开发工具；(学习能力)</p>
-</li>
-<li><p>具备较好的沟通能力；(沟通能力)</p>
-</li>
-<li><p>具备较强的责任心；(责任心)</p>
-</li>
-<li><p>具备良好的软件编程习惯，能够遵循软件开发规范，基本上能按时完成所分配的工作，所编写的代码少有BUG；(基本素养)</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/04/10/%E8%81%8C%E7%BA%A7%E8%AF%84%E5%AE%9A%E6%A0%87%E5%87%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar2.gif">
-      <meta itemprop="name" content="LiPan">
-      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="ZZONN">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/" class="post-title-link" itemprop="url">微服务架构技术栈</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-04-03 11:36:18 / 修改时间：11:36:55" itemprop="dateCreated datePublished" datetime="2020-04-03T11:36:18+08:00">2020-04-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index"><span itemprop="name">架构</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/" itemprop="commentCount"></span>
+    <a title="valine" href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -726,10 +400,219 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="微服务的前世今生"><a href="#微服务的前世今生" class="headerlink" title="微服务的前世今生"></a>微服务的前世今生</h2><p>与微服务架构相对的，叫单体架构。这是我们最熟悉的开发方式，就是一个项目搞定业务全过程，在同一个进程里面完成。随着业务发展，数据量和并发上去了，一般会选择右边的垂直拆分，拆分后的每个系统，依旧是单体架构的。</p>
+          <h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
+<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/#more" rel="contents">
+              <a class="btn" href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">Windows错误代码对应解决方案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-17 10:21:42 / 修改时间：10:21:47" itemprop="dateCreated datePublished" datetime="2019-11-17T10:21:42+08:00">2019-11-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Windows/" itemprop="url" rel="index"><span itemprop="name">Windows</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>98</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
+<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
+<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2019/10/03/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/10/03/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-03 16:31:04" itemprop="dateCreated datePublished" datetime="2019-10-03T16:31:04+08:00">2019-10-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%85%B6%E4%BB%96/" itemprop="url" rel="index"><span itemprop="name">其他</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2019/10/03/hello-world/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/10/03/hello-world/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>363</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2019/10/03/hello-world/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -752,7 +635,7 @@
 
   
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
   </nav>
 
 
