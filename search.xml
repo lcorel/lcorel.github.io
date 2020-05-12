@@ -1,161 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>API接口规范</title>
-    <url>/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[<h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
-<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
- <a id="more"></a> 
-
-<h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
-<ol>
-<li>应该将API的版本号放入URL。</li>
-<li>采用多版本并存，增量发布的方式。</li>
-<li>n代表版本号，分为整型和浮点型<br>整型：    大功能版本，  如v1、v2、v3 …<br>浮点型：  补充功能版本， 如v1.1、v1.2、v2.1、v2.2 …</li>
-<li>对于一个 API 或服务，应在生产中最多保留 3 个最详细的版本</li>
-</ol>
-<h1 id="四、路径规则"><a href="#四、路径规则" class="headerlink" title="四、路径规则"></a>四、路径规则</h1><p>路径又称”终点”（end point），表示API的具体网址。</p>
-<ol>
-<li>在RESTful架构中，每个网址代表一种资源(resource),所以网址中不能有动词，只能有名词。<br> 【所用的名词往往与数据库的表格名对应】</li>
-<li>数据库中的表一般都是同种记录的”集合”(collection),所以API中的名词也应该使用复数。</li>
-</ol>
-<p>例子: <a href="https://api.example.com/v1/products" target="_blank" rel="noopener">https://api.example.com/v1/products</a><br>      <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a><br>      <a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></p>
-<h1 id="五、请求方式"><a href="#五、请求方式" class="headerlink" title="五、请求方式"></a>五、请求方式</h1><p>GET（SELECT）：    从服务器取出资源（一项或多项）。<br>POST（CREATE）：   在服务器新建一个资源。<br>PUT（UPDATE）：    在服务器更新资源（客户端提供改变后的完整资源）。<br>DELETE（DELETE）： 从服务器删除资源。</p>
-<p>例子：<br>GET    /v1/products      获取所有商品<br>GET    /v1/products/ID   获取某个指定商品的信息<br>POST   /v1/products      新建一个商品<br>PUT    /v1/products/ID   更新某个指定商品的信息<br>DELETE /v1/products/ID   删除某个商品,更合理的设计详见【9、非RESTful API的需求】<br>GET    /v1/products/ID/purchases      列出某个指定商品的所有投资者<br>GET    /v1/products/ID/purchases/ID   获取某个指定商品的指定投资者信息</p>
-<h1 id="六、过滤信息"><a href="#六、过滤信息" class="headerlink" title="六、过滤信息"></a>六、过滤信息</h1><p>若记录数量很多，服务器不可能返回全部记录给用户。<br>API应该提供分页参数及其它筛选参数，过滤返回结果。</p>
-<p>/v1/products?page=1&amp;pageSize=20     指定第几页，以及每页的记录数。<br>/v1/products?sortBy=name&amp;order=asc  指定返回结果按照哪个属性排序，以及排序顺序。</p>
-<h1 id="七、传入参数"><a href="#七、传入参数" class="headerlink" title="七、传入参数"></a>七、传入参数</h1><p>传入参数分为4种类型：</p>
-<ol>
-<li>cookie：         一般用于OAuth认证</li>
-<li>request header： 一般用于OAuth认证</li>
-<li>请求body数据：</li>
-<li>地址栏参数：<br> 1）restful 地址栏参数 /v1/products/ID ID为产品编号，获取产品编号为ID的信息<br> 2）get方式的查询字段 见【六、过滤信息】</li>
-</ol>
-<h1 id="八、公共参数"><a href="#八、公共参数" class="headerlink" title="八、公共参数"></a>八、公共参数</h1><h2 id="1-APP-端请求"><a href="#1-APP-端请求" class="headerlink" title="1.APP 端请求"></a>1.APP 端请求</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>network</td>
-<td>网络</td>
-<td>WIFI、4G</td>
-</tr>
-<tr>
-<td>operator</td>
-<td>运营商</td>
-<td>中国联通/移动</td>
-</tr>
-<tr>
-<td>platform</td>
-<td>平台</td>
-<td>iOS、Android</td>
-</tr>
-<tr>
-<td>system</td>
-<td>系统</td>
-<td>ios 13.3、android 9</td>
-</tr>
-<tr>
-<td>device</td>
-<td>设备型号</td>
-<td>iPhone XR、小米9</td>
-</tr>
-<tr>
-<td>udid</td>
-<td>设备唯</td>
-<td>标示</td>
-</tr>
-<tr>
-<td>apiVersion</td>
-<td>API 版本号</td>
-<td>v1.1、v1.2</td>
-</tr>
-</tbody></table>
-<h2 id="2-WEB-端请求"><a href="#2-WEB-端请求" class="headerlink" title="2.WEB 端请求"></a>2.WEB 端请求</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>appKey</td>
-<td>授权Key</td>
-<td>字符串</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>[info] 调用方需向服务方申请 appKey（请求时使用） 和 secretKey（加密时使用）。</p>
-</blockquote>
-<h1 id="九、响应参数"><a href="#九、响应参数" class="headerlink" title="九、响应参数"></a>九、响应参数</h1><p>【response】：</p>
-<hr>
-<pre><code class="json">{
-   status: 200,               // 详见【status】
-   data: {
-      code: 1,                // 详见【code】
-      data: {} || [],         // 数据
-      message: &#39;成功&#39;,        // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
-      sysMessage: &#39;success&#39;   // 存放响应信息提示,调试使用,中英文都行
-      ...                     // 其它参数，如 total【总记录数】等
-   },
-   msg: &#39;成功&#39;,            // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
-   sysMsg: &#39;success&#39;       // 存放响应信息提示,调试使用,中英文都行
-}</code></pre>
-<hr>
-<p>【status】:</p>
-<p>200：OK<br>400：Bad Request<br>401：Unauthorized<br>403：Forbidden<br>404：Not Found<br>500：Internal Server Error</p>
-<p>【code】:</p>
-<p>1：获取数据成功 | 操作成功<br>0：获取数据失败 | 操作失败</p>
-<hr>
-<p> 若有分页数据返回的，格式如下：</p>
-<pre><code class="json">{
-    &quot;code&quot;: 1,
-    &quot;showMsg&quot;: &quot;success&quot;,
-    &quot;errorMsg&quot;: &quot;&quot;,
-    &quot;data&quot;: {
-         &quot;list&quot;: [],
-         &quot;pagination&quot;: {
-             &quot;total&quot;: 100,
-             &quot;currentPage&quot;: 1,
-             &quot;prePageCount&quot;: 10
-         }
-     }
-}</code></pre>
-<h1 id="十、非RESTful-API的需求"><a href="#十、非RESTful-API的需求" class="headerlink" title="十、非RESTful API的需求"></a>十、非RESTful API的需求</h1><ol>
-<li>实际业务开展过程中，可能会出现各种的api不是简单的restful 规范能实现的。</li>
-<li>需要有一些api突破restful规范原则。</li>
-<li>特别是移动互联网的api设计，更需要有一些特定的api来优化数据请求的交互。<br> 1)、删除单个 | 批量删除  ： DELETE  /v1/product      body参数{ids：[]}<br> 2)、页面级API           :  把当前页面中需要用到的所有数据通过一个接口一次性返回全部数据</li>
-</ol>
-<h1 id="十一、一致性原则"><a href="#十一、一致性原则" class="headerlink" title="十一、一致性原则"></a>十一、一致性原则</h1><ol>
-<li>前端需要哪些字段，API接口应该返回哪些字段，字段不多也不少。</li>
-<li>更新功能尽量做到：初次返回的原始数据参数与提交更新的数据参数结构一致。</li>
-<li>时间参数，尽量以时间戳13位传递。</li>
-<li>其它参数【待更新】</li>
-</ol>
-<h1 id="十二、接口文档"><a href="#十二、接口文档" class="headerlink" title="十二、接口文档"></a>十二、接口文档</h1><ol>
-<li>尽量采用自动化接口文档，可以做到在线测试，同步更新。</li>
-<li>应包含：接口BASE地址、接口版本、接口模块分类等。</li>
-<li>每个接口应包含：<br>接口地址：不包含接口BASE地址。<br>请求方式: get、post、put、delete等。<br>请求参数：数据格式【默认JSON、可选form data】、数据类型、是否必填、中文描述。<br>响应参数：类型、中文描述。</li>
-</ol>
-<h1 id="十三、参考资料"><a href="#十三、参考资料" class="headerlink" title="十三、参考资料"></a>十三、参考资料</h1><ol>
-<li><a href="https://my.oschina.net/qqlet/blog/1922038" target="_blank" rel="noopener">https://my.oschina.net/qqlet/blog/1922038</a></li>
-<li><a href="https://juejin.im/post/5afee0e86fb9a07ab379b371" target="_blank" rel="noopener">https://juejin.im/post/5afee0e86fb9a07ab379b371</a></li>
-<li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>规范</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Hexo博客Next主题添加友链页面</title>
     <url>/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/</url>
     <content><![CDATA[<h3 id="Next版本（v8-0）"><a href="#Next版本（v8-0）" class="headerlink" title="Next版本（v8.0）"></a>Next版本（v8.0）</h3><h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
@@ -517,6 +362,161 @@ friendslinks:
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>API接口规范</title>
+    <url>/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
+<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
+ <a id="more"></a> 
+
+<h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
+<ol>
+<li>应该将API的版本号放入URL。</li>
+<li>采用多版本并存，增量发布的方式。</li>
+<li>n代表版本号，分为整型和浮点型<br>整型：    大功能版本，  如v1、v2、v3 …<br>浮点型：  补充功能版本， 如v1.1、v1.2、v2.1、v2.2 …</li>
+<li>对于一个 API 或服务，应在生产中最多保留 3 个最详细的版本</li>
+</ol>
+<h1 id="四、路径规则"><a href="#四、路径规则" class="headerlink" title="四、路径规则"></a>四、路径规则</h1><p>路径又称”终点”（end point），表示API的具体网址。</p>
+<ol>
+<li>在RESTful架构中，每个网址代表一种资源(resource),所以网址中不能有动词，只能有名词。<br> 【所用的名词往往与数据库的表格名对应】</li>
+<li>数据库中的表一般都是同种记录的”集合”(collection),所以API中的名词也应该使用复数。</li>
+</ol>
+<p>例子: <a href="https://api.example.com/v1/products" target="_blank" rel="noopener">https://api.example.com/v1/products</a><br>      <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a><br>      <a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></p>
+<h1 id="五、请求方式"><a href="#五、请求方式" class="headerlink" title="五、请求方式"></a>五、请求方式</h1><p>GET（SELECT）：    从服务器取出资源（一项或多项）。<br>POST（CREATE）：   在服务器新建一个资源。<br>PUT（UPDATE）：    在服务器更新资源（客户端提供改变后的完整资源）。<br>DELETE（DELETE）： 从服务器删除资源。</p>
+<p>例子：<br>GET    /v1/products      获取所有商品<br>GET    /v1/products/ID   获取某个指定商品的信息<br>POST   /v1/products      新建一个商品<br>PUT    /v1/products/ID   更新某个指定商品的信息<br>DELETE /v1/products/ID   删除某个商品,更合理的设计详见【9、非RESTful API的需求】<br>GET    /v1/products/ID/purchases      列出某个指定商品的所有投资者<br>GET    /v1/products/ID/purchases/ID   获取某个指定商品的指定投资者信息</p>
+<h1 id="六、过滤信息"><a href="#六、过滤信息" class="headerlink" title="六、过滤信息"></a>六、过滤信息</h1><p>若记录数量很多，服务器不可能返回全部记录给用户。<br>API应该提供分页参数及其它筛选参数，过滤返回结果。</p>
+<p>/v1/products?page=1&amp;pageSize=20     指定第几页，以及每页的记录数。<br>/v1/products?sortBy=name&amp;order=asc  指定返回结果按照哪个属性排序，以及排序顺序。</p>
+<h1 id="七、传入参数"><a href="#七、传入参数" class="headerlink" title="七、传入参数"></a>七、传入参数</h1><p>传入参数分为4种类型：</p>
+<ol>
+<li>cookie：         一般用于OAuth认证</li>
+<li>request header： 一般用于OAuth认证</li>
+<li>请求body数据：</li>
+<li>地址栏参数：<br> 1）restful 地址栏参数 /v1/products/ID ID为产品编号，获取产品编号为ID的信息<br> 2）get方式的查询字段 见【六、过滤信息】</li>
+</ol>
+<h1 id="八、公共参数"><a href="#八、公共参数" class="headerlink" title="八、公共参数"></a>八、公共参数</h1><h2 id="1-APP-端请求"><a href="#1-APP-端请求" class="headerlink" title="1.APP 端请求"></a>1.APP 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>network</td>
+<td>网络</td>
+<td>WIFI、4G</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>运营商</td>
+<td>中国联通/移动</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>平台</td>
+<td>iOS、Android</td>
+</tr>
+<tr>
+<td>system</td>
+<td>系统</td>
+<td>ios 13.3、android 9</td>
+</tr>
+<tr>
+<td>device</td>
+<td>设备型号</td>
+<td>iPhone XR、小米9</td>
+</tr>
+<tr>
+<td>udid</td>
+<td>设备唯</td>
+<td>标示</td>
+</tr>
+<tr>
+<td>apiVersion</td>
+<td>API 版本号</td>
+<td>v1.1、v1.2</td>
+</tr>
+</tbody></table>
+<h2 id="2-WEB-端请求"><a href="#2-WEB-端请求" class="headerlink" title="2.WEB 端请求"></a>2.WEB 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appKey</td>
+<td>授权Key</td>
+<td>字符串</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[info] 调用方需向服务方申请 appKey（请求时使用） 和 secretKey（加密时使用）。</p>
+</blockquote>
+<h1 id="九、响应参数"><a href="#九、响应参数" class="headerlink" title="九、响应参数"></a>九、响应参数</h1><p>【response】：</p>
+<hr>
+<pre><code class="json">{
+   status: 200,               // 详见【status】
+   data: {
+      code: 1,                // 详见【code】
+      data: {} || [],         // 数据
+      message: &#39;成功&#39;,        // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+      sysMessage: &#39;success&#39;   // 存放响应信息提示,调试使用,中英文都行
+      ...                     // 其它参数，如 total【总记录数】等
+   },
+   msg: &#39;成功&#39;,            // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+   sysMsg: &#39;success&#39;       // 存放响应信息提示,调试使用,中英文都行
+}</code></pre>
+<hr>
+<p>【status】:</p>
+<p>200：OK<br>400：Bad Request<br>401：Unauthorized<br>403：Forbidden<br>404：Not Found<br>500：Internal Server Error</p>
+<p>【code】:</p>
+<p>1：获取数据成功 | 操作成功<br>0：获取数据失败 | 操作失败</p>
+<hr>
+<p> 若有分页数据返回的，格式如下：</p>
+<pre><code class="json">{
+    &quot;code&quot;: 1,
+    &quot;showMsg&quot;: &quot;success&quot;,
+    &quot;errorMsg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+         &quot;list&quot;: [],
+         &quot;pagination&quot;: {
+             &quot;total&quot;: 100,
+             &quot;currentPage&quot;: 1,
+             &quot;prePageCount&quot;: 10
+         }
+     }
+}</code></pre>
+<h1 id="十、非RESTful-API的需求"><a href="#十、非RESTful-API的需求" class="headerlink" title="十、非RESTful API的需求"></a>十、非RESTful API的需求</h1><ol>
+<li>实际业务开展过程中，可能会出现各种的api不是简单的restful 规范能实现的。</li>
+<li>需要有一些api突破restful规范原则。</li>
+<li>特别是移动互联网的api设计，更需要有一些特定的api来优化数据请求的交互。<br> 1)、删除单个 | 批量删除  ： DELETE  /v1/product      body参数{ids：[]}<br> 2)、页面级API           :  把当前页面中需要用到的所有数据通过一个接口一次性返回全部数据</li>
+</ol>
+<h1 id="十一、一致性原则"><a href="#十一、一致性原则" class="headerlink" title="十一、一致性原则"></a>十一、一致性原则</h1><ol>
+<li>前端需要哪些字段，API接口应该返回哪些字段，字段不多也不少。</li>
+<li>更新功能尽量做到：初次返回的原始数据参数与提交更新的数据参数结构一致。</li>
+<li>时间参数，尽量以时间戳13位传递。</li>
+<li>其它参数【待更新】</li>
+</ol>
+<h1 id="十二、接口文档"><a href="#十二、接口文档" class="headerlink" title="十二、接口文档"></a>十二、接口文档</h1><ol>
+<li>尽量采用自动化接口文档，可以做到在线测试，同步更新。</li>
+<li>应包含：接口BASE地址、接口版本、接口模块分类等。</li>
+<li>每个接口应包含：<br>接口地址：不包含接口BASE地址。<br>请求方式: get、post、put、delete等。<br>请求参数：数据格式【默认JSON、可选form data】、数据类型、是否必填、中文描述。<br>响应参数：类型、中文描述。</li>
+</ol>
+<h1 id="十三、参考资料"><a href="#十三、参考资料" class="headerlink" title="十三、参考资料"></a>十三、参考资料</h1><ol>
+<li><a href="https://my.oschina.net/qqlet/blog/1922038" target="_blank" rel="noopener">https://my.oschina.net/qqlet/blog/1922038</a></li>
+<li><a href="https://juejin.im/post/5afee0e86fb9a07ab379b371" target="_blank" rel="noopener">https://juejin.im/post/5afee0e86fb9a07ab379b371</a></li>
+<li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
+</ol>
+]]></content>
+      <categories>
+        <category>其他</category>
+      </categories>
+      <tags>
+        <tag>规范</tag>
       </tags>
   </entry>
   <entry>
