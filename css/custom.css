@@ -1,0 +1,12 @@
+/* 页面背景图 */
+body {
+  background: url("https://source.unsplash.com/random/1600x900/?sunset-glow,starry-sky,sea");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: 50% 50%;
+}
+@media (min-width: 768px) {
+  body {
+    background-size: cover;
+  }
+}
