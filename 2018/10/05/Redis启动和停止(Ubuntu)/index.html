@@ -23,22 +23,23 @@
     var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine | gitalk","storage":true,"lazyload":false,"nav":{"valine":{"text":"评论（valine）","order":-3},"gitalk":{"text":"评论（gitalk）","order":-2}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZZONN">
-<meta property="og:url" content="https://blog.zzonn.com/archives/2020/page/2/index.html">
+  <meta name="description" content="版本：Ubuntu 18.04.1，Redis 4.0.111.转到Redis目录下$ cd &#x2F;redis2.使用默认配置启动$  bin&#x2F;redis-server下图表示启动成功">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis启动和停止(Ubuntu)">
+<meta property="og:url" content="https://blog.zzonn.com/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/index.html">
 <meta property="og:site_name" content="ZZONN">
-<meta property="og:description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+<meta property="og:description" content="版本：Ubuntu 18.04.1，Redis 4.0.111.转到Redis目录下$ cd &#x2F;redis2.使用默认配置启动$  bin&#x2F;redis-server下图表示启动成功">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://blog.zzonn.com/images/Redis/1.png">
+<meta property="og:image" content="https://blog.zzonn.com/images/Redis/1.png">
+<meta property="article:published_time" content="2018-10-05T07:23:41.000Z">
+<meta property="article:modified_time" content="2018-10-05T07:23:41.000Z">
 <meta property="article:author" content="LiPan">
-<meta property="article:tag" content="lipan">
-<meta property="article:tag" content="zzonn">
-<meta property="article:tag" content="LiPan">
-<meta property="article:tag" content="ZZONN">
-<meta property="article:tag" content="PanLee">
+<meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://blog.zzonn.com/images/Redis/1.png">
 
-<link rel="canonical" href="https://blog.zzonn.com/archives/2020/page/2/">
+<link rel="canonical" href="https://blog.zzonn.com/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/">
 
 
 <script id="page-configurations">
@@ -46,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | ZZONN</title>
+  <title>Redis启动和停止(Ubuntu) | ZZONN</title>
   
 
 
@@ -206,79 +207,166 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis启动和停止(Ubuntu)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2018-10-05 15:23:41" itemprop="dateCreated datePublished" datetime="2018-10-05T15:23:41+08:00">2018-10-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 15 篇日志。 继续努力。</span>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>673</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
+        <h2 id="版本：Ubuntu-18-04-1，Redis-4-0-11"><a href="#版本：Ubuntu-18-04-1，Redis-4-0-11" class="headerlink" title="版本：Ubuntu 18.04.1，Redis 4.0.11"></a><strong>版本：Ubuntu 18.04.1，Redis 4.0.11</strong></h2><h3 id="1-转到Redis目录下"><a href="#1-转到Redis目录下" class="headerlink" title="1.转到Redis目录下"></a>1.转到Redis目录下</h3><pre><code>$ cd /redis</code></pre><h3 id="2-使用默认配置启动"><a href="#2-使用默认配置启动" class="headerlink" title="2.使用默认配置启动"></a>2.使用默认配置启动</h3><pre><code>$  bin/redis-server</code></pre><p>下图表示启动成功</p>
+<a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-15T09:57:54+08:00"
-              content="2020-01-15">
-          01-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/" itemprop="url">
-            <span itemprop="name">数据库设计规范</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-01-03T15:11:04+08:00"
-              content="2020-01-03">
-          01-03
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/" itemprop="url">
-            <span itemprop="name">API接口规范</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+<p><img src="https://blog.zzonn.com/images/Redis/1.png" alt="Redis服务启动成功"></p>
+<h3 id="3-使用指定配置文件启动"><a href="#3-使用指定配置文件启动" class="headerlink" title="3.使用指定配置文件启动"></a>3.使用指定配置文件启动</h3><p>例如配置文件为conf目录下的redis.conf</p>
+<pre><code>$ bin/redis-server conf/redis.conf</code></pre><h3 id="4-从软件仓库中安装的Redis使用init-d脚本启动"><a href="#4-从软件仓库中安装的Redis使用init-d脚本启动" class="headerlink" title="4.从软件仓库中安装的Redis使用init.d脚本启动"></a>4.从软件仓库中安装的Redis使用init.d脚本启动</h3><pre><code>$ /etc/init.d/redis-server start</code></pre><h3 id="5-以守护进程方式在后台启动Redis"><a href="#5-以守护进程方式在后台启动Redis" class="headerlink" title="5.以守护进程方式在后台启动Redis"></a>5.以守护进程方式在后台启动Redis</h3><p>编辑配置文件，将daemonize参数设置为yes，并使用此配置文件启动</p>
+<p>这里采用vim打开并编辑配置文件</p>
+<pre><code>$ sudo vim conf/redis.conf</code></pre><ol>
+<li>输入/daemonize定位到daemonize no这一行，如果为yes则不需要修改了</li>
+<li>再输入i或者a转换为输入模式把no改成yes</li>
+<li>最后输入:wq保存并退出</li>
+</ol>
+<p>指定此配置文件启动Redis：$ bin/redis-server conf/redis.conf</p>
+<p><img src="https://blog.zzonn.com/images/Redis/1.png" alt="成功加载配置文件"></p>
+<p>出现如上图中的“Configuration loaded”则表示已经成功加载了配置文件</p>
+<h3 id="6-停止Redis"><a href="#6-停止Redis" class="headerlink" title="6.停止Redis"></a>6.停止Redis</h3><ol>
+<li>前台模式启动：Ctrl+C</li>
+<li>后台模式启动：Kill+PID（例如：$ sudo kill -9 666 ）（注意：-9为强制终止，666为此时redis-server的进程ID）</li>
+<li>推荐的方式：$ redis-cli shutdown (通过redis-cli调用shutdown命令来优雅的关闭)</li>
+<li>软件仓库安装的Redis可采用init.d脚本关闭：$ /etc/init.d/redis-server stop</li>
+</ol>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/03/%E5%AE%89%E8%A3%85Redis%E6%9C%8D%E5%8A%A1(Ubuntu)/" rel="prev" title="安装Redis服务(Ubuntu)">
+      <i class="fa fa-chevron-left"></i> 安装Redis服务(Ubuntu)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="next" title="Windows错误代码对应解决方案">
+      Windows错误代码对应解决方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2020/">1</a><span class="page-number current">2</span>
-  </nav>
+  
+  
 
 
 
           </div>
           
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">评论（valine）</a></li>
+            <li class="tab"><a href="#comment-gitalk">评论（gitalk）</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+        </div>
+      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -325,6 +413,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#版本：Ubuntu-18-04-1，Redis-4-0-11"><span class="nav-number">1.</span> <span class="nav-text">版本：Ubuntu 18.04.1，Redis 4.0.11</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-转到Redis目录下"><span class="nav-number">1.1.</span> <span class="nav-text">1.转到Redis目录下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-使用默认配置启动"><span class="nav-number">1.2.</span> <span class="nav-text">2.使用默认配置启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-使用指定配置文件启动"><span class="nav-number">1.3.</span> <span class="nav-text">3.使用指定配置文件启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-从软件仓库中安装的Redis使用init-d脚本启动"><span class="nav-number">1.4.</span> <span class="nav-text">4.从软件仓库中安装的Redis使用init.d脚本启动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-以守护进程方式在后台启动Redis"><span class="nav-number">1.5.</span> <span class="nav-text">5.以守护进程方式在后台启动Redis</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-停止Redis"><span class="nav-number">1.6.</span> <span class="nav-text">6.停止Redis</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -492,6 +581,25 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0429533df119e83c016c',
+      clientSecret: '0b7186f18dab9ab2d1c7c532d4477a5e8e5882e0',
+      repo        : 'lcorel.github.io',
+      owner       : 'lcorel',
+      admin       : ['lcorel'],
+      id          : '27c683ce5c52e550ac959cd4239e5130',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 
 <script>
