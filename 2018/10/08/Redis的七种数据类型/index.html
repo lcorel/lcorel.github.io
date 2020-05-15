@@ -23,24 +23,23 @@
     var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine | gitalk","storage":true,"lazyload":false,"nav":{"valine":{"text":"评论（valine）","order":-3},"gitalk":{"text":"评论（gitalk）","order":-2}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="分类">
-<meta property="og:url" content="https://blog.zzonn.com/categories/index.html">
+  <meta name="description" content="字符串（string）类型Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：  int：用于能够使用64位有符号整数表示的字符串； embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串； raw：用于长度大于44字节的字符串。  可以采用OBJECT ENCODING来查看编码。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redis的七种数据类型">
+<meta property="og:url" content="https://blog.zzonn.com/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.html">
 <meta property="og:site_name" content="ZZONN">
-<meta property="og:description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+<meta property="og:description" content="字符串（string）类型Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：  int：用于能够使用64位有符号整数表示的字符串； embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串； raw：用于长度大于44字节的字符串。  可以采用OBJECT ENCODING来查看编码。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-04-05T08:54:12.000Z">
-<meta property="article:modified_time" content="2020-05-11T09:37:12.153Z">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?2%5E%7B32%7D">
+<meta property="og:image" content="https://private.codecogs.com/gif.latex?2%5E%7B23%7D">
+<meta property="article:published_time" content="2018-10-08T14:28:24.000Z">
+<meta property="article:modified_time" content="2018-10-08T14:28:24.000Z">
 <meta property="article:author" content="LiPan">
-<meta property="article:tag" content="lipan">
-<meta property="article:tag" content="zzonn">
-<meta property="article:tag" content="LiPan">
-<meta property="article:tag" content="ZZONN">
-<meta property="article:tag" content="PanLee">
+<meta property="article:tag" content="Redis">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://private.codecogs.com/gif.latex?2%5E%7B32%7D">
 
-<link rel="canonical" href="https://blog.zzonn.com/categories/">
+<link rel="canonical" href="https://blog.zzonn.com/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 
 
 <script id="page-configurations">
@@ -48,13 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类 | ZZONN
-</title>
+  <title>Redis的七种数据类型 | ZZONN</title>
   
 
 
@@ -208,51 +206,181 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar2.gif">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Redis的七种数据类型
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">分类
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
 
-<div class="post-meta">
+              <time title="创建时间：2018-10-08 22:28:24" itemprop="dateCreated datePublished" datetime="2018-10-08T22:28:24+08:00">2018-10-08</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Redis/" itemprop="url" rel="index"><span itemprop="name">Redis</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.9k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="字符串（string）类型"><a href="#字符串（string）类型" class="headerlink" title="字符串（string）类型"></a>字符串（string）类型</h3><p>Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：</p>
+<ul>
+<li>int：用于能够使用64位有符号整数表示的字符串；</li>
+<li>embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；</li>
+<li>raw：用于长度大于44字节的字符串。</li>
+</ul>
+<p>可以采用OBJECT ENCODING来查看编码。</p>
+<a id="more"></a>
+
+<h3 id="列表（list）类型"><a href="#列表（list）类型" class="headerlink" title="列表（list）类型"></a>列表（list）类型</h3><p>Redis中的列表与双向链表类似</p>
+<p>LPUSH左端插入，RPUSH右端插入，LINSERT某键之前或之后插入。</p>
+<p>向一个不存在的键中插入元素，Redis会先创建一个空列表并将其与键关联；</p>
+<p>也不需要删除值为空列表的键，Redis会自动回收这种键。</p>
+<p>LINDEX获取指定索引处的元素，LRANGE获取一个范围内的元素。</p>
+<p>列表的索引从左到右指定为0～N-1；从右到左指定为-1～-N。</p>
+<p>因此，获取整个列表就是0～~1（例：LRANGE key 0 -1 就是获取键为key的整个列表）。</p>
+<p>LSET设置列表中指定索引位置处元素的值。</p>
+<p>LPOP从列表左端移除第一个元素，RPOP从列表右端移除第一个元素。对不存在的键使用此命令时，返回nil</p>
+<p>对应的阻塞版本为：BLPOP和BRPOP。当列表为空时，会将客户端阻塞。</p>
+<p>可以设置一个以秒为单位的超时时间，超时时间为0时，表示永久等待。（此特性在任务调度中非常有用）</p>
+<p>Redis在内部使用quicklist存储列表对象，下列配置选项可以调整列表对象的存储逻辑：</p>
+<ul>
+<li>list-max-ziplist-size：一个列表条目中一个内部节点的最大大小。</li>
+<li>list-compress-depth：列表压缩策略（列表两端不被压缩的节点个数，当列表很长且最可能被访问的元素在两端，用此参数精确地进行调优可以实现在压缩比和其它因素之间的平衡）。</li>
+</ul>
+<h3 id="哈希（hash）类型"><a href="#哈希（hash）类型" class="headerlink" title="哈希（hash）类型"></a>哈希（hash）类型</h3><p>哈希表示字段和值之间的映射关系，与某些语言中字典类型类似。</p>
+<p>与列表（list）类型类似，添加字段前无需先初始化一个空的哈希，变为空时Redis会自动将其删除。</p>
+<p>HDEL从哈希中删除字段。</p>
+<p>HGETALL获取一个哈希中的所有字段和值，不建议对数量巨大的哈希使用此命令。（一个哈希最多能够容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B32%7D" alt="2^{32}">-1字段，如果一个哈希字段非常多，执行HGETALL时很可能会阻塞Redis服务器，这种情况下通常使用HSCAN来增量地获取所有字段和值）</p>
+<p>Redis内部使用两种编码来存储哈希对象：</p>
+<ul>
+<li>ziplist：对于那些长度小于配置中hash-max-ziplist-entries选项配置的值（默认为512），且所有元素大小都小于配置中hash-max-ziplist-value选项配置的值（默认为64字节）的哈希，采用此编码。（ziplist对于较小的哈希而言可以节省占用空间）</li>
+<li>hashtable：当ziplist不适用时采用的默认编码。</li>
+</ul>
+<h3 id="集合（set）类型"><a href="#集合（set）类型" class="headerlink" title="集合（set）类型"></a>集合（set）类型</h3><p>由唯一、无序对象组成的集合(collection)。</p>
+<p>它经常用于测试某个成员是否在集合中、重复项删除和集合运算(求并、交、差集)。</p>
+<p>SISMEMBER测试一个元素是否位于集合中，SREM中集合中删除元素，SCARD获取集合中成员的数量。</p>
+<p>一个集合中最多可以容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B23%7D" alt="2^{23}">-1个成员。</p>
+<p>SMEMBERS获取集合中所有元素，成员很多情况下使用可能会阻塞服务器，此时应该使用SSCAN。</p>
+<p>Redis内部两种编码方式来存储集合对象：</p>
+<ul>
+<li>intset：对于那些元素都是整数且元素个数小于配置中set-max-intset-entries选项设置的值（默认12）的集合，对于较小的集合可以节省占用空间。</li>
+<li>hashtable：intset不适用时的默认编码。</li>
+</ul>
+<h3 id="有序集合（sorted-set）类型"><a href="#有序集合（sorted-set）类型" class="headerlink" title="有序集合（sorted set）类型"></a>有序集合（sorted set）类型</h3><p>集合中每个元素都有一个可以用于排序的权重，并且可以按照顺序从集合中获取元素。</p>
+<h3 id="唯一计数（HyperLogLog）类型"><a href="#唯一计数（HyperLogLog）类型" class="headerlink" title="唯一计数（HyperLogLog）类型"></a>唯一计数（HyperLogLog）类型</h3><p>采用集合来进行唯一计数时，当数据量达到上千万就需要考虑内存消耗和性能下降的问题了。</p>
+<p>如果不需要获取数据集的内容，而只是想得到不同值的个数，这时候就使用HyperLogLog类型最好了。</p>
+<p>PFCOUNT获取数量</p>
+<p>优势在于能够使用固定数量的内存（每个键只需占用12KB就可以计算最多2^64个不同元素的基数）和时间复杂度（每个键O(1)）进行唯一计数。不过由于HLL算法返回的基数可能不准确（标准差小于1%），因此在决定是否使用HLL时需要进行权衡。</p>
+<h3 id="地理位置（Geo）类型"><a href="#地理位置（Geo）类型" class="headerlink" title="地理位置（Geo）类型"></a>地理位置（Geo）类型</h3><p>GEORADIUS获取指定坐标指定距离内的地点成员；</p>
+<p>GEODIST获取两点之间的距离；</p>
+<p>GEORADIUSBYMEMBER获取指定成员指定距离内的其他成员</p>
+<p>Geo集合实际上被存储为一个有序集合，因此有序集合支持的命令都可以用于Geo数据类型。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Redis/" rel="tag"><i class="fa fa-tag"></i> Redis</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/" rel="prev" title="Redis启动和停止(Ubuntu)">
+      <i class="fa fa-chevron-left"></i> Redis启动和停止(Ubuntu)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/10/10/Redis%E6%95%B0%E6%8D%AE%E7%89%B9%E6%80%A7/" rel="next" title="Redis数据特性">
+      Redis数据特性 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 9 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Redis/">Redis</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/SQL/">SQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Windows/">Windows</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%85%B6%E4%BB%96/">其他</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%8D%9A%E5%AE%A2/">博客</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%AE%89%E5%85%A8/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%B7%A5%E5%85%B7/">工具</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%8F%E6%8D%B7/">敏捷</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9E%B6%E6%9E%84/">架构</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
-    </div>
-    
-
-    
-    
-    
 
 
           </div>
@@ -317,6 +445,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串（string）类型"><span class="nav-number">1.</span> <span class="nav-text">字符串（string）类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表（list）类型"><span class="nav-number">2.</span> <span class="nav-text">列表（list）类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#哈希（hash）类型"><span class="nav-number">3.</span> <span class="nav-text">哈希（hash）类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合（set）类型"><span class="nav-number">4.</span> <span class="nav-text">集合（set）类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#有序集合（sorted-set）类型"><span class="nav-number">5.</span> <span class="nav-text">有序集合（sorted set）类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#唯一计数（HyperLogLog）类型"><span class="nav-number">6.</span> <span class="nav-text">唯一计数（HyperLogLog）类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#地理位置（Geo）类型"><span class="nav-number">7.</span> <span class="nav-text">地理位置（Geo）类型</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -495,7 +624,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'lcorel.github.io',
       owner       : 'lcorel',
       admin       : ['lcorel'],
-      id          : 'a676607444a8bc8b150c9a3aff884e61',
+      id          : '8edf65c9d9a840d8d6803589f2b92574',
         language: 'zh-CN',
       distractionFreeMode: true
     });

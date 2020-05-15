@@ -362,6 +362,90 @@
   </entry>
   
   <entry>
+    <title>使用Redis进行开发</title>
+    <link href="https://blog.zzonn.com/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/"/>
+    <id>https://blog.zzonn.com/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</id>
+    <published>2018-11-06T09:32:51.000Z</published>
+    <updated>2018-11-06T09:32:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p><h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h3><p>还可以用于统计分析的场景。例如，如果想要计算某个功能被使用了多少次，或者想要计算某个API被调用的次数，那么简单地使用INCR命令增加某功能的被点击次数或某API的被调用次数的计数器即可；甚至还可以结合Lua脚本限制公开 API 的请求次数（将 API 的最大请求数限制在每个 IP 地址每秒钟十个之内）。因为所有的Redis命令都是原子的，所以无需担心竞态。基于诸如哈希、有序集合和HyperLoglog等数据类型，还可以构建其他更高级的计数器或统计数据捕获系统。</p><a id="more"></a><h3 id="3-排行榜"><a href="#3-排行榜" class="headerlink" title="3.排行榜"></a>3.排行榜</h3><p>利用有序集合（Sorted Set），就可以轻松地实现一个排行榜。例如：可以为投票目标创建一个有序集合并将用户的投票数作为权重。因此，使用ZREVRANGE命令就能够按照投票目标的受欢迎程度返回投票目标的列表。同样的功能也可以在关系数据库中实现，但是SQL查询要比Redis查询慢得多。</p><h3 id="4-队列"><a href="#4-队列" class="headerlink" title="4.队列"></a>4.队列</h3><p>利用列表（List）的PUSH/POP命令（阻塞类型）就能实现任务队列。例如：先使用BLPOP命令从任务列表左端移除并获取第一个任务（没有的时候则阻塞了），相当于获取任务；然后使用RPUSH命令从任务列表右端插入一个新任务，相当于分配任务；此时刚才排队获取任务的客户端就能第一时间拿到新任务。</p><h3 id="5-最新的N个记录"><a href="#5-最新的N个记录" class="headerlink" title="5.最新的N个记录"></a>5.最新的N个记录</h3><p>假设我们想要获取最近新签的10个合同，通常采用一个SQL查询：select top 10 * from contract order by signtime desc</p><p>而采用Redis解决则可以先创建一个列表，新签的合同采用LPUSH命令插入，然后再执行LTRIM命令只保留10个元素。</p><h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6.缓存"></a>6.缓存</h3><p>例如：在查询关系数据库之前，我们首先在Redis中查找记录。如果在Redis中找不到记录，则查询关系数据库并将记录放到Redis中。在向关系数据库写入时，我们也同时将记录写入Redis。为了限制缓存的大小，可以对缓存中的记录设置过期时间或应用诸如最近最少使用（LeastRecentlyUsed，LRU）的收回策略。</p><h2 id="二、使用正确的数据类型"><a href="#二、使用正确的数据类型" class="headerlink" title="二、使用正确的数据类型"></a>二、使用正确的数据类型</h2><p>时间-空间的平衡</p><p>例如：10000个用户信息（id，name，sex，age，registertime）</p><p>1.首先存储为字符串类型的键值对，内存消耗4.04M；</p><p>2.改为哈希类型，内存消耗2.29M左右，此时节省了约43%（(4.04-2.29)/4.04）的内存空间；</p><p>3.改为将一个用户信息存储为一个json字符串，内存消耗2.29M，与哈希类型所消耗内存几乎相同（键的数量并没有减少）；</p><p>4.使用Lua脚本，利用msgpack库（<a href="https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；" target="_blank" rel="noopener">https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；</a></p><p>5.</p><p>又例如：计数时可以使用集合、位图或HyperLogLog</p><p>官方一些内存优化的案例：<a href="https://redis.io/topics/memory-optimization" target="_blank" rel="noopener">https://redis.io/topics/memory-optimization</a></p><h2 id="三、使用正确的Redis-API"><a href="#三、使用正确的Redis-API" class="headerlink" title="三、使用正确的Redis API"></a>三、使用正确的Redis API</h2><p>保证性能</p><p>1.尽量将数据操作组合在一起来降低往返延时（RTT），采用管道，采用批量处理的API；</p><p>2.因为Redis是单线程的数据存储服务，所以应该多考虑API的时间复杂度，避免阻塞服务器。</p><h2 id="四、使用C-连接到Redis"><a href="#四、使用C-连接到Redis" class="headerlink" title="四、使用C#连接到Redis"></a>四、使用C#连接到Redis</h2><p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个控制台应用程序</p><p>通过NuGet获取StackExchange.Redis</p><p>简单示例</p><p>。。。后续更新</p><p>使用管道（事务类似）</p><p>。。。后续更新</p><h2 id="五、使用Python连接到Redis"><a href="#五、使用Python连接到Redis" class="headerlink" title="五、使用Python连接到Redis"></a>五、使用Python连接到Redis</h2><p>Python（<a href="https://www.python.org/），我此时使用的是Python3.7.1" target="_blank" rel="noopener">https://www.python.org/），我此时使用的是Python3.7.1</a></p><p>通过PyPI安装redis-py：执行命令pip install redis</p><p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个Python应用程序</p><p>简单示例</p><p>。。。后续更新</p><p>使用管道（事务类似）</p><p>。。。后续更新</p><h2 id="六、使用Redis编写MapReduce作业"><a href="#六、使用Redis编写MapReduce作业" class="headerlink" title="六、使用Redis编写MapReduce作业"></a>六、使用Redis编写MapReduce作业</h2><p> 。。。后续更新</p><h2 id="七、使用Redis编写Spark作业"><a href="#七、使用Redis编写Spark作业" class="headerlink" title="七、使用Redis编写Spark作业"></a>七、使用Redis编写Spark作业</h2><p>。。。后续更新</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一、常见应用场景&quot;&gt;&lt;a href=&quot;#一、常见应用场景&quot; class=&quot;headerlink&quot; title=&quot;一、常见应用场景&quot;&gt;&lt;/a&gt;一、常见应用场景&lt;/h2&gt;&lt;h3 id=&quot;1-会话存储&quot;&gt;&lt;a href=&quot;#1-会话存储&quot; class=&quot;headerlink&quot; title=&quot;1.会话存储&quot;&gt;&lt;/a&gt;1.会话存储&lt;/h3&gt;&lt;p&gt;在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。&lt;/p&gt;
+&lt;h3 id=&quot;2-分析&quot;&gt;&lt;a href=&quot;#2-分析&quot; class=&quot;headerlink&quot; title=&quot;2.分析&quot;&gt;&lt;/a&gt;2.分析&lt;/h3&gt;&lt;p&gt;还可以用于统计分析的场景。例如，如果想要计算某个功能被使用了多少次，或者想要计算某个API被调用的次数，那么简单地使用INCR命令增加某功能的被点击次数或某API的被调用次数的计数器即可；甚至还可以结合Lua脚本限制公开 API 的请求次数（将 API 的最大请求数限制在每个 IP 地址每秒钟十个之内）。因为所有的Redis命令都是原子的，所以无需担心竞态。基于诸如哈希、有序集合和HyperLoglog等数据类型，还可以构建其他更高级的计数器或统计数据捕获系统。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Redis" scheme="https://blog.zzonn.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="https://blog.zzonn.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis数据特性</title>
+    <link href="https://blog.zzonn.com/2018/10/10/Redis%E6%95%B0%E6%8D%AE%E7%89%B9%E6%80%A7/"/>
+    <id>https://blog.zzonn.com/2018/10/10/Redis%E6%95%B0%E6%8D%AE%E7%89%B9%E6%80%A7/</id>
+    <published>2018-10-10T14:23:35.000Z</published>
+    <updated>2018-10-10T14:23:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1-过期时间"><a href="#1-过期时间" class="headerlink" title="1.过期时间"></a>1.过期时间</h2><p>Redis被用作缓存时，给临时数据设置过期时间。</p><p>由于某些数据可能经常改变，所以应该设置一个过期时间，来及时获取新的数据。</p><p>当对Redis中的一个键设置过期时间时，键的过期时间会被存储为一个绝对的UNIX时间戳。</p><p>这样做的目的在于，即使Redis服务器宕机了一段时间，这个时间戳也会被持久化到RDB文件中。</p><p>当Redis再次启动时，这个用来判断键是否过期的时间戳并不会发生变化，一旦当前时间超过了这个时间戳时，键就过期了。</p><p>在一个键过期后，当客户端试图访问已过期键时，Redis会立即将其从内存中删除。</p><p>Redis这种删除键的方式被称为被动过期（expiringpassively）。</p><p>对于那些已经过期且永远不会再被访问到的键，Redis还会定期地运行一个基于概率的算法来进行主动删除。</p><p>更具体地说，Redis会随机选择设置了过期时间的20个键。在这20个被选中的键中，已过期的键会被立即删除；如果选中的键中有超过25％的键已经过期且被删除，那么Redis会再次随机选择20个键并重复这个过程。默认情况下，每秒运行10次（可通过配置文件中hz的值进行设置）。</p><a id="more"></a><p>使用EXPIRE命令设置超时时间为600秒：</p><p><img src="https://blog.zzonn.com/images/Redis/3.png" alt="img"></p><p>使用TTL命令在过期前查看剩余时间（如果未设置过期时间则返回-1，如果键不存在则返回-2）：</p><p><img src="https://blog.zzonn.com/images/Redis/4.png" alt="img"></p><p>使用EXISTS命令判断键是否存在(存在返回1，不存在返回0)：</p><p><img src="https://blog.zzonn.com/images/Redis/5.png" alt="img"></p><p>我们可以通过以下的方式清除一个键的过期时间：</p><ul><li>使用PERSIST命令使其成为持久的键。</li><li>键的值被替换或删除(修改列表、集合或哈希的元素却不会清除过期时间，这是因为修改元素的操作并不会替换键所关联的值对象)。</li><li>被另一个没有过期时间的键重命名。</li></ul><p>EXPIREAT命令与EXPIRE命令类似，但它可以指定一个绝对UNIX时间戳为参数，该参数用于直接指定键的过期时间。</p><p>因为Redis对已过期键的主动删除动作是不可预测的，所以有些已过期的键可能永远不会被删除。当发现有太多已过期的键没有被删掉时，我们可以通过执行SCAN命令来更加“主动地”触发被动过期。</p><h2 id="2-排序"><a href="#2-排序" class="headerlink" title="2.排序"></a>2.排序</h2><p>在输出值之前先进行排序，输出排序后的结果。</p><p><img src="https://blog.zzonn.com/images/Redis/6.png" alt="img"></p><p>在使用SORT命令时添加修饰符DESC会按降序返回元素。</p><p>默认情况下，SORT命令会排序并返回所有元素；但是，我们可以通过使用LIMIT修饰符来限制返回元素的数量。</p><p>在使用LIMIT修饰符时，我们需要同时指定起始偏移量（要跳过元素的数量）和数量（要返回元素的数量)。</p><p>SORT命令的时间复杂度是O(N+M*log(M))，其中N是列表或集合中元素的个数，M是要返回的元素的数目。</p><p>鉴于SORT操作的时间复杂度，在对大量数据进行排序时，Redis服务器的性能可能会降低，这一点需要格外留心。</p><h2 id="3-位图"><a href="#3-位图" class="headerlink" title="3.位图"></a>3.位图</h2><p>位图（也称为位数组或位向量）是由比特位（bit）组成的数组。</p><p>Redis中的位图并不是一种新的数据类型，它实际的底层数据类型是字符串。</p><p>因为字符串本质上是二进制大对象（BLOB，Binary Large OBject），所以可以将其视做位图。</p><p>同时，因为位图存储的是布尔信息，所以在某些情况下可以节省大量的内存空间。</p><h2 id="4-管道"><a href="#4-管道" class="headerlink" title="4.管道"></a>4.管道</h2><p>Redis客户端和服务器是通过RESP(REdis Serialization Protocol)协议进行通信的。</p><p>客户端和服务器之间典型的通信过程可以看作：</p><ol><li>客户端向服务器发送一个命令。</li><li>服务器接收该命令并将其放入执行队列（因为Redis是单线程的执行模型）。</li><li>命令被执行。</li><li>服务器将命令执行的结果返回给客户端。</li></ol><p>上述过程耗费的所有时间称为往返时延（RTT，round-triptime）。</p><p>第2步和第3步耗费的时间取决于Redis服务器，而第1步和第4步耗费的时间则完全取决于客户端和服务器之间的网络延迟。</p><p>如果需要执行多个命令，那么与服务器执行命令耗费的时间（通常非常短）相比，网络传输可能会花费大量的时间。</p><p>使用Redis管道可以加快上述的过程。</p><p>Redis管道的基本思想是，客户端将多个命令打包在一起，并将它们一次性发送，而不再等待每个单独命令的执行结果；同时，Redis管道需要服务器在执行所有的命令后再返回结果。即便是执行多个命令，但由于第1步和第4步只发生一次，所以总的执行时间会大大减少。</p><p>redis-cli中的–pipe选项会一次性地发送所有来自stdin的命令，从而极大地减少往返时延的开销。</p><p>也可以通过构造客户端与Redis服务器通信所用的原始RESP协议报文来发送命令。</p><h2 id="5-事务"><a href="#5-事务" class="headerlink" title="5.事务"></a>5.事务</h2><p>类似关系数据库的事务，也有所不同；区别在于，Redis事务没有回滚功能。</p><p>一般来说，在一个Redis事务中可能会出现两种类型的错误，而针对这两种类型的错误会采取不同的处理方式：</p><ol><li>第一种错误是命令有语法错误。在这种情况下，由于在命令人队时就能发现存在语法错误，所以整个事务会快速失败且事务中的所有命令都不会被处理。</li><li>第二种错误是，虽然所有命令都已成功人队，但在执行过程中发生了错误。位于发生错误命令之后的其他命令将继续执行，而不会回滚。</li></ol><h2 id="6-发布订阅"><a href="#6-发布订阅" class="headerlink" title="6.发布订阅"></a>6.发布订阅</h2><p>发布·订阅（Publish-Subscribe，PubSub），想要发布事件（event）的发布者（publisher）会把消息（message）发送到一个PubSub频道（channel），这个频道会把事件投递（deliver）给对这个频道感兴趣的每一个订阅者（subscriber）。</p><p>SUBSCRIBE命令用来监听特定频道中的可用消息。一个客户端可以使用SUBSCRIBE命令一次性地订阅多个频道，也可以使用PSUBSCR工BE命令订阅匹配指定模式的频道。要取消订阅频道，可以使用UNSUBSCRIBE命令。</p><p>PUBLISH命令用于将一条消息发送到指定的频道。订阅了该频道的所有订阅者将接收到这条消息。</p><p>另一个重要的命令是PUBSUB，用于进行频道管理（例如可以通过PUBSUB CHANNELS命令获取当前活跃的频道）。</p><p>对频道的生命周期而言，如果给定的频道之前未曾被订阅过，那么SUBSCRIBE命令会自动创建频道。此外，当频道上没有活跃的订阅者时，频道将会被删除。</p><p>PubSub相关的机制均不支持持久化。这意味着，消息、频道和PubSub的关系均不能保存到磁盘上。如果服务器出于某种原因退出，那么所有的这些对象都将丢失。</p><p>在消息投递和处理场景中，如果频道没有订阅者，那么被发到频道上的消息将被丢弃。换句话说，Redis并没有保证消息投递可靠性的机制。</p><p>总之，虽然Redis中的PubSub功能并不适合重要消息的投递场景，但是有些人可能会由于其简洁的通信方式而在速度方面获益。Redis中基于PubSub的键空间通知（keyspacenotification）功能允许客户端订阅一个Redis频道来接收命令发布或数据改变的事件。</p><h2 id="7-Lua脚本"><a href="#7-Lua脚本" class="headerlink" title="7.Lua脚本"></a>7.Lua脚本</h2><p>是一种被用作嵌入到程序内部的脚本语言，以此来实现程序的可配置性和可扩展性；</p><p>Lua脚本可以将多个操作打包在一起并原子性的执行（类似于事务）。</p><p>与Redis事务类似，也必须注意Lua脚本的执行时间。在执行Lua脚本期间，Redis服务器不能处理任何其他命令。因此，我们必须确保Lua脚本可以尽快地执行完。</p><p>在默认情况下，一旦Lua脚本的执行时间超过了Lua脚本运行时长限制（默认为5秒，在Redis配置文件中的lua-time-limit选项可以修改默认值），我们就可以调用SCRIPT KILL来将其终止。但是，如果此正在运行的脚本中已经调用了任何写人相关的命令，那么我们就不得不采用无持久化的SHUTDOWN NOSAVE命令来关闭Redis服务器以中止此脚本的运行。如果某个Lua脚本的执行时间小于Lua脚本运行时长限制，SCRIPT KILL命令则会被阻塞，直到脚本执行超时。</p><p>对于Lua脚本的管理而言，我们可以通过调用SCRIPT EXISTS命令并传人脚本的SHA-1标识来判断一个脚本是否已存在并注册。最后要注意的一点是，因为脚本只是被保存在Redis服务器进程的脚本缓存中，而脚本缓存在重新启动时将会消失，所以在重新启动Redis服务器之后必须重新加载Lua脚本。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1-过期时间&quot;&gt;&lt;a href=&quot;#1-过期时间&quot; class=&quot;headerlink&quot; title=&quot;1.过期时间&quot;&gt;&lt;/a&gt;1.过期时间&lt;/h2&gt;&lt;p&gt;Redis被用作缓存时，给临时数据设置过期时间。&lt;/p&gt;
+&lt;p&gt;由于某些数据可能经常改变，所以应该设置一个过期时间，来及时获取新的数据。&lt;/p&gt;
+&lt;p&gt;当对Redis中的一个键设置过期时间时，键的过期时间会被存储为一个绝对的UNIX时间戳。&lt;/p&gt;
+&lt;p&gt;这样做的目的在于，即使Redis服务器宕机了一段时间，这个时间戳也会被持久化到RDB文件中。&lt;/p&gt;
+&lt;p&gt;当Redis再次启动时，这个用来判断键是否过期的时间戳并不会发生变化，一旦当前时间超过了这个时间戳时，键就过期了。&lt;/p&gt;
+&lt;p&gt;在一个键过期后，当客户端试图访问已过期键时，Redis会立即将其从内存中删除。&lt;/p&gt;
+&lt;p&gt;Redis这种删除键的方式被称为被动过期（expiringpassively）。&lt;/p&gt;
+&lt;p&gt;对于那些已经过期且永远不会再被访问到的键，Redis还会定期地运行一个基于概率的算法来进行主动删除。&lt;/p&gt;
+&lt;p&gt;更具体地说，Redis会随机选择设置了过期时间的20个键。在这20个被选中的键中，已过期的键会被立即删除；如果选中的键中有超过25％的键已经过期且被删除，那么Redis会再次随机选择20个键并重复这个过程。默认情况下，每秒运行10次（可通过配置文件中hz的值进行设置）。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Redis" scheme="https://blog.zzonn.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="https://blog.zzonn.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis的七种数据类型</title>
+    <link href="https://blog.zzonn.com/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>https://blog.zzonn.com/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</id>
+    <published>2018-10-08T14:28:24.000Z</published>
+    <updated>2018-10-08T14:28:24.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="字符串（string）类型"><a href="#字符串（string）类型" class="headerlink" title="字符串（string）类型"></a>字符串（string）类型</h3><p>Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：</p><ul><li>int：用于能够使用64位有符号整数表示的字符串；</li><li>embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；</li><li>raw：用于长度大于44字节的字符串。</li></ul><p>可以采用OBJECT ENCODING来查看编码。</p><a id="more"></a><h3 id="列表（list）类型"><a href="#列表（list）类型" class="headerlink" title="列表（list）类型"></a>列表（list）类型</h3><p>Redis中的列表与双向链表类似</p><p>LPUSH左端插入，RPUSH右端插入，LINSERT某键之前或之后插入。</p><p>向一个不存在的键中插入元素，Redis会先创建一个空列表并将其与键关联；</p><p>也不需要删除值为空列表的键，Redis会自动回收这种键。</p><p>LINDEX获取指定索引处的元素，LRANGE获取一个范围内的元素。</p><p>列表的索引从左到右指定为0～N-1；从右到左指定为-1～-N。</p><p>因此，获取整个列表就是0～~1（例：LRANGE key 0 -1 就是获取键为key的整个列表）。</p><p>LSET设置列表中指定索引位置处元素的值。</p><p>LPOP从列表左端移除第一个元素，RPOP从列表右端移除第一个元素。对不存在的键使用此命令时，返回nil</p><p>对应的阻塞版本为：BLPOP和BRPOP。当列表为空时，会将客户端阻塞。</p><p>可以设置一个以秒为单位的超时时间，超时时间为0时，表示永久等待。（此特性在任务调度中非常有用）</p><p>Redis在内部使用quicklist存储列表对象，下列配置选项可以调整列表对象的存储逻辑：</p><ul><li>list-max-ziplist-size：一个列表条目中一个内部节点的最大大小。</li><li>list-compress-depth：列表压缩策略（列表两端不被压缩的节点个数，当列表很长且最可能被访问的元素在两端，用此参数精确地进行调优可以实现在压缩比和其它因素之间的平衡）。</li></ul><h3 id="哈希（hash）类型"><a href="#哈希（hash）类型" class="headerlink" title="哈希（hash）类型"></a>哈希（hash）类型</h3><p>哈希表示字段和值之间的映射关系，与某些语言中字典类型类似。</p><p>与列表（list）类型类似，添加字段前无需先初始化一个空的哈希，变为空时Redis会自动将其删除。</p><p>HDEL从哈希中删除字段。</p><p>HGETALL获取一个哈希中的所有字段和值，不建议对数量巨大的哈希使用此命令。（一个哈希最多能够容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B32%7D" alt="2^{32}">-1字段，如果一个哈希字段非常多，执行HGETALL时很可能会阻塞Redis服务器，这种情况下通常使用HSCAN来增量地获取所有字段和值）</p><p>Redis内部使用两种编码来存储哈希对象：</p><ul><li>ziplist：对于那些长度小于配置中hash-max-ziplist-entries选项配置的值（默认为512），且所有元素大小都小于配置中hash-max-ziplist-value选项配置的值（默认为64字节）的哈希，采用此编码。（ziplist对于较小的哈希而言可以节省占用空间）</li><li>hashtable：当ziplist不适用时采用的默认编码。</li></ul><h3 id="集合（set）类型"><a href="#集合（set）类型" class="headerlink" title="集合（set）类型"></a>集合（set）类型</h3><p>由唯一、无序对象组成的集合(collection)。</p><p>它经常用于测试某个成员是否在集合中、重复项删除和集合运算(求并、交、差集)。</p><p>SISMEMBER测试一个元素是否位于集合中，SREM中集合中删除元素，SCARD获取集合中成员的数量。</p><p>一个集合中最多可以容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B23%7D" alt="2^{23}">-1个成员。</p><p>SMEMBERS获取集合中所有元素，成员很多情况下使用可能会阻塞服务器，此时应该使用SSCAN。</p><p>Redis内部两种编码方式来存储集合对象：</p><ul><li>intset：对于那些元素都是整数且元素个数小于配置中set-max-intset-entries选项设置的值（默认12）的集合，对于较小的集合可以节省占用空间。</li><li>hashtable：intset不适用时的默认编码。</li></ul><h3 id="有序集合（sorted-set）类型"><a href="#有序集合（sorted-set）类型" class="headerlink" title="有序集合（sorted set）类型"></a>有序集合（sorted set）类型</h3><p>集合中每个元素都有一个可以用于排序的权重，并且可以按照顺序从集合中获取元素。</p><h3 id="唯一计数（HyperLogLog）类型"><a href="#唯一计数（HyperLogLog）类型" class="headerlink" title="唯一计数（HyperLogLog）类型"></a>唯一计数（HyperLogLog）类型</h3><p>采用集合来进行唯一计数时，当数据量达到上千万就需要考虑内存消耗和性能下降的问题了。</p><p>如果不需要获取数据集的内容，而只是想得到不同值的个数，这时候就使用HyperLogLog类型最好了。</p><p>PFCOUNT获取数量</p><p>优势在于能够使用固定数量的内存（每个键只需占用12KB就可以计算最多2^64个不同元素的基数）和时间复杂度（每个键O(1)）进行唯一计数。不过由于HLL算法返回的基数可能不准确（标准差小于1%），因此在决定是否使用HLL时需要进行权衡。</p><h3 id="地理位置（Geo）类型"><a href="#地理位置（Geo）类型" class="headerlink" title="地理位置（Geo）类型"></a>地理位置（Geo）类型</h3><p>GEORADIUS获取指定坐标指定距离内的地点成员；</p><p>GEODIST获取两点之间的距离；</p><p>GEORADIUSBYMEMBER获取指定成员指定距离内的其他成员</p><p>Geo集合实际上被存储为一个有序集合，因此有序集合支持的命令都可以用于Geo数据类型。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;字符串（string）类型&quot;&gt;&lt;a href=&quot;#字符串（string）类型&quot; class=&quot;headerlink&quot; title=&quot;字符串（string）类型&quot;&gt;&lt;/a&gt;字符串（string）类型&lt;/h3&gt;&lt;p&gt;Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;int：用于能够使用64位有符号整数表示的字符串；&lt;/li&gt;
+&lt;li&gt;embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；&lt;/li&gt;
+&lt;li&gt;raw：用于长度大于44字节的字符串。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以采用OBJECT ENCODING来查看编码。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Redis" scheme="https://blog.zzonn.com/categories/Redis/"/>
+    
+    
+      <category term="Redis" scheme="https://blog.zzonn.com/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Redis启动和停止(Ubuntu)</title>
     <link href="https://blog.zzonn.com/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/"/>
     <id>https://blog.zzonn.com/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/</id>
