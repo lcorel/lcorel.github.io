@@ -419,25 +419,36 @@ friendslinks:
       </tags>
   </entry>
   <entry>
-    <title>Hello World</title>
-    <url>/2019/10/03/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
- <a id="more"></a> 
+    <title>安装Redis服务(Ubuntu)</title>
+    <url>/2018/10/03/%E5%AE%89%E8%A3%85Redis%E6%9C%8D%E5%8A%A1(Ubuntu)/</url>
+    <content><![CDATA[<h2 id="版本：Ubuntu-18-04-1，Redis-4-0-11"><a href="#版本：Ubuntu-18-04-1，Redis-4-0-11" class="headerlink" title="版本：Ubuntu 18.04.1，Redis 4.0.11"></a><strong>版本：Ubuntu 18.04.1，Redis 4.0.11</strong></h2><h2 id="安装方式一：从源码编译构建Redis"><a href="#安装方式一：从源码编译构建Redis" class="headerlink" title="安装方式一：从源码编译构建Redis"></a>安装方式一：从源码编译构建Redis</h2><h3 id="1-安装编译工具："><a href="#1-安装编译工具：" class="headerlink" title="1.安装编译工具："></a>1.安装编译工具：</h3><pre><code class="shell">$ sudo apt-get install build-essential</code></pre>
+<p>apt-get：Advanced Package Tool，是一款适用于<a href="https://baike.baidu.com/item/Unix" target="_blank" rel="noopener">Unix</a>和<a href="https://baike.baidu.com/item/Linux" target="_blank" rel="noopener">Linux</a>系统的应用程序管理器。</p>
+<p>build-essential：<a href="https://baike.baidu.com/item/ubuntu" target="_blank" rel="noopener">Ubuntu</a>缺省情况下，并没有提供C/C++的编译环境。还好只要安装了该软件包，编译c/c++所需要的软件包也都会被安装。</p>
+<h3 id="2-为Redis创建目录"><a href="#2-为Redis创建目录" class="headerlink" title="2.为Redis创建目录"></a>2.为Redis创建目录</h3><pre><code>$ sudo mkdir /redis</code></pre><p>mkdir：Make Directory 创建目录。</p>
+<a id="more"></a>
 
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
-<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
+<h3 id="3-切换到所创建的目录下"><a href="#3-切换到所创建的目录下" class="headerlink" title="3.切换到所创建的目录下"></a>3.切换到所创建的目录下</h3><pre><code>$ cd /redis</code></pre><p>cd：Change Directory 变更目录。</p>
+<h3 id="4-下载Redis源码"><a href="#4-下载Redis源码" class="headerlink" title="4.下载Redis源码"></a>4.下载Redis源码</h3><pre><code>$ sudo wget http://download.redis.io/releases/redis-4.0.11.tar.gz</code></pre><p>wget：是一个下载文件的工具，支持HTTP，HTTPS和FTP协议，可以使用HTTP代理。</p>
+<h3 id="5-解压下载的源码"><a href="#5-解压下载的源码" class="headerlink" title="5.解压下载的源码"></a>5.解压下载的源码</h3><pre><code>$ sudo tar zxvf redis-4.0.11.tar.gz</code></pre><p>tar：<a href="https://baike.baidu.com/item/Unix" target="_blank" rel="noopener">Unix</a>和<a href="https://baike.baidu.com/item/类Unix系统" target="_blank" rel="noopener">类Unix系统</a>上的压缩打包工具。</p>
+<p>z：调用<a href="https://baike.baidu.com/item/gzip" target="_blank" rel="noopener">gzip</a>执行压缩或解压缩。</p>
+<p>x：解压缩。c是压缩。</p>
+<p>v：在压缩或解压缩过程中显示处理的文件信息。</p>
+<p>f:：文件名，切记，这个参数是最后一个参数，后面只能接文件名称。</p>
+<h3 id="6-切换到解压后的目录下"><a href="#6-切换到解压后的目录下" class="headerlink" title="6.切换到解压后的目录下"></a>6.切换到解压后的目录下</h3><pre><code>$ cd redis-4.0.11</code></pre><h3 id="7-编译依赖项"><a href="#7-编译依赖项" class="headerlink" title="7.编译依赖项"></a>7.编译依赖项</h3><pre><code>$ cd deps
+$ sudo make hiredis lua jemalloc linenoise </code></pre><p>make：是一个命令工具，它解释 Makefile 中的指令（应该说是规则）。在 Makefile文件中描述了整个工程所有文件的编译顺序、编译规则。所以在执行 make 之前，需要一个命名为 Makefile 的特殊文件。</p>
+<p>hiredis lua jemalloc linenoise：四个文件夹名</p>
+<h3 id="8-返回上级目录，并编译Redis"><a href="#8-返回上级目录，并编译Redis" class="headerlink" title="8.返回上级目录，并编译Redis"></a>8.返回上级目录，并编译Redis</h3><pre><code>$ cd ..
+$ sudo make</code></pre><h3 id="9-安装Redis"><a href="#9-安装Redis" class="headerlink" title="9.安装Redis"></a>9.安装Redis</h3><pre><code>$ sudo make PREFIX=/redis install</code></pre><p>PREFIX= ：指定安装目录。</p>
+<h3 id="10-进入Reids目录并验证生成了Redis的二进制可执行文件"><a href="#10-进入Reids目录并验证生成了Redis的二进制可执行文件" class="headerlink" title="10.进入Reids目录并验证生成了Redis的二进制可执行文件"></a>10.进入Reids目录并验证生成了Redis的二进制可执行文件</h3><pre><code>$ ls /redis/bin</code></pre><p>ls ：命令的含义是list显示当前目录中的文件名字。不加参数时它显示除隐藏文件外的所有文件及目录的名字。</p>
+<p>文件如下：</p>
+<pre><code>redis-benchmark  redis-check-rdb  redis-sentinel
+redis-check-aof  redis-cli        redis-server</code></pre><h3 id="11-这样就完成Redis的编译和安装了"><a href="#11-这样就完成Redis的编译和安装了" class="headerlink" title="11.这样就完成Redis的编译和安装了"></a>11.这样就完成Redis的编译和安装了</h3><h2 id="安装方式二：从软件仓库进行安装（相对简单）"><a href="#安装方式二：从软件仓库进行安装（相对简单）" class="headerlink" title="安装方式二：从软件仓库进行安装（相对简单）"></a>安装方式二：从软件仓库进行安装（相对简单）</h2><h2 id="1-更新软件仓库的索引"><a href="#1-更新软件仓库的索引" class="headerlink" title="1.更新软件仓库的索引"></a>1.更新软件仓库的索引</h2><pre><code>$ sudo apt-get update</code></pre><h3 id="2-安装Redis"><a href="#2-安装Redis" class="headerlink" title="2.安装Redis"></a>2.安装Redis</h3><pre><code>$ sudo apt-get install redis-server</code></pre><h3 id="3-安装完成验证"><a href="#3-安装完成验证" class="headerlink" title="3.安装完成验证"></a>3.安装完成验证</h3><p>查找可执行文件redis-server</p>
+<pre><code>$ which redis-server</code></pre>]]></content>
       <categories>
-        <category>其他</category>
+        <category>Redis</category>
       </categories>
       <tags>
-        <tag>其他</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -585,28 +596,6 @@ select * from cte</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>搭建NuGet服务并使用</title>
-    <url>/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
-<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
-<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
-<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
- <a id="more"></a> 
-
-<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
-<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
-<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
-<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
-<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>服务</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>微服务架构技术栈</title>
     <url>/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/</url>
     <content><![CDATA[<h2 id="微服务的前世今生"><a href="#微服务的前世今生" class="headerlink" title="微服务的前世今生"></a>微服务的前世今生</h2><p>与微服务架构相对的，叫单体架构。这是我们最熟悉的开发方式，就是一个项目搞定业务全过程，在同一个进程里面完成。随着业务发展，数据量和并发上去了，一般会选择右边的垂直拆分，拆分后的每个系统，依旧是单体架构的。</p>
@@ -657,6 +646,28 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>微服务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建NuGet服务并使用</title>
+    <url>/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
+<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
+<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
+<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
+ <a id="more"></a> 
+
+<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
+<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
+<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
+<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
+<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>服务</tag>
       </tags>
   </entry>
   <entry>
