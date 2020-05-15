@@ -1193,4 +1193,40 @@ select * from cte</code></pre>
         <tag>Redis</tag>
       </tags>
   </entry>
+  <entry>
+    <title>让开发效率“飞起”的VS Code插件</title>
+    <url>/2019/09/14/%E8%AE%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E2%80%9C%E9%A3%9E%E8%B5%B7%E2%80%9D%E7%9A%84VS%20Code%E6%8F%92%E4%BB%B6/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>VSCode，是一个免费的、开源的跨平台编辑器,也是我最满意的编辑器之一。<br>本文向大家推荐一些我喜欢的vscode插件，不出意外的话，这些插件将对你的工作效率提升有不小的帮助！</p>
+<h1 id="GitLens"><a href="#GitLens" class="headerlink" title="GitLens"></a>GitLens</h1><p>VS Code中的 Git 体验在易用性和完整性之间取得了一个不错的平衡，大部分用户都能够使用它完成工作，同时又不会被太多的功能吓到。但是很多硬核的 Git 用户肯定会觉得功能还不够用。包括但不限于：<br>不能查看某个 commit 中的代码改动；<br>不能比较两个 commit 或者 branch，然后阅览代码改动；<br>不能查看代码历史记录。<br>不过 GitLens 这个插件的出现，就弥补上了上述不足。<img src="https://blog.zzonn.com/images/vscode/1.gif" alt=""><br>类似的 Extension：</p>
+<ul>
+<li>Git History – 用来查看 git log 或则一个文件的 git 历史，比较不同的分支，commits</li>
+<li>Git Blame  - 它允许您在当前选定行的状态栏中看到 Git Blame 信息。GitLens 也提供了类似的功能。</li>
+<li>Git Project Manager –可以一键搜索并打开某个的基于 Git 管理的项目</li>
+</ul>
+<h1 id="Quokka-js"><a href="#Quokka-js" class="headerlink" title="Quokka.js"></a>Quokka.js</h1><p>Quokka.js 是一个用于 JavaScript 和 TypeScript 的实时运行代码平台。这意味着它会在你输入后立即运行您的代码，并在您的代码编辑器中显示各种执行结果。<br>Quokka 其实也就是一个调试工具，可以为您正在编写的代码提供实时反馈。它能够预览变量的函数和计算值结果。<br>建议你亲自尝试一下。</p>
+<h1 id="Visual-Studio-Intellicode"><a href="#Visual-Studio-Intellicode" class="headerlink" title="Visual Studio Intellicode"></a>Visual Studio Intellicode</h1><p>Visual Studio Intellicode 超过 350 万下载量，是 Visual Studio 上下载次数最多的插件。并且，在我看来，它会是你用过的最有用的插件之一。<br>这个插件能帮助开发人员生成智能代码补全提示，并且它内置支持很多种编程语言。<br>Visual Studio Intellicode 使用机器学习技术，通过学习大量 GitHub 项目的代码，能找到一些编码模式，然后在你编程时给予代码提示。</p>
+<h1 id="Debugger-for-Chrome"><a href="#Debugger-for-Chrome" class="headerlink" title="Debugger for Chrome"></a>Debugger for Chrome</h1><p>如果你想调试 JavaScript 程序，你可以不必离开 VSCode 开发环境。<br>Debugger for Chrome 这款插件就可以做到这点，它由微软发布，允许你在 VSCode 中直接调试网页源文件，该插件主要利用 Chrome 所开放出来的接口来实现对其渲染的页面进行调试。</p>
+<h1 id="Auto-Rename-Tag"><a href="#Auto-Rename-Tag" class="headerlink" title="Auto Rename Tag"></a>Auto Rename Tag</h1><p>无论你选择哪种框架，假如当开始和结束标签间的代码有 50 多行时，你想将一个H2标签更改为H3标签，或者你想将一个div标签更改为span标签，不管要做什么，你都要浪费时间来查找结束标签，这时候就该用这个插件– Auto Rename Tag<br>这个插件在你修改某一个标签时会自动匹配结束标签修改为相应的结束标签，反之亦然。</p>
+<h1 id="SCSS-IntelliSense"><a href="#SCSS-IntelliSense" class="headerlink" title="SCSS IntelliSense"></a>SCSS IntelliSense</h1><p>在 SCSS 中创建变量，这是很棒的体验。但创建后，你还记得它们吗？可能大多没记住。<br>有了这个插件，你能在应用的任何位置快速获取你发明的那些 SCSS 变量名。再也不用记住那些名称，也无需进行文件搜索。</p>
+<h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>ESLint 插件将 ESLint 集成进了 Visual Studio Code 中。如果你还不了解这款插件，我简单说一下，这款插件会静态分析你的代码，快速找到代码中的问题。<br>ESLint 找到的大部分问题都可以由其自动修复。ESLint 会根据当前文件使用的语法进行自动修复，所以就不会像传统的“寻找 - 替换”算法那样产生语法错误。<br>最重要的是，ESLint 是高度可定制化的。</p>
+<h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>对那些想严格遵守一组编码规则格式的开发者来说，Prettier 是相当有用的插件。<br>并且，它是一个健壮的、固守成规的代码格式化利器，它可以一键美化你的 JavaScript/TypeScript/CSS 代码。</p>
+<h1 id="Vetur"><a href="#Vetur" class="headerlink" title="Vetur"></a>Vetur</h1><p>Vetur是一款必备的Vue开发工具。支持多种功能，比如语法高亮、错误检测、Emmet和Snippet等等。</p>
+<h1 id="Code-Runner"><a href="#Code-Runner" class="headerlink" title="Code Runner"></a>Code Runner</h1><p>时至今日，Code Runner已经有了超过300万的下载量，代码一键运行，支持超过40种语言。<br>安装好Code Runner之后，打开你所要运行的文件，有多种方式来快捷地运行你的代码：</p>
+<ul>
+<li>在编辑区，右键选择 Run Code</li>
+<li>键盘快捷键 Ctrl+Alt+N</li>
+<li>快捷键 F1 调出 命令面板, 然后输入 Run Code</li>
+<li>在左侧的文件管理器，右键选择 Run Code</li>
+<li>右上角的运行小三角按钮</li>
+</ul>
+<h1 id="Path-Intellisense"><a href="#Path-Intellisense" class="headerlink" title="Path Intellisense"></a>Path Intellisense</h1><p>Path Intellisense 可以快速提高你的开发效率。如果你同时开发多个项目，并使用很多不同的技术，你肯定想要一个方便的工具，它能帮你记住文件路径。<br>这款插件就能为你节省很多这方面的时间，帮你省去找到正确文件路径的时间。</p>
+<h1 id="Color-Picker"><a href="#Color-Picker" class="headerlink" title="Color Picker"></a>Color Picker</h1><p>在书写 HTML 和 CSS 的时候，你可能经常需要修改元素的颜色。VS Code 为修改颜色，提供了一个图形化的界面，其中包含了颜色相关的属性。<br>当你打开一段 HTML 或者 CSS 代码时，你可以看到，VS Code 在颜色的前面画了一个方块（即颜色装饰器 Color Decorator），用于展示这段颜色属性所对应的最终效果。然后你把鼠标移动到这段代码上时，一个颜色选择器窗口就显示出来了，根据你需要来调整颜色。</p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>vscode</tag>
+      </tags>
+  </entry>
 </search>

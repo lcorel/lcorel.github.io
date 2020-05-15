@@ -23,23 +23,22 @@
     var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine | gitalk","storage":true,"lazyload":false,"nav":{"valine":{"text":"评论（valine）","order":-3},"gitalk":{"text":"评论（gitalk）","order":-2}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="Next版本（v8.0）配置菜单及汉化 主题配置文件hexo&#x2F;themes&#x2F;next&#x2F;_config.xml 中menu下添加：  links: &#x2F;links&#x2F; || fa fa-link主题语言配置文件 hexo&#x2F;themes&#x2F;next&#x2F;languages&#x2F;zh-Hans.yml文件中menu下增加中文描述：  links: 友链 添加友链页面hexo new page links修改友链页面内">
+  <meta name="description" content="前言VSCode，是一个免费的、开源的跨平台编辑器,也是我最满意的编辑器之一。本文向大家推荐一些我喜欢的vscode插件，不出意外的话，这些插件将对你的工作效率提升有不小的帮助！ GitLensVS Code中的 Git 体验在易用性和完整性之间取得了一个不错的平衡，大部分用户都能够使用它完成工作，同时又不会被太多的功能吓到。但是很多硬核的 Git 用户肯定会觉得功能还不够用。包括但不限于：不能查">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo博客Next主题添加友链页面">
-<meta property="og:url" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/index.html">
+<meta property="og:title" content="让开发效率“飞起”的VS Code插件">
+<meta property="og:url" content="https://blog.zzonn.com/2019/09/14/%E8%AE%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E2%80%9C%E9%A3%9E%E8%B5%B7%E2%80%9D%E7%9A%84VS%20Code%E6%8F%92%E4%BB%B6/index.html">
 <meta property="og:site_name" content="ZZONN">
-<meta property="og:description" content="Next版本（v8.0）配置菜单及汉化 主题配置文件hexo&#x2F;themes&#x2F;next&#x2F;_config.xml 中menu下添加：  links: &#x2F;links&#x2F; || fa fa-link主题语言配置文件 hexo&#x2F;themes&#x2F;next&#x2F;languages&#x2F;zh-Hans.yml文件中menu下增加中文描述：  links: 友链 添加友链页面hexo new page links修改友链页面内">
+<meta property="og:description" content="前言VSCode，是一个免费的、开源的跨平台编辑器,也是我最满意的编辑器之一。本文向大家推荐一些我喜欢的vscode插件，不出意外的话，这些插件将对你的工作效率提升有不小的帮助！ GitLensVS Code中的 Git 体验在易用性和完整性之间取得了一个不错的平衡，大部分用户都能够使用它完成工作，同时又不会被太多的功能吓到。但是很多硬核的 Git 用户肯定会觉得功能还不够用。包括但不限于：不能查">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/%7B%7B%20link.avatar%20%7D%7D">
-<meta property="og:image" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/%7B%7B%20link.avatar%20%7D%7D">
-<meta property="article:published_time" content="2020-05-11T08:40:01.000Z">
-<meta property="article:modified_time" content="2020-05-11T08:40:01.000Z">
+<meta property="og:image" content="https://blog.zzonn.com/images/vscode/1.gif">
+<meta property="article:published_time" content="2019-09-14T03:26:48.000Z">
+<meta property="article:modified_time" content="2019-09-14T03:26:48.000Z">
 <meta property="article:author" content="LiPan">
-<meta property="article:tag" content="Hexo">
+<meta property="article:tag" content="vscode">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/%7B%7B%20link.avatar%20%7D%7D">
+<meta name="twitter:image" content="https://blog.zzonn.com/images/vscode/1.gif">
 
-<link rel="canonical" href="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/">
+<link rel="canonical" href="https://blog.zzonn.com/2019/09/14/%E8%AE%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E2%80%9C%E9%A3%9E%E8%B5%B7%E2%80%9D%E7%9A%84VS%20Code%E6%8F%92%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -52,7 +51,7 @@
   };
 </script>
 
-  <title>Hexo博客Next主题添加友链页面 | ZZONN</title>
+  <title>让开发效率“飞起”的VS Code插件 | ZZONN</title>
   
 
 
@@ -214,7 +213,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2019/09/14/%E8%AE%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E2%80%9C%E9%A3%9E%E8%B5%B7%E2%80%9D%E7%9A%84VS%20Code%E6%8F%92%E4%BB%B6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar2.gif">
@@ -227,7 +226,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hexo博客Next主题添加友链页面
+          让开发效率“飞起”的VS Code插件
         </h1>
 
         <div class="post-meta">
@@ -237,7 +236,7 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-05-11 16:40:01" itemprop="dateCreated datePublished" datetime="2020-05-11T16:40:01+08:00">2020-05-11</time>
+              <time title="创建时间：2019-09-14 11:26:48" itemprop="dateCreated datePublished" datetime="2019-09-14T11:26:48+08:00">2019-09-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -245,7 +244,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2/" itemprop="url" rel="index"><span itemprop="name">博客</span></a>
+                  <a href="/categories/%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index"><span itemprop="name">工具</span></a>
                 </span>
             </span>
 
@@ -265,8 +264,8 @@
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/11/Hexo%E5%8D%9A%E5%AE%A2Next%E4%B8%BB%E9%A2%98%E6%B7%BB%E5%8A%A0%E5%8F%8B%E9%93%BE%E9%A1%B5%E9%9D%A2/" itemprop="commentCount"></span>
+    <a title="valine" href="/2019/09/14/%E8%AE%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E2%80%9C%E9%A3%9E%E8%B5%B7%E2%80%9D%E7%9A%84VS%20Code%E6%8F%92%E4%BB%B6/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2019/09/14/%E8%AE%A9%E5%BC%80%E5%8F%91%E6%95%88%E7%8E%87%E2%80%9C%E9%A3%9E%E8%B5%B7%E2%80%9D%E7%9A%84VS%20Code%E6%8F%92%E4%BB%B6/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -276,14 +275,14 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.2k</span>
+              <span>2.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="far fa-clock"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>2 分钟</span>
             </span>
 
         </div>
@@ -295,222 +294,31 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="Next版本（v8-0）"><a href="#Next版本（v8-0）" class="headerlink" title="Next版本（v8.0）"></a>Next版本（v8.0）</h3><h3 id="配置菜单及汉化"><a href="#配置菜单及汉化" class="headerlink" title="配置菜单及汉化"></a>配置菜单及汉化</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 中<code>menu</code>下添加： </p>
-<pre><code>links: /links/ || fa fa-link</code></pre><p>主题语言配置文件 <code>hexo/themes/next/languages/zh-Hans.yml</code>文件中<code>menu</code>下增加中文描述： </p>
-<pre><code class="js">links: 友链</code></pre>
-<h3 id="添加友链页面"><a href="#添加友链页面" class="headerlink" title="添加友链页面"></a>添加友链页面</h3><pre><code>hexo new page links</code></pre><h3 id="修改友链页面内容"><a href="#修改友链页面内容" class="headerlink" title="修改友链页面内容"></a>修改友链页面内容</h3><p>在 <code>hexo/blog/source/links</code> 目录下<code>index.md</code></p>
-<a id="more"></a>
-
-<pre><code class="markdown">----
-title: 友情链接
-date: 2020-05-11 15:42:13
-type: &quot;links&quot;
----
-
----
-
-### 申请要求：
-
-1、内容持续更新且可以稳定访问
-2、网页整洁无繁杂广告推广
-3、博客主页被百度或谷歌等搜索引擎收录
-4、头像能够快速加载
-5、拥有独立域名
-
-
-### 友链声明：
-
-1、本站会主动保存您的 HTTPS 形式的头像图片链接
-2、本站会定期清理无法访问的友链，如果更换了链接信息请至评论区留言，谢谢合作！
-3、本站会定期查看双方是否互为友链，如果取消本站友链，本站也会将您的友链移除
-
-### 申请方式：
-
-先将本站的友链添加到您的友链，相关信息如下
-然后按照以下格式在本站留言区留言，待博主为您添上友链
-
-&gt;名称：ZZONN
-&gt;
-&gt;主页链接：https://blog.zzonn.com/ 
-&gt;
-&gt;头像链接：https://blog.zzonn.com/images/avatar2.gif
-&gt;
-&gt;说明信息：提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我
-
-
-</code></pre>
-<h3 id="添加友链布局文件"><a href="#添加友链布局文件" class="headerlink" title="添加友链布局文件"></a>添加友链布局文件</h3><p>在 <code>hexo/themes/next/layout</code> 目录下新建 <code>links.njk</code>文件，写入以下代码</p>
-<pre><code class="scss">
-{% block content %}
-  {######################}
-  {### LINKS BLOCK ###}
-  {######################}
-
-    <div id="links">
-        <style>
-
-            #links{
-               margin-top: 5rem;
-            }
-
-            .links-content{
-                margin-top:1rem;
-            }
-
-            .link-navigation::after {
-                content: " ";
-                display: block;
-                clear: both;
-            }
-
-            .card {
-                width: 300px;
-                font-size: 1rem;
-                padding: 10px 20px;
-                border-radius: 4px;
-                transition-duration: 0.15s;
-                margin-bottom: 1rem;
-                display:flex;
-            }
-            .card:nth-child(odd) {
-                float: left;
-            }
-            .card:nth-child(even) {
-                float: right;
-            }
-            .card:hover {
-                transform: scale(1.1);
-                box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
-            }
-            .card a {
-                border:none;
-            }
-            .card .ava {
-                width: 3rem!important;
-                height: 3rem!important;
-                margin:0!important;
-                margin-right: 1em!important;
-                border-radius:4px;
-
-            }
-            .card .card-header {
-                font-style: italic;
-                overflow: hidden;
-                width: 236px;
-            }
-            .card .card-header a {
-                font-style: normal;
-                color: #2bbc8a;
-                font-weight: bold;
-                text-decoration: none;
-            }
-            .card .card-header a:hover {
-                color: #d480aa;
-                text-decoration: none;
-            }
-            .card .card-header .info {
-                font-style:normal;
-                color:#a3a3a3;
-                font-size:14px;
-                min-width: 0;
-                text-overflow: ellipsis;
-                overflow: hidden;
-                white-space: nowrap;
-            }
-			span.focus-links {
-                font-style: normal;
-                margin-left: 10px;
-                position: unset;
-                left: 0;
-                padding: 0 7px 0 5px;
-                font-size: 11px;
-                border-color: #42c02e;
-                border-radius: 40px;
-                line-height: 24px;
-                height: 22px;
-                color: #fff !important;
-                background-color: #42c02e;
-                display: inline-block;
-            }
-            span.focus-links:hover{
-                background-color: #318024;
-            }
-        </style>
-        <div class="links-content">
-
-             <div class="no-icon note warning"><div class="link-info">👨‍🎓 跟着大佬走，成为小大佬</div></div>
-            <div class="link-navigation">
-                    {% for link in theme.defaultlinks %}
-
-                    <div class="card">
-                        <img class="ava nofancybox" src="{{ link.avatar }}"/>
-                        <div class="card-header">
-                        <div><a href="{{ link.site }}" target="_blank"> {{ link.nickname }}</a> <a href="{{ link.site }}"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
-                        <div class="info">{{ link.info }}</div>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-            <div class="no-icon note primary"><div class="link-info">🍭 五湖四海的朋友们</div></div>
-
-             <div class="link-navigation">
-                    {% for link in theme.friendslinks %}
-
-                    <div class="card">
-                        <img class="ava nofancybox" src="{{ link.avatar }}"/>
-                        <div class="card-header">
-                        <div><a href="{{ link.site }}" target="_blank"> {{ link.nickname }}</a> <a href="{{ link.site }}"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
-                        <div class="info">{{ link.info }}</div>
-                        </div>
-                    </div>
-
-                {% endfor %}
-
-            </div>
-
-            {{ page.content }}
-            </div>
-        </div>
-
-  {##########################}
-  {### END LINKS BLOCK ###}
-  {##########################}
-{% endblock %}
-
-</code></pre>
-<h3 id="修改page布局文件"><a href="#修改page布局文件" class="headerlink" title="修改page布局文件"></a>修改page布局文件</h3><p>同样在 <code>hexo/themes/next/layout</code> 目录下</p>
-<ol>
-<li><p>找到代码</p>
-<pre><code>  {%- elif page.type === 'schedule' and not page.title %}
-    {{- __('title.schedule') + page_title_suffix }}</code></pre></li>
-<li><p>在后面加入代码</p>
-<pre><code>{%- elif page.type === 'links' and not page.title %}
-    {{- __('title.links') + page_title_suffix }}</code></pre></li>
-<li><p>找到代码</p>
-<pre><code>{% elif page.type === 'schedule' %}
-          &lt;div class=&quot;event-list&quot;&gt;
-          &lt;/div&gt;
-          {% include '_scripts/pages/schedule.njk' %}</code></pre></li>
-<li><p>在后面加入代码(引入刚刚新建的links布局文件)</p>
-<pre><code>{% elif page.type === 'links' %}
-          {% include 'links.njk' %}</code></pre></li>
-</ol>
-<h3 id="修改主题配置文件"><a href="#修改主题配置文件" class="headerlink" title="修改主题配置文件"></a>修改主题配置文件</h3><p> 主题配置文件<code>hexo/themes/next/_config.xml</code> 末尾添加： </p>
-<pre><code># 友情链接
-defaultlinks:
-  - nickname: ZZONN     # 昵称
-      site: https://blog.zzonn.com/ #友链地址
-    avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
-    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我
-
-friendslinks:
-  - nickname: ZZONN     # 昵称
-      site: https://blog.zzonn.com/ #友链地址
-    avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
-    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我</code></pre><p><code>defaultlinks:</code>呼应的是<code>link.swig</code>文件中 <code>👨‍🎓 跟着大佬走，成为小大佬</code>段落，此处链接写大佬的博客；<br><code>friendslinks:</code>呼应的是<code>link.swig</code>文件中 <code>🍭 五湖四海的朋友们</code>段落，此处链接写朋友的博客。<br>此处内容可以根据自己需要自行修改 </p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>VSCode，是一个免费的、开源的跨平台编辑器,也是我最满意的编辑器之一。<br>本文向大家推荐一些我喜欢的vscode插件，不出意外的话，这些插件将对你的工作效率提升有不小的帮助！</p>
+<h1 id="GitLens"><a href="#GitLens" class="headerlink" title="GitLens"></a>GitLens</h1><p>VS Code中的 Git 体验在易用性和完整性之间取得了一个不错的平衡，大部分用户都能够使用它完成工作，同时又不会被太多的功能吓到。但是很多硬核的 Git 用户肯定会觉得功能还不够用。包括但不限于：<br>不能查看某个 commit 中的代码改动；<br>不能比较两个 commit 或者 branch，然后阅览代码改动；<br>不能查看代码历史记录。<br>不过 GitLens 这个插件的出现，就弥补上了上述不足。<img src="https://blog.zzonn.com/images/vscode/1.gif" alt=""><br>类似的 Extension：</p>
+<ul>
+<li>Git History – 用来查看 git log 或则一个文件的 git 历史，比较不同的分支，commits</li>
+<li>Git Blame  - 它允许您在当前选定行的状态栏中看到 Git Blame 信息。GitLens 也提供了类似的功能。</li>
+<li>Git Project Manager –可以一键搜索并打开某个的基于 Git 管理的项目</li>
+</ul>
+<h1 id="Quokka-js"><a href="#Quokka-js" class="headerlink" title="Quokka.js"></a>Quokka.js</h1><p>Quokka.js 是一个用于 JavaScript 和 TypeScript 的实时运行代码平台。这意味着它会在你输入后立即运行您的代码，并在您的代码编辑器中显示各种执行结果。<br>Quokka 其实也就是一个调试工具，可以为您正在编写的代码提供实时反馈。它能够预览变量的函数和计算值结果。<br>建议你亲自尝试一下。</p>
+<h1 id="Visual-Studio-Intellicode"><a href="#Visual-Studio-Intellicode" class="headerlink" title="Visual Studio Intellicode"></a>Visual Studio Intellicode</h1><p>Visual Studio Intellicode 超过 350 万下载量，是 Visual Studio 上下载次数最多的插件。并且，在我看来，它会是你用过的最有用的插件之一。<br>这个插件能帮助开发人员生成智能代码补全提示，并且它内置支持很多种编程语言。<br>Visual Studio Intellicode 使用机器学习技术，通过学习大量 GitHub 项目的代码，能找到一些编码模式，然后在你编程时给予代码提示。</p>
+<h1 id="Debugger-for-Chrome"><a href="#Debugger-for-Chrome" class="headerlink" title="Debugger for Chrome"></a>Debugger for Chrome</h1><p>如果你想调试 JavaScript 程序，你可以不必离开 VSCode 开发环境。<br>Debugger for Chrome 这款插件就可以做到这点，它由微软发布，允许你在 VSCode 中直接调试网页源文件，该插件主要利用 Chrome 所开放出来的接口来实现对其渲染的页面进行调试。</p>
+<h1 id="Auto-Rename-Tag"><a href="#Auto-Rename-Tag" class="headerlink" title="Auto Rename Tag"></a>Auto Rename Tag</h1><p>无论你选择哪种框架，假如当开始和结束标签间的代码有 50 多行时，你想将一个H2标签更改为H3标签，或者你想将一个div标签更改为span标签，不管要做什么，你都要浪费时间来查找结束标签，这时候就该用这个插件– Auto Rename Tag<br>这个插件在你修改某一个标签时会自动匹配结束标签修改为相应的结束标签，反之亦然。</p>
+<h1 id="SCSS-IntelliSense"><a href="#SCSS-IntelliSense" class="headerlink" title="SCSS IntelliSense"></a>SCSS IntelliSense</h1><p>在 SCSS 中创建变量，这是很棒的体验。但创建后，你还记得它们吗？可能大多没记住。<br>有了这个插件，你能在应用的任何位置快速获取你发明的那些 SCSS 变量名。再也不用记住那些名称，也无需进行文件搜索。</p>
+<h1 id="ESLint"><a href="#ESLint" class="headerlink" title="ESLint"></a>ESLint</h1><p>ESLint 插件将 ESLint 集成进了 Visual Studio Code 中。如果你还不了解这款插件，我简单说一下，这款插件会静态分析你的代码，快速找到代码中的问题。<br>ESLint 找到的大部分问题都可以由其自动修复。ESLint 会根据当前文件使用的语法进行自动修复，所以就不会像传统的“寻找 - 替换”算法那样产生语法错误。<br>最重要的是，ESLint 是高度可定制化的。</p>
+<h1 id="Prettier"><a href="#Prettier" class="headerlink" title="Prettier"></a>Prettier</h1><p>对那些想严格遵守一组编码规则格式的开发者来说，Prettier 是相当有用的插件。<br>并且，它是一个健壮的、固守成规的代码格式化利器，它可以一键美化你的 JavaScript/TypeScript/CSS 代码。</p>
+<h1 id="Vetur"><a href="#Vetur" class="headerlink" title="Vetur"></a>Vetur</h1><p>Vetur是一款必备的Vue开发工具。支持多种功能，比如语法高亮、错误检测、Emmet和Snippet等等。</p>
+<h1 id="Code-Runner"><a href="#Code-Runner" class="headerlink" title="Code Runner"></a>Code Runner</h1><p>时至今日，Code Runner已经有了超过300万的下载量，代码一键运行，支持超过40种语言。<br>安装好Code Runner之后，打开你所要运行的文件，有多种方式来快捷地运行你的代码：</p>
+<ul>
+<li>在编辑区，右键选择 Run Code</li>
+<li>键盘快捷键 Ctrl+Alt+N</li>
+<li>快捷键 F1 调出 命令面板, 然后输入 Run Code</li>
+<li>在左侧的文件管理器，右键选择 Run Code</li>
+<li>右上角的运行小三角按钮</li>
+</ul>
+<h1 id="Path-Intellisense"><a href="#Path-Intellisense" class="headerlink" title="Path Intellisense"></a>Path Intellisense</h1><p>Path Intellisense 可以快速提高你的开发效率。如果你同时开发多个项目，并使用很多不同的技术，你肯定想要一个方便的工具，它能帮你记住文件路径。<br>这款插件就能为你节省很多这方面的时间，帮你省去找到正确文件路径的时间。</p>
+<h1 id="Color-Picker"><a href="#Color-Picker" class="headerlink" title="Color Picker"></a>Color Picker</h1><p>在书写 HTML 和 CSS 的时候，你可能经常需要修改元素的颜色。VS Code 为修改颜色，提供了一个图形化的界面，其中包含了颜色相关的属性。<br>当你打开一段 HTML 或者 CSS 代码时，你可以看到，VS Code 在颜色的前面画了一个方块（即颜色装饰器 Color Decorator），用于展示这段颜色属性所对应的最终效果。然后你把鼠标移动到这段代码上时，一个颜色选择器窗口就显示出来了，根据你需要来调整颜色。</p>
 
     </div>
 
@@ -520,7 +328,7 @@ friendslinks:
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Hexo/" rel="tag"><i class="fa fa-tag"></i> Hexo</a>
+              <a href="/tags/vscode/" rel="tag"><i class="fa fa-tag"></i> vscode</a>
           </div>
 
         
@@ -529,10 +337,13 @@ friendslinks:
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/05/08/%E5%B8%B8%E7%94%A8Git%E5%91%BD%E4%BB%A4%E5%8A%A8%E7%94%BB%E6%BC%94%E7%A4%BA/" rel="prev" title="常用Git命令动画演示">
-      <i class="fa fa-chevron-left"></i> 常用Git命令动画演示
+    <a href="/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/" rel="prev" title="使用Redis进行开发">
+      <i class="fa fa-chevron-left"></i> 使用Redis进行开发
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" rel="next" title="Windows错误代码对应解决方案">
+      Windows错误代码对应解决方案 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -605,7 +416,7 @@ friendslinks:
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Next版本（v8-0）"><span class="nav-number">1.</span> <span class="nav-text">Next版本（v8.0）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置菜单及汉化"><span class="nav-number">2.</span> <span class="nav-text">配置菜单及汉化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加友链页面"><span class="nav-number">3.</span> <span class="nav-text">添加友链页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改友链页面内容"><span class="nav-number">4.</span> <span class="nav-text">修改友链页面内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#添加友链布局文件"><span class="nav-number">5.</span> <span class="nav-text">添加友链布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改page布局文件"><span class="nav-number">6.</span> <span class="nav-text">修改page布局文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改主题配置文件"><span class="nav-number">7.</span> <span class="nav-text">修改主题配置文件</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GitLens"><span class="nav-number">2.</span> <span class="nav-text">GitLens</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Quokka-js"><span class="nav-number">3.</span> <span class="nav-text">Quokka.js</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Visual-Studio-Intellicode"><span class="nav-number">4.</span> <span class="nav-text">Visual Studio Intellicode</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Debugger-for-Chrome"><span class="nav-number">5.</span> <span class="nav-text">Debugger for Chrome</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Auto-Rename-Tag"><span class="nav-number">6.</span> <span class="nav-text">Auto Rename Tag</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SCSS-IntelliSense"><span class="nav-number">7.</span> <span class="nav-text">SCSS IntelliSense</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ESLint"><span class="nav-number">8.</span> <span class="nav-text">ESLint</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Prettier"><span class="nav-number">9.</span> <span class="nav-text">Prettier</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Vetur"><span class="nav-number">10.</span> <span class="nav-text">Vetur</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Code-Runner"><span class="nav-number">11.</span> <span class="nav-text">Code Runner</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Path-Intellisense"><span class="nav-number">12.</span> <span class="nav-text">Path Intellisense</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Color-Picker"><span class="nav-number">13.</span> <span class="nav-text">Color Picker</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -784,7 +595,7 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
       repo        : 'lcorel.github.io',
       owner       : 'lcorel',
       admin       : ['lcorel'],
-      id          : 'f189f8c6f50358642115fef4c56fa924',
+      id          : '2ca92f4990374a71f723f7351b0373d1',
         language: 'zh-CN',
       distractionFreeMode: true
     });
