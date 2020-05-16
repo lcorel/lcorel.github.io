@@ -1,6 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>11个JavaScript小技巧</title>
+    <url>/2020/05/16/11%E4%B8%AAJavaScript%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<p>分享11个在日常教程中不常被提及的JavaScript小技巧，他们往往在我们的日常工作中经常出现，但是又很容易被忽略。</p>
+<h2 id="过滤唯一值"><a href="#过滤唯一值" class="headerlink" title="过滤唯一值"></a>过滤唯一值</h2><p><code>Set</code>类型是在<code>ES6</code>中新增的，它类似于数组，但是成员的值都是唯一的，没有重复的值。</p>
+<p>结合扩展运算符（…）我们可以创建一个新的数组，达到过滤原数组重复值的功能。</p>
+<pre><code class="javascript">const array = [1, 2, 3, 3, 5, 5, 1];
+const uniqueArray = [...new Set(array)];
+
+console.log(uniqueArray); // [1, 2, 3, 5]</code></pre>
+<p>在ES6之前，我们如果想要实现这个功能的话，需要的处理代码要多很多。</p>
+<p>这个技巧的适用范围是数组中的数值的类型为：<code>undefined</code>， <code>null</code>， <code>boolean</code>， <code>string</code>， <code>number</code>。</p>
+<p>当包涵<code>object</code>， <code>function</code>， <code>array</code>时，则不适用。</p>
+<a id="more"></a>
+
+<h2 id="短路求值（Short-Circuit-Evaluation）"><a href="#短路求值（Short-Circuit-Evaluation）" class="headerlink" title="短路求值（Short-Circuit Evaluation）"></a>短路求值（Short-Circuit Evaluation）</h2><p>三目运算符是一个很方便快捷的书写一些简单的逻辑语句的方式</p>
+<pre><code class="javascript">x &gt; 100 ? &#39;Above 100&#39; : &#39;Below 100&#39;;
+x &gt; 100 ? (x &gt; 200 ? &#39;Above 200&#39; : &#39;Between 100-200&#39;) : &#39;Below 100&#39;;</code></pre>
+<p>但是有些时候当逻辑复杂之后，三目运算符书写起来可读性也会很难。</p>
+<p>这个时候，我们就可以使用逻辑与（&amp;&amp;）和逻辑或（||）运算符来改写我们的表达式。</p>
+<p>逻辑与和逻辑或操作符总是先计算其做操作数，只有在仅靠左操作数的值无法确定该逻辑表达式的结果时，才会求解其右操作数。</p>
+<p>这被称为“短路求值（Short-Circuit Evaluation）”</p>
+<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>与（&amp;&amp;）运算符将会返回第一个<code>false/‘falsy’</code>的值。</p>
+<p>当所有的操作数都是<code>true</code>时，将返回最后一个表达式的结果。</p>
+<pre><code class="javascript">let one = 1, two = 2, three = 3;
+console.log(one &amp;&amp; two &amp;&amp; three); // Result: 3
+
+console.log(0 &amp;&amp; null); // Result: 0</code></pre>
+<p>或（||）运算符将返回第一个<code>true/‘truthy’</code>的值。</p>
+<p>当所有的操作数都是<code>false</code>时，将返回最后一个表达式的结果。</p>
+<pre><code class="javascript">let one = 1, two = 2, three = 3;
+console.log(one || two || three); // Result: 1
+
+console.log(0 || null); // Result: null</code></pre>
+<h4 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h4><p>当我们从服务器端请求数据的过程中，我们在另一个位置来使用这个数据，但是获取数据的状态并不知道，如我们访问<code>this.state</code>的<code>data</code>属性。</p>
+<p>按照常规的方式我们会先去判断这个<code>this.state.data</code>的有效性，之后根据有效性情况分别进行区分处理。</p>
+<pre><code class="javascript">if (this.state.data) {
+  return this.state.data;
+} else {
+  return &#39;Fetching Data&#39;;
+}</code></pre>
+<p>但是我们可以通过上面的方式来简写这个逻辑处理。</p>
+<pre><code class="javascript">return (this.state.data || &#39;Fetching Data&#39;);</code></pre>
+<p>对比发现这个方式更加的简洁方便。</p>
+<h2 id="转换Boolean型"><a href="#转换Boolean型" class="headerlink" title="转换Boolean型"></a>转换Boolean型</h2><p>常规的boolean型值只有 <code>true</code> 和 <code>false</code>，但是在JavaScript中我们可以将其他的值认为是 <code>‘truthy’</code> 或者 <code>‘falsy’</code>的。</p>
+<p>除了<code>0</code>， <code>“”</code>， <code>null</code>， <code>undefined</code>， <code>NaN</code> 和 <code>false</code>,其他的我们都可以认为是<code>‘truthy’</code>的。</p>
+<p>我们可以通过负运算符<code>！</code>将一系列的变量转换成“boolean”型。</p>
+<pre><code class="javascript">const isTrue  = !0;
+const isFalse = !1;
+const alsoFalse = !!0;
+
+console.log(isTrue); // Result: true
+console.log(typeof true); // Result: &quot;boolean&quot;</code></pre>
+<h2 id="转换String型"><a href="#转换String型" class="headerlink" title="转换String型"></a>转换String型</h2><p>  我们可以通过<code>+</code>连接运算符将一个number类型的变量转换成string类型。</p>
+<pre><code class="javascript">const val = 1 + &quot;&quot;;
+
+console.log(val); // Result: &quot;1&quot;
+console.log(typeof val); // Result: &quot;string&quot;</code></pre>
+<h2 id="转换Number类型"><a href="#转换Number类型" class="headerlink" title="转换Number类型"></a>转换Number类型</h2><p>和上面对应的，我们可以通过加法运算符<code>+</code>将一个string类型的变量转回为number 类型的。</p>
+<pre><code class="javascript">let int = &quot;15&quot;;
+int = +int;
+
+console.log(int); // Result: 15
+console.log(typeof int); Result: &quot;number&quot;</code></pre>
+<p>在某些上下文中，<code>+</code>将被解释为连接操作符，而不是加法操作符。</p>
+<p>当这种情况发生时(您希望返回一个整数，而不是浮点数)，您可以使用两个波浪号:<code>~~</code>。(需要注意为英文格式)</p>
+<p>一个波浪号<code>~</code>，被称为“按位不运算符”，等价于 <code>- n - 1</code>。所以<code>~15 = -16</code>.</p>
+<p>使用两个<code>~~</code>可以有效的否定运算。</p>
+<p>这是因为 <code>- (- n - 1) - 1 = n + 1 - 1 = n</code>。也就是说<code>~-16 = 15</code></p>
+<pre><code class="javascript">const int = ~~&quot;15&quot;
+
+console.log(int); // Result: 15
+console.log(typeof int); Result: &quot;number&quot;</code></pre>
+<h2 id="快速求幂"><a href="#快速求幂" class="headerlink" title="快速求幂"></a>快速求幂</h2><p>从<code>ES7</code>开始，我们可以使用幂运算符 <code>**</code> 作为求幂的简写，相对之前的<code>Math.pow(2, 3)</code> 更加快捷。</p>
+<p>这是一个很简单实用的点，但是大部分的教程并不会专门介绍它。</p>
+<pre><code class="javascript">console.log(2 ** 3); // Result: 8</code></pre>
+<p>这不应该与 <code>^</code> 符号混淆，<code>^</code> 符号通常用于表示指数，但在JavaScript中是位XOR操作符。</p>
+<p>在ES7之前，幂的简写主要依靠的是位左移位操作符 <code>&lt;&lt;</code>，几种写法的区别。</p>
+<pre><code class="javascript">// 下面几种写法是等价的
+
+Math.pow(2, n);
+2 &lt;&lt; (n - 1);
+2**n;</code></pre>
+<p>其中需要注意的是 <code>2 &lt;&lt; 3 = 16 等价于 2 ** 4 = 16</code></p>
+<h2 id="快速Float转Integer"><a href="#快速Float转Integer" class="headerlink" title="快速Float转Integer"></a>快速Float转Integer</h2><p>我们平时可以使用<code>Math.floor(), Math.ceil()和Math.round()</code>将<code>float</code>类型转换成<code>integer</code>类型。</p>
+<p>但是还有一种更快的方法可以使用<code>|(位或运算符)</code>将浮点数截断为整数。</p>
+<pre><code class="javascript">console.log(23.9 | 0);  // Result: 23
+console.log(-23.9 | 0); // Result: -23</code></pre>
+<p><code>|</code> 的行为取决于处理的是正数还是负数，所以最好只在确定的情况下使用这个快捷方式。</p>
+<p>如果n是正数的，则 <code>n | 0</code> 有效地向下舍入。</p>
+<p>如果n是负数的，它则有效地向上取整。</p>
+<p>更准确地说，该操作结果是直接删除小数点后的内容，将浮点数截断为整数，和上面提到的其他几个方法是有所区别的。</p>
+<p>您还可以使用 <code>~~</code> 来获得相同的舍入效果，如上所述，实际上任何位操作符都会强制浮点数为整数。</p>
+<p>这些特殊操作之所以有效，是因为一旦强制为整数，值就保持不变。</p>
+<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a><strong>使用场景</strong></h4><p>位或运算符可以用于从整数的末尾删除任意数量的数字。</p>
+<p>这意味着我们不必使用这样的代码在类型之间进行转换。</p>
+<pre><code class="javascript">let str = &quot;1553&quot;; 
+Number(str.substring(0, str.length - 1));</code></pre>
+<p>而是可以使用下面的方式来实现我们的功能</p>
+<pre><code class="javascript">console.log(1553 / 10   | 0)  // Result: 155
+console.log(1553 / 100  | 0)  // Result: 15
+console.log(1553 / 1000 | 0)  // Result: 1</code></pre>
+<h2 id="类中自动绑定"><a href="#类中自动绑定" class="headerlink" title="类中自动绑定"></a>类中自动绑定</h2><p>我们可以在类中通过使用ES6增加的箭头函数的方式来实现隐形绑定作用域。</p>
+<p>而按照之前的处理，我们需要显式的去为我们写的方法进行绑定，类似于 <code>this.myMethod = this.myMethod.bind(this)</code>这样。</p>
+<p>当我们的类中有很多方法时，会增加大量的绑定的代码的书写。</p>
+<p>现在我们就可以通过箭头函数的方式来简化这个过程。</p>
+<pre><code class="javascript">import React, { Component } from React;
+export default class App extends Compononent {
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+  myMethod = () =&gt; {
+    // 隐式绑定
+  }
+  render() {
+    return (
+      &lt;&gt;
+        &lt;div&gt;
+          {this.myMethod()}
+        &lt;/div&gt;
+      &lt;/&gt;
+    )
+  }
+};</code></pre>
+<h2 id="截取数组"><a href="#截取数组" class="headerlink" title="截取数组"></a>截取数组</h2><p>如果您想从数组的末尾删除值，有比使用<code>splice()</code>更快的替代方法。</p>
+<p>例如，如果你知道原始数组的长度，就可以通过重新定义它的<code>length</code>属性来实现截取。</p>
+<pre><code class="javascript">let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+array.length = 4;
+console.log(array); // Result: [0, 1, 2, 3]</code></pre>
+<p>这是一个特别简洁的解决方案。</p>
+<p>但是，slice()方法的运行时更快。</p>
+<p>如果速度是你的主要目标，考虑使用下面的方式。</p>
+<pre><code class="javascript">let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+array = array.slice(0, 4);
+
+console.log(array); // Result: [0, 1, 2, 3]</code></pre>
+<h2 id="获取数组中的最后的元素"><a href="#获取数组中的最后的元素" class="headerlink" title="获取数组中的最后的元素"></a>获取数组中的最后的元素</h2><p>数组方法slice()可以接受负整数，如果提供它，它将从数组的末尾开始截取数值，而不是开头。</p>
+<pre><code class="javascript">let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+console.log(array.slice(-1)); // Result: [9]
+console.log(array.slice(-2)); // Result: [8, 9]
+console.log(array.slice(-3)); // Result: [7, 8, 9]</code></pre>
+<h2 id="格式化JSON代码"><a href="#格式化JSON代码" class="headerlink" title="格式化JSON代码"></a>格式化JSON代码</h2><p>我们可能在处理一些JSON相关的处理时很多时候都会使用到<code>JSON.stringify</code>，但是你是否意识到它可以帮助缩进JSON呢？</p>
+<p><code>stringify()</code>方法接受两个可选参数:一个<code>replacer</code>函数和一个<code>space</code>值，<code>replacer</code>函数可以用来过滤显示的JSON。</p>
+<p><code>space</code>值接受一个整数，表示需要的空格数或一个字符串(如<code>&#39;\t&#39;</code>来插入制表符)，它可以使读取获取的JSON数据变得容易得多。</p>
+<pre><code class="javascript">console.log(JSON.stringify({ alpha: &#39;A&#39;, beta: &#39;B&#39; }, null, &#39;\t&#39;));
+
+// Result:
+// &#39;{
+//     &quot;alpha&quot;: A,
+//     &quot;beta&quot;: B
+// }&#39;</code></pre>
+]]></content>
+      <categories>
+        <category>JavaScript</category>
+      </categories>
+      <tags>
+        <tag>JavaScript</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>API接口规范</title>
     <url>/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
@@ -581,21 +742,6 @@ friendslinks:
       </tags>
   </entry>
   <entry>
-    <title>Windows错误代码对应解决方案</title>
-    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
-<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
-<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
-</ol>
- <a id="more"></a> ]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>使用Redis进行开发</title>
     <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
@@ -673,6 +819,21 @@ redis-check-aof  redis-cli        redis-server</code></pre><h3 id="11-这样就�
       </categories>
       <tags>
         <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows错误代码对应解决方案</title>
+    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
+<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
+<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
+</ol>
+ <a id="more"></a> ]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
       </tags>
   </entry>
   <entry>
@@ -1227,167 +1388,6 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>11个JavaScript小技巧</title>
-    <url>/2020/05/16/11%E4%B8%AAJavaScript%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
-    <content><![CDATA[<p>分享11个在日常教程中不常被提及的JavaScript小技巧，他们往往在我们的日常工作中经常出现，但是又很容易被忽略。</p>
-<h2 id="过滤唯一值"><a href="#过滤唯一值" class="headerlink" title="过滤唯一值"></a>过滤唯一值</h2><p><code>Set</code>类型是在<code>ES6</code>中新增的，它类似于数组，但是成员的值都是唯一的，没有重复的值。</p>
-<p>结合扩展运算符（…）我们可以创建一个新的数组，达到过滤原数组重复值的功能。</p>
-<pre><code class="javascript">const array = [1, 2, 3, 3, 5, 5, 1];
-const uniqueArray = [...new Set(array)];
-
-console.log(uniqueArray); // [1, 2, 3, 5]</code></pre>
-<p>在ES6之前，我们如果想要实现这个功能的话，需要的处理代码要多很多。</p>
-<p>这个技巧的适用范围是数组中的数值的类型为：<code>undefined</code>， <code>null</code>， <code>boolean</code>， <code>string</code>， <code>number</code>。</p>
-<p>当包涵<code>object</code>， <code>function</code>， <code>array</code>时，则不适用。</p>
-<a id="more"></a>
-
-<h2 id="短路求值（Short-Circuit-Evaluation）"><a href="#短路求值（Short-Circuit-Evaluation）" class="headerlink" title="短路求值（Short-Circuit Evaluation）"></a>短路求值（Short-Circuit Evaluation）</h2><p>三目运算符是一个很方便快捷的书写一些简单的逻辑语句的方式</p>
-<pre><code class="javascript">x &gt; 100 ? &#39;Above 100&#39; : &#39;Below 100&#39;;
-x &gt; 100 ? (x &gt; 200 ? &#39;Above 200&#39; : &#39;Between 100-200&#39;) : &#39;Below 100&#39;;</code></pre>
-<p>但是有些时候当逻辑复杂之后，三目运算符书写起来可读性也会很难。</p>
-<p>这个时候，我们就可以使用逻辑与（&amp;&amp;）和逻辑或（||）运算符来改写我们的表达式。</p>
-<p>逻辑与和逻辑或操作符总是先计算其做操作数，只有在仅靠左操作数的值无法确定该逻辑表达式的结果时，才会求解其右操作数。</p>
-<p>这被称为“短路求值（Short-Circuit Evaluation）”</p>
-<h4 id="工作原理"><a href="#工作原理" class="headerlink" title="工作原理"></a>工作原理</h4><p>与（&amp;&amp;）运算符将会返回第一个<code>false/‘falsy’</code>的值。</p>
-<p>当所有的操作数都是<code>true</code>时，将返回最后一个表达式的结果。</p>
-<pre><code class="javascript">let one = 1, two = 2, three = 3;
-console.log(one &amp;&amp; two &amp;&amp; three); // Result: 3
-
-console.log(0 &amp;&amp; null); // Result: 0</code></pre>
-<p>或（||）运算符将返回第一个<code>true/‘truthy’</code>的值。</p>
-<p>当所有的操作数都是<code>false</code>时，将返回最后一个表达式的结果。</p>
-<pre><code class="javascript">let one = 1, two = 2, three = 3;
-console.log(one || two || three); // Result: 1
-
-console.log(0 || null); // Result: null</code></pre>
-<h4 id="场景举例"><a href="#场景举例" class="headerlink" title="场景举例"></a>场景举例</h4><p>当我们从服务器端请求数据的过程中，我们在另一个位置来使用这个数据，但是获取数据的状态并不知道，如我们访问<code>this.state</code>的<code>data</code>属性。</p>
-<p>按照常规的方式我们会先去判断这个<code>this.state.data</code>的有效性，之后根据有效性情况分别进行区分处理。</p>
-<pre><code class="javascript">if (this.state.data) {
-  return this.state.data;
-} else {
-  return &#39;Fetching Data&#39;;
-}</code></pre>
-<p>但是我们可以通过上面的方式来简写这个逻辑处理。</p>
-<pre><code class="javascript">return (this.state.data || &#39;Fetching Data&#39;);</code></pre>
-<p>对比发现这个方式更加的简洁方便。</p>
-<h2 id="转换Boolean型"><a href="#转换Boolean型" class="headerlink" title="转换Boolean型"></a>转换Boolean型</h2><p>常规的boolean型值只有 <code>true</code> 和 <code>false</code>，但是在JavaScript中我们可以将其他的值认为是 <code>‘truthy’</code> 或者 <code>‘falsy’</code>的。</p>
-<p>除了<code>0</code>， <code>“”</code>， <code>null</code>， <code>undefined</code>， <code>NaN</code> 和 <code>false</code>,其他的我们都可以认为是<code>‘truthy’</code>的。</p>
-<p>我们可以通过负运算符<code>！</code>将一系列的变量转换成“boolean”型。</p>
-<pre><code class="javascript">const isTrue  = !0;
-const isFalse = !1;
-const alsoFalse = !!0;
-
-console.log(isTrue); // Result: true
-console.log(typeof true); // Result: &quot;boolean&quot;</code></pre>
-<h2 id="转换String型"><a href="#转换String型" class="headerlink" title="转换String型"></a>转换String型</h2><p>  我们可以通过<code>+</code>连接运算符将一个number类型的变量转换成string类型。</p>
-<pre><code class="javascript">const val = 1 + &quot;&quot;;
-
-console.log(val); // Result: &quot;1&quot;
-console.log(typeof val); // Result: &quot;string&quot;</code></pre>
-<h2 id="转换Number类型"><a href="#转换Number类型" class="headerlink" title="转换Number类型"></a>转换Number类型</h2><p>和上面对应的，我们可以通过加法运算符<code>+</code>将一个string类型的变量转回为number 类型的。</p>
-<pre><code class="javascript">let int = &quot;15&quot;;
-int = +int;
-
-console.log(int); // Result: 15
-console.log(typeof int); Result: &quot;number&quot;</code></pre>
-<p>在某些上下文中，<code>+</code>将被解释为连接操作符，而不是加法操作符。</p>
-<p>当这种情况发生时(您希望返回一个整数，而不是浮点数)，您可以使用两个波浪号:<code>~~</code>。(需要注意为英文格式)</p>
-<p>一个波浪号<code>~</code>，被称为“按位不运算符”，等价于 <code>- n - 1</code>。所以<code>~15 = -16</code>.</p>
-<p>使用两个<code>~~</code>可以有效的否定运算。</p>
-<p>这是因为 <code>- (- n - 1) - 1 = n + 1 - 1 = n</code>。也就是说<code>~-16 = 15</code></p>
-<pre><code class="javascript">const int = ~~&quot;15&quot;
-
-console.log(int); // Result: 15
-console.log(typeof int); Result: &quot;number&quot;</code></pre>
-<h2 id="快速求幂"><a href="#快速求幂" class="headerlink" title="快速求幂"></a>快速求幂</h2><p>从<code>ES7</code>开始，我们可以使用幂运算符 <code>**</code> 作为求幂的简写，相对之前的<code>Math.pow(2, 3)</code> 更加快捷。</p>
-<p>这是一个很简单实用的点，但是大部分的教程并不会专门介绍它。</p>
-<pre><code class="javascript">console.log(2 ** 3); // Result: 8</code></pre>
-<p>这不应该与 <code>^</code> 符号混淆，<code>^</code> 符号通常用于表示指数，但在JavaScript中是位XOR操作符。</p>
-<p>在ES7之前，幂的简写主要依靠的是位左移位操作符 <code>&lt;&lt;</code>，几种写法的区别。</p>
-<pre><code class="javascript">// 下面几种写法是等价的
-
-Math.pow(2, n);
-2 &lt;&lt; (n - 1);
-2**n;</code></pre>
-<p>其中需要注意的是 <code>2 &lt;&lt; 3 = 16 等价于 2 ** 4 = 16</code></p>
-<h2 id="快速Float转Integer"><a href="#快速Float转Integer" class="headerlink" title="快速Float转Integer"></a>快速Float转Integer</h2><p>我们平时可以使用<code>Math.floor(), Math.ceil()和Math.round()</code>将<code>float</code>类型转换成<code>integer</code>类型。</p>
-<p>但是还有一种更快的方法可以使用<code>|(位或运算符)</code>将浮点数截断为整数。</p>
-<pre><code class="javascript">console.log(23.9 | 0);  // Result: 23
-console.log(-23.9 | 0); // Result: -23</code></pre>
-<p><code>|</code> 的行为取决于处理的是正数还是负数，所以最好只在确定的情况下使用这个快捷方式。</p>
-<p>如果n是正数的，则 <code>n | 0</code> 有效地向下舍入。</p>
-<p>如果n是负数的，它则有效地向上取整。</p>
-<p>更准确地说，该操作结果是直接删除小数点后的内容，将浮点数截断为整数，和上面提到的其他几个方法是有所区别的。</p>
-<p>您还可以使用 <code>~~</code> 来获得相同的舍入效果，如上所述，实际上任何位操作符都会强制浮点数为整数。</p>
-<p>这些特殊操作之所以有效，是因为一旦强制为整数，值就保持不变。</p>
-<h4 id="使用场景"><a href="#使用场景" class="headerlink" title="使用场景"></a><strong>使用场景</strong></h4><p>位或运算符可以用于从整数的末尾删除任意数量的数字。</p>
-<p>这意味着我们不必使用这样的代码在类型之间进行转换。</p>
-<pre><code class="javascript">let str = &quot;1553&quot;; 
-Number(str.substring(0, str.length - 1));</code></pre>
-<p>而是可以使用下面的方式来实现我们的功能</p>
-<pre><code class="javascript">console.log(1553 / 10   | 0)  // Result: 155
-console.log(1553 / 100  | 0)  // Result: 15
-console.log(1553 / 1000 | 0)  // Result: 1</code></pre>
-<h2 id="类中自动绑定"><a href="#类中自动绑定" class="headerlink" title="类中自动绑定"></a>类中自动绑定</h2><p>我们可以在类中通过使用ES6增加的箭头函数的方式来实现隐形绑定作用域。</p>
-<p>而按照之前的处理，我们需要显式的去为我们写的方法进行绑定，类似于 <code>this.myMethod = this.myMethod.bind(this)</code>这样。</p>
-<p>当我们的类中有很多方法时，会增加大量的绑定的代码的书写。</p>
-<p>现在我们就可以通过箭头函数的方式来简化这个过程。</p>
-<pre><code class="javascript">import React, { Component } from React;
-export default class App extends Compononent {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
-  myMethod = () =&gt; {
-    // 隐式绑定
-  }
-  render() {
-    return (
-      &lt;&gt;
-        &lt;div&gt;
-          {this.myMethod()}
-        &lt;/div&gt;
-      &lt;/&gt;
-    )
-  }
-};</code></pre>
-<h2 id="截取数组"><a href="#截取数组" class="headerlink" title="截取数组"></a>截取数组</h2><p>如果您想从数组的末尾删除值，有比使用<code>splice()</code>更快的替代方法。</p>
-<p>例如，如果你知道原始数组的长度，就可以通过重新定义它的<code>length</code>属性来实现截取。</p>
-<pre><code class="javascript">let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-array.length = 4;
-console.log(array); // Result: [0, 1, 2, 3]</code></pre>
-<p>这是一个特别简洁的解决方案。</p>
-<p>但是，slice()方法的运行时更快。</p>
-<p>如果速度是你的主要目标，考虑使用下面的方式。</p>
-<pre><code class="javascript">let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-array = array.slice(0, 4);
-
-console.log(array); // Result: [0, 1, 2, 3]</code></pre>
-<h2 id="获取数组中的最后的元素"><a href="#获取数组中的最后的元素" class="headerlink" title="获取数组中的最后的元素"></a>获取数组中的最后的元素</h2><p>数组方法slice()可以接受负整数，如果提供它，它将从数组的末尾开始截取数值，而不是开头。</p>
-<pre><code class="javascript">let array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
-console.log(array.slice(-1)); // Result: [9]
-console.log(array.slice(-2)); // Result: [8, 9]
-console.log(array.slice(-3)); // Result: [7, 8, 9]</code></pre>
-<h2 id="格式化JSON代码"><a href="#格式化JSON代码" class="headerlink" title="格式化JSON代码"></a>格式化JSON代码</h2><p>我们可能在处理一些JSON相关的处理时很多时候都会使用到<code>JSON.stringify</code>，但是你是否意识到它可以帮助缩进JSON呢？</p>
-<p><code>stringify()</code>方法接受两个可选参数:一个<code>replacer</code>函数和一个<code>space</code>值，<code>replacer</code>函数可以用来过滤显示的JSON。</p>
-<p><code>space</code>值接受一个整数，表示需要的空格数或一个字符串(如<code>&#39;\t&#39;</code>来插入制表符)，它可以使读取获取的JSON数据变得容易得多。</p>
-<pre><code class="javascript">console.log(JSON.stringify({ alpha: &#39;A&#39;, beta: &#39;B&#39; }, null, &#39;\t&#39;));
-
-// Result:
-// &#39;{
-//     &quot;alpha&quot;: A,
-//     &quot;beta&quot;: B
-// }&#39;</code></pre>
-]]></content>
-      <categories>
-        <category>JavaScript</category>
-      </categories>
-      <tags>
-        <tag>JavaScript</tag>
       </tags>
   </entry>
 </search>
