@@ -276,7 +276,7 @@
             .card:hover {
                 transform: scale(1.1);
                 box-shadow: 0 2px 6px 0 rgba(0, 0, 0, 0.12), 0 0 6px 0 rgba(0, 0, 0, 0.04);
-				background-image:linear-gradient(circle at 17% 56%, rgb(71, 5, 155), rgb(47, 172, 76));
+				background-image:linear-gradient(233deg, rgb(71, 5, 155), rgb(47, 172, 76));
             }
             .card a {
                 border:none;
@@ -657,6 +657,19 @@
 
   
 
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"IfFLPWezWyHXgKQbu4uDyqP0-gzGzoHsz","appKey":"kzm58JKFshQUbSJ8uDXle255","notify":false,"verify":false,"placeholder":"请输入你的评论内容","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":true,"serverURLs":null}
+    ));
+  }, window.Valine);
+});
+</script>
+
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -674,19 +687,6 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
-});
-</script>
-
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el         : '#valine-comments',
-      path       : location.pathname,
-    }, {"enable":true,"appId":"IfFLPWezWyHXgKQbu4uDyqP0-gzGzoHsz","appKey":"kzm58JKFshQUbSJ8uDXle255","notify":false,"verify":false,"placeholder":"请输入你的评论内容","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":true,"serverURLs":null}
-    ));
-  }, window.Valine);
 });
 </script>
 
