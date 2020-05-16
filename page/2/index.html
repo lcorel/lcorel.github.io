@@ -1509,6 +1509,7 @@
   
 
 
+
 <script>
 NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
   NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
@@ -1521,8 +1522,17 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 });
 </script>
 
-
 </body>
 </html>
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/love.js"></script>
+<script type="text/javascript">
+    var originTitile = document.title,
+	st;
+    document.addEventListener("visibilitychange", function () {
+        document.hidden ? (document.title = "看不见我🙈~", clearTimeout(st)) : (document.title =
+                    "(๑•̀ㅂ•́) ✧欢迎回来～", st = setTimeout(function () {
+                        document.title = originTitile
+                    }, 3e3))
+    })
+</script>

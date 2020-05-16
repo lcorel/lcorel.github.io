@@ -597,70 +597,6 @@ friendslinks:
       </tags>
   </entry>
   <entry>
-    <title>Redis的七种数据类型</title>
-    <url>/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h3 id="字符串（string）类型"><a href="#字符串（string）类型" class="headerlink" title="字符串（string）类型"></a>字符串（string）类型</h3><p>Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：</p>
-<ul>
-<li>int：用于能够使用64位有符号整数表示的字符串；</li>
-<li>embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；</li>
-<li>raw：用于长度大于44字节的字符串。</li>
-</ul>
-<p>可以采用OBJECT ENCODING来查看编码。</p>
-<a id="more"></a>
-
-<h3 id="列表（list）类型"><a href="#列表（list）类型" class="headerlink" title="列表（list）类型"></a>列表（list）类型</h3><p>Redis中的列表与双向链表类似</p>
-<p>LPUSH左端插入，RPUSH右端插入，LINSERT某键之前或之后插入。</p>
-<p>向一个不存在的键中插入元素，Redis会先创建一个空列表并将其与键关联；</p>
-<p>也不需要删除值为空列表的键，Redis会自动回收这种键。</p>
-<p>LINDEX获取指定索引处的元素，LRANGE获取一个范围内的元素。</p>
-<p>列表的索引从左到右指定为0～N-1；从右到左指定为-1～-N。</p>
-<p>因此，获取整个列表就是0～~1（例：LRANGE key 0 -1 就是获取键为key的整个列表）。</p>
-<p>LSET设置列表中指定索引位置处元素的值。</p>
-<p>LPOP从列表左端移除第一个元素，RPOP从列表右端移除第一个元素。对不存在的键使用此命令时，返回nil</p>
-<p>对应的阻塞版本为：BLPOP和BRPOP。当列表为空时，会将客户端阻塞。</p>
-<p>可以设置一个以秒为单位的超时时间，超时时间为0时，表示永久等待。（此特性在任务调度中非常有用）</p>
-<p>Redis在内部使用quicklist存储列表对象，下列配置选项可以调整列表对象的存储逻辑：</p>
-<ul>
-<li>list-max-ziplist-size：一个列表条目中一个内部节点的最大大小。</li>
-<li>list-compress-depth：列表压缩策略（列表两端不被压缩的节点个数，当列表很长且最可能被访问的元素在两端，用此参数精确地进行调优可以实现在压缩比和其它因素之间的平衡）。</li>
-</ul>
-<h3 id="哈希（hash）类型"><a href="#哈希（hash）类型" class="headerlink" title="哈希（hash）类型"></a>哈希（hash）类型</h3><p>哈希表示字段和值之间的映射关系，与某些语言中字典类型类似。</p>
-<p>与列表（list）类型类似，添加字段前无需先初始化一个空的哈希，变为空时Redis会自动将其删除。</p>
-<p>HDEL从哈希中删除字段。</p>
-<p>HGETALL获取一个哈希中的所有字段和值，不建议对数量巨大的哈希使用此命令。（一个哈希最多能够容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B32%7D" alt="2^{32}">-1字段，如果一个哈希字段非常多，执行HGETALL时很可能会阻塞Redis服务器，这种情况下通常使用HSCAN来增量地获取所有字段和值）</p>
-<p>Redis内部使用两种编码来存储哈希对象：</p>
-<ul>
-<li>ziplist：对于那些长度小于配置中hash-max-ziplist-entries选项配置的值（默认为512），且所有元素大小都小于配置中hash-max-ziplist-value选项配置的值（默认为64字节）的哈希，采用此编码。（ziplist对于较小的哈希而言可以节省占用空间）</li>
-<li>hashtable：当ziplist不适用时采用的默认编码。</li>
-</ul>
-<h3 id="集合（set）类型"><a href="#集合（set）类型" class="headerlink" title="集合（set）类型"></a>集合（set）类型</h3><p>由唯一、无序对象组成的集合(collection)。</p>
-<p>它经常用于测试某个成员是否在集合中、重复项删除和集合运算(求并、交、差集)。</p>
-<p>SISMEMBER测试一个元素是否位于集合中，SREM中集合中删除元素，SCARD获取集合中成员的数量。</p>
-<p>一个集合中最多可以容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B23%7D" alt="2^{23}">-1个成员。</p>
-<p>SMEMBERS获取集合中所有元素，成员很多情况下使用可能会阻塞服务器，此时应该使用SSCAN。</p>
-<p>Redis内部两种编码方式来存储集合对象：</p>
-<ul>
-<li>intset：对于那些元素都是整数且元素个数小于配置中set-max-intset-entries选项设置的值（默认12）的集合，对于较小的集合可以节省占用空间。</li>
-<li>hashtable：intset不适用时的默认编码。</li>
-</ul>
-<h3 id="有序集合（sorted-set）类型"><a href="#有序集合（sorted-set）类型" class="headerlink" title="有序集合（sorted set）类型"></a>有序集合（sorted set）类型</h3><p>集合中每个元素都有一个可以用于排序的权重，并且可以按照顺序从集合中获取元素。</p>
-<h3 id="唯一计数（HyperLogLog）类型"><a href="#唯一计数（HyperLogLog）类型" class="headerlink" title="唯一计数（HyperLogLog）类型"></a>唯一计数（HyperLogLog）类型</h3><p>采用集合来进行唯一计数时，当数据量达到上千万就需要考虑内存消耗和性能下降的问题了。</p>
-<p>如果不需要获取数据集的内容，而只是想得到不同值的个数，这时候就使用HyperLogLog类型最好了。</p>
-<p>PFCOUNT获取数量</p>
-<p>优势在于能够使用固定数量的内存（每个键只需占用12KB就可以计算最多2^64个不同元素的基数）和时间复杂度（每个键O(1)）进行唯一计数。不过由于HLL算法返回的基数可能不准确（标准差小于1%），因此在决定是否使用HLL时需要进行权衡。</p>
-<h3 id="地理位置（Geo）类型"><a href="#地理位置（Geo）类型" class="headerlink" title="地理位置（Geo）类型"></a>地理位置（Geo）类型</h3><p>GEORADIUS获取指定坐标指定距离内的地点成员；</p>
-<p>GEODIST获取两点之间的距离；</p>
-<p>GEORADIUSBYMEMBER获取指定成员指定距离内的其他成员</p>
-<p>Geo集合实际上被存储为一个有序集合，因此有序集合支持的命令都可以用于Geo数据类型。</p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Redis数据特性</title>
     <url>/2018/10/10/Redis%E6%95%B0%E6%8D%AE%E7%89%B9%E6%80%A7/</url>
     <content><![CDATA[<h2 id="1-过期时间"><a href="#1-过期时间" class="headerlink" title="1.过期时间"></a>1.过期时间</h2><p>Redis被用作缓存时，给临时数据设置过期时间。</p>
@@ -742,6 +678,85 @@ friendslinks:
       </tags>
   </entry>
   <entry>
+    <title>Redis的七种数据类型</title>
+    <url>/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h3 id="字符串（string）类型"><a href="#字符串（string）类型" class="headerlink" title="字符串（string）类型"></a>字符串（string）类型</h3><p>Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：</p>
+<ul>
+<li>int：用于能够使用64位有符号整数表示的字符串；</li>
+<li>embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；</li>
+<li>raw：用于长度大于44字节的字符串。</li>
+</ul>
+<p>可以采用OBJECT ENCODING来查看编码。</p>
+<a id="more"></a>
+
+<h3 id="列表（list）类型"><a href="#列表（list）类型" class="headerlink" title="列表（list）类型"></a>列表（list）类型</h3><p>Redis中的列表与双向链表类似</p>
+<p>LPUSH左端插入，RPUSH右端插入，LINSERT某键之前或之后插入。</p>
+<p>向一个不存在的键中插入元素，Redis会先创建一个空列表并将其与键关联；</p>
+<p>也不需要删除值为空列表的键，Redis会自动回收这种键。</p>
+<p>LINDEX获取指定索引处的元素，LRANGE获取一个范围内的元素。</p>
+<p>列表的索引从左到右指定为0～N-1；从右到左指定为-1～-N。</p>
+<p>因此，获取整个列表就是0～~1（例：LRANGE key 0 -1 就是获取键为key的整个列表）。</p>
+<p>LSET设置列表中指定索引位置处元素的值。</p>
+<p>LPOP从列表左端移除第一个元素，RPOP从列表右端移除第一个元素。对不存在的键使用此命令时，返回nil</p>
+<p>对应的阻塞版本为：BLPOP和BRPOP。当列表为空时，会将客户端阻塞。</p>
+<p>可以设置一个以秒为单位的超时时间，超时时间为0时，表示永久等待。（此特性在任务调度中非常有用）</p>
+<p>Redis在内部使用quicklist存储列表对象，下列配置选项可以调整列表对象的存储逻辑：</p>
+<ul>
+<li>list-max-ziplist-size：一个列表条目中一个内部节点的最大大小。</li>
+<li>list-compress-depth：列表压缩策略（列表两端不被压缩的节点个数，当列表很长且最可能被访问的元素在两端，用此参数精确地进行调优可以实现在压缩比和其它因素之间的平衡）。</li>
+</ul>
+<h3 id="哈希（hash）类型"><a href="#哈希（hash）类型" class="headerlink" title="哈希（hash）类型"></a>哈希（hash）类型</h3><p>哈希表示字段和值之间的映射关系，与某些语言中字典类型类似。</p>
+<p>与列表（list）类型类似，添加字段前无需先初始化一个空的哈希，变为空时Redis会自动将其删除。</p>
+<p>HDEL从哈希中删除字段。</p>
+<p>HGETALL获取一个哈希中的所有字段和值，不建议对数量巨大的哈希使用此命令。（一个哈希最多能够容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B32%7D" alt="2^{32}">-1字段，如果一个哈希字段非常多，执行HGETALL时很可能会阻塞Redis服务器，这种情况下通常使用HSCAN来增量地获取所有字段和值）</p>
+<p>Redis内部使用两种编码来存储哈希对象：</p>
+<ul>
+<li>ziplist：对于那些长度小于配置中hash-max-ziplist-entries选项配置的值（默认为512），且所有元素大小都小于配置中hash-max-ziplist-value选项配置的值（默认为64字节）的哈希，采用此编码。（ziplist对于较小的哈希而言可以节省占用空间）</li>
+<li>hashtable：当ziplist不适用时采用的默认编码。</li>
+</ul>
+<h3 id="集合（set）类型"><a href="#集合（set）类型" class="headerlink" title="集合（set）类型"></a>集合（set）类型</h3><p>由唯一、无序对象组成的集合(collection)。</p>
+<p>它经常用于测试某个成员是否在集合中、重复项删除和集合运算(求并、交、差集)。</p>
+<p>SISMEMBER测试一个元素是否位于集合中，SREM中集合中删除元素，SCARD获取集合中成员的数量。</p>
+<p>一个集合中最多可以容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B23%7D" alt="2^{23}">-1个成员。</p>
+<p>SMEMBERS获取集合中所有元素，成员很多情况下使用可能会阻塞服务器，此时应该使用SSCAN。</p>
+<p>Redis内部两种编码方式来存储集合对象：</p>
+<ul>
+<li>intset：对于那些元素都是整数且元素个数小于配置中set-max-intset-entries选项设置的值（默认12）的集合，对于较小的集合可以节省占用空间。</li>
+<li>hashtable：intset不适用时的默认编码。</li>
+</ul>
+<h3 id="有序集合（sorted-set）类型"><a href="#有序集合（sorted-set）类型" class="headerlink" title="有序集合（sorted set）类型"></a>有序集合（sorted set）类型</h3><p>集合中每个元素都有一个可以用于排序的权重，并且可以按照顺序从集合中获取元素。</p>
+<h3 id="唯一计数（HyperLogLog）类型"><a href="#唯一计数（HyperLogLog）类型" class="headerlink" title="唯一计数（HyperLogLog）类型"></a>唯一计数（HyperLogLog）类型</h3><p>采用集合来进行唯一计数时，当数据量达到上千万就需要考虑内存消耗和性能下降的问题了。</p>
+<p>如果不需要获取数据集的内容，而只是想得到不同值的个数，这时候就使用HyperLogLog类型最好了。</p>
+<p>PFCOUNT获取数量</p>
+<p>优势在于能够使用固定数量的内存（每个键只需占用12KB就可以计算最多2^64个不同元素的基数）和时间复杂度（每个键O(1)）进行唯一计数。不过由于HLL算法返回的基数可能不准确（标准差小于1%），因此在决定是否使用HLL时需要进行权衡。</p>
+<h3 id="地理位置（Geo）类型"><a href="#地理位置（Geo）类型" class="headerlink" title="地理位置（Geo）类型"></a>地理位置（Geo）类型</h3><p>GEORADIUS获取指定坐标指定距离内的地点成员；</p>
+<p>GEODIST获取两点之间的距离；</p>
+<p>GEORADIUSBYMEMBER获取指定成员指定距离内的其他成员</p>
+<p>Geo集合实际上被存储为一个有序集合，因此有序集合支持的命令都可以用于Geo数据类型。</p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Windows错误代码对应解决方案</title>
+    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
+<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
+<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
+</ol>
+ <a id="more"></a> ]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Redis进行开发</title>
     <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
@@ -789,21 +804,6 @@ friendslinks:
       </tags>
   </entry>
   <entry>
-    <title>Windows错误代码对应解决方案</title>
-    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
-<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
-<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
-</ol>
- <a id="more"></a> ]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>安装Redis服务(Ubuntu)</title>
     <url>/2018/10/03/%E5%AE%89%E8%A3%85Redis%E6%9C%8D%E5%8A%A1(Ubuntu)/</url>
     <content><![CDATA[<h2 id="版本：Ubuntu-18-04-1，Redis-4-0-11"><a href="#版本：Ubuntu-18-04-1，Redis-4-0-11" class="headerlink" title="版本：Ubuntu 18.04.1，Redis 4.0.11"></a><strong>版本：Ubuntu 18.04.1，Redis 4.0.11</strong></h2><h2 id="安装方式一：从源码编译构建Redis"><a href="#安装方式一：从源码编译构建Redis" class="headerlink" title="安装方式一：从源码编译构建Redis"></a>安装方式一：从源码编译构建Redis</h2><h3 id="1-安装编译工具："><a href="#1-安装编译工具：" class="headerlink" title="1.安装编译工具："></a>1.安装编译工具：</h3><pre><code class="shell">$ sudo apt-get install build-essential</code></pre>
@@ -834,71 +834,6 @@ redis-check-aof  redis-cli        redis-server</code></pre><h3 id="11-这样就�
       </categories>
       <tags>
         <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用SQL备忘</title>
-    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
-    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
-<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
-<p>  结果：2.18</p>
-<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
-<p>结果：2.18</p>
-<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
-<p>结果：2.180000</p>
- <a id="more"></a> 
-
-<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
-<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
-where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
-<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
-(
-    select Id,Pid,Name from 表名
-    where Id = 1
-    union all
-    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
-    on c.Id = t.Pid
-)
-select * from cte</code></pre>
-]]></content>
-      <categories>
-        <category>SQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>开源工具推荐：Postwoman</title>
-    <url>/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/</url>
-    <content><![CDATA[<h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
-<li><p>快速：实时发送请求并获取/复制响应</p>
-</li>
-<li><p>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</p>
-</li>
-<li><p>支持验证</p>
-</li>
-<li><p>实时，发送请求即可获取响应。</p>
- <a id="more"></a> 
-
-</li>
-</ul>
-<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
-<ul>
-<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
-<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
-<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
-<li>支持身份验证，具有更高的安全性</li>
-<li>实时，发送请求即可获取响应。</li>
-<li>轻松，快速地创建和共享动态API文档</li>
-</ul>
-<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>接口</tag>
       </tags>
   </entry>
   <entry>
@@ -978,6 +913,71 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>Git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常用SQL备忘</title>
+    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
+    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
+<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
+<p>  结果：2.18</p>
+<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
+<p>结果：2.18</p>
+<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
+<p>结果：2.180000</p>
+ <a id="more"></a> 
+
+<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
+<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
+where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
+<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
+(
+    select Id,Pid,Name from 表名
+    where Id = 1
+    union all
+    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
+    on c.Id = t.Pid
+)
+select * from cte</code></pre>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开源工具推荐：Postwoman</title>
+    <url>/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/</url>
+    <content><![CDATA[<h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
+<li><p>快速：实时发送请求并获取/复制响应</p>
+</li>
+<li><p>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</p>
+</li>
+<li><p>支持验证</p>
+</li>
+<li><p>实时，发送请求即可获取响应。</p>
+ <a id="more"></a> 
+
+</li>
+</ul>
+<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
+<ul>
+<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
+<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
+<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
+<li>支持身份验证，具有更高的安全性</li>
+<li>实时，发送请求即可获取响应。</li>
+<li>轻松，快速地创建和共享动态API文档</li>
+</ul>
+<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>接口</tag>
       </tags>
   </entry>
   <entry>
