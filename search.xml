@@ -1242,6 +1242,8 @@ console.log(uniqueArray); // [1, 2, 3, 5]</code></pre>
 <p>在ES6之前，我们如果想要实现这个功能的话，需要的处理代码要多很多。</p>
 <p>这个技巧的适用范围是数组中的数值的类型为：<code>undefined</code>， <code>null</code>， <code>boolean</code>， <code>string</code>， <code>number</code>。</p>
 <p>当包涵<code>object</code>， <code>function</code>， <code>array</code>时，则不适用。</p>
+<a id="more"></a>
+
 <h2 id="短路求值（Short-Circuit-Evaluation）"><a href="#短路求值（Short-Circuit-Evaluation）" class="headerlink" title="短路求值（Short-Circuit Evaluation）"></a>短路求值（Short-Circuit Evaluation）</h2><p>三目运算符是一个很方便快捷的书写一些简单的逻辑语句的方式</p>
 <pre><code class="javascript">x &gt; 100 ? &#39;Above 100&#39; : &#39;Below 100&#39;;
 x &gt; 100 ? (x &gt; 200 ? &#39;Above 200&#39; : &#39;Between 100-200&#39;) : &#39;Below 100&#39;;</code></pre>
