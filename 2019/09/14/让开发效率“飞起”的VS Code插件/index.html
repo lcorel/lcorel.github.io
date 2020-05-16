@@ -642,12 +642,29 @@ NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="/js/love.js"></script>
 <script type="text/javascript">
-    var originTitile = document.title,
+//切换标题内容
+var originTitile = document.title,
 	st;
-    document.addEventListener("visibilitychange", function () {
-        document.hidden ? (document.title = "⛔警告⚠警告🔞", clearTimeout(st)) : (document.title =
-                    "(๑•̀ㅂ•́) ✧欢迎回来～", st = setTimeout(function () {
-                        document.title = originTitile
-                    }, 3e3))
-    })
+document.addEventListener("visibilitychange", function () {
+    document.hidden ? (document.title = "⛔警告⚠警告🔞", clearTimeout(st)) : (document.title =
+        "🍁～欢迎回来～🍁", st = setTimeout(function () {
+            document.title = originTitile
+        }, 3e3))
+})
+//禁止f12
+document.οnkeydοwn=function (e){
+        var currKey=0,evt=e||window.event;
+        currKey=evt.keyCode||evt.which||evt.charCode;
+        if (currKey == 123) {
+            window.event.cancelBubble = true;
+            window.event.returnValue = false;
+        }
+    }
+//阻止鼠标右键事件
+$(document).ready(function(){
+    $(document).bind("contextmenu",function(e){
+          return false;
+    });
+});
+
 </script>
