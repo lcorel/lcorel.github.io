@@ -1,161 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>API接口规范</title>
-    <url>/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/</url>
-    <content><![CDATA[<h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
-<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
- <a id="more"></a> 
-
-<h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
-<ol>
-<li>应该将API的版本号放入URL。</li>
-<li>采用多版本并存，增量发布的方式。</li>
-<li>n代表版本号，分为整型和浮点型<br>整型：    大功能版本，  如v1、v2、v3 …<br>浮点型：  补充功能版本， 如v1.1、v1.2、v2.1、v2.2 …</li>
-<li>对于一个 API 或服务，应在生产中最多保留 3 个最详细的版本</li>
-</ol>
-<h1 id="四、路径规则"><a href="#四、路径规则" class="headerlink" title="四、路径规则"></a>四、路径规则</h1><p>路径又称”终点”（end point），表示API的具体网址。</p>
-<ol>
-<li>在RESTful架构中，每个网址代表一种资源(resource),所以网址中不能有动词，只能有名词。<br> 【所用的名词往往与数据库的表格名对应】</li>
-<li>数据库中的表一般都是同种记录的”集合”(collection),所以API中的名词也应该使用复数。</li>
-</ol>
-<p>例子: <a href="https://api.example.com/v1/products" target="_blank" rel="noopener">https://api.example.com/v1/products</a><br>      <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a><br>      <a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></p>
-<h1 id="五、请求方式"><a href="#五、请求方式" class="headerlink" title="五、请求方式"></a>五、请求方式</h1><p>GET（SELECT）：    从服务器取出资源（一项或多项）。<br>POST（CREATE）：   在服务器新建一个资源。<br>PUT（UPDATE）：    在服务器更新资源（客户端提供改变后的完整资源）。<br>DELETE（DELETE）： 从服务器删除资源。</p>
-<p>例子：<br>GET    /v1/products      获取所有商品<br>GET    /v1/products/ID   获取某个指定商品的信息<br>POST   /v1/products      新建一个商品<br>PUT    /v1/products/ID   更新某个指定商品的信息<br>DELETE /v1/products/ID   删除某个商品,更合理的设计详见【9、非RESTful API的需求】<br>GET    /v1/products/ID/purchases      列出某个指定商品的所有投资者<br>GET    /v1/products/ID/purchases/ID   获取某个指定商品的指定投资者信息</p>
-<h1 id="六、过滤信息"><a href="#六、过滤信息" class="headerlink" title="六、过滤信息"></a>六、过滤信息</h1><p>若记录数量很多，服务器不可能返回全部记录给用户。<br>API应该提供分页参数及其它筛选参数，过滤返回结果。</p>
-<p>/v1/products?page=1&amp;pageSize=20     指定第几页，以及每页的记录数。<br>/v1/products?sortBy=name&amp;order=asc  指定返回结果按照哪个属性排序，以及排序顺序。</p>
-<h1 id="七、传入参数"><a href="#七、传入参数" class="headerlink" title="七、传入参数"></a>七、传入参数</h1><p>传入参数分为4种类型：</p>
-<ol>
-<li>cookie：         一般用于OAuth认证</li>
-<li>request header： 一般用于OAuth认证</li>
-<li>请求body数据：</li>
-<li>地址栏参数：<br> 1）restful 地址栏参数 /v1/products/ID ID为产品编号，获取产品编号为ID的信息<br> 2）get方式的查询字段 见【六、过滤信息】</li>
-</ol>
-<h1 id="八、公共参数"><a href="#八、公共参数" class="headerlink" title="八、公共参数"></a>八、公共参数</h1><h2 id="1-APP-端请求"><a href="#1-APP-端请求" class="headerlink" title="1.APP 端请求"></a>1.APP 端请求</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>network</td>
-<td>网络</td>
-<td>WIFI、4G</td>
-</tr>
-<tr>
-<td>operator</td>
-<td>运营商</td>
-<td>中国联通/移动</td>
-</tr>
-<tr>
-<td>platform</td>
-<td>平台</td>
-<td>iOS、Android</td>
-</tr>
-<tr>
-<td>system</td>
-<td>系统</td>
-<td>ios 13.3、android 9</td>
-</tr>
-<tr>
-<td>device</td>
-<td>设备型号</td>
-<td>iPhone XR、小米9</td>
-</tr>
-<tr>
-<td>udid</td>
-<td>设备唯</td>
-<td>标示</td>
-</tr>
-<tr>
-<td>apiVersion</td>
-<td>API 版本号</td>
-<td>v1.1、v1.2</td>
-</tr>
-</tbody></table>
-<h2 id="2-WEB-端请求"><a href="#2-WEB-端请求" class="headerlink" title="2.WEB 端请求"></a>2.WEB 端请求</h2><table>
-<thead>
-<tr>
-<th>参数</th>
-<th>说明</th>
-<th>备注</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>appKey</td>
-<td>授权Key</td>
-<td>字符串</td>
-</tr>
-</tbody></table>
-<blockquote>
-<p>[info] 调用方需向服务方申请 appKey（请求时使用） 和 secretKey（加密时使用）。</p>
-</blockquote>
-<h1 id="九、响应参数"><a href="#九、响应参数" class="headerlink" title="九、响应参数"></a>九、响应参数</h1><p>【response】：</p>
-<hr>
-<pre><code class="json">{
-   status: 200,               // 详见【status】
-   data: {
-      code: 1,                // 详见【code】
-      data: {} || [],         // 数据
-      message: &#39;成功&#39;,        // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
-      sysMessage: &#39;success&#39;   // 存放响应信息提示,调试使用,中英文都行
-      ...                     // 其它参数，如 total【总记录数】等
-   },
-   msg: &#39;成功&#39;,            // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
-   sysMsg: &#39;success&#39;       // 存放响应信息提示,调试使用,中英文都行
-}</code></pre>
-<hr>
-<p>【status】:</p>
-<p>200：OK<br>400：Bad Request<br>401：Unauthorized<br>403：Forbidden<br>404：Not Found<br>500：Internal Server Error</p>
-<p>【code】:</p>
-<p>1：获取数据成功 | 操作成功<br>0：获取数据失败 | 操作失败</p>
-<hr>
-<p> 若有分页数据返回的，格式如下：</p>
-<pre><code class="json">{
-    &quot;code&quot;: 1,
-    &quot;showMsg&quot;: &quot;success&quot;,
-    &quot;errorMsg&quot;: &quot;&quot;,
-    &quot;data&quot;: {
-         &quot;list&quot;: [],
-         &quot;pagination&quot;: {
-             &quot;total&quot;: 100,
-             &quot;currentPage&quot;: 1,
-             &quot;prePageCount&quot;: 10
-         }
-     }
-}</code></pre>
-<h1 id="十、非RESTful-API的需求"><a href="#十、非RESTful-API的需求" class="headerlink" title="十、非RESTful API的需求"></a>十、非RESTful API的需求</h1><ol>
-<li>实际业务开展过程中，可能会出现各种的api不是简单的restful 规范能实现的。</li>
-<li>需要有一些api突破restful规范原则。</li>
-<li>特别是移动互联网的api设计，更需要有一些特定的api来优化数据请求的交互。<br> 1)、删除单个 | 批量删除  ： DELETE  /v1/product      body参数{ids：[]}<br> 2)、页面级API           :  把当前页面中需要用到的所有数据通过一个接口一次性返回全部数据</li>
-</ol>
-<h1 id="十一、一致性原则"><a href="#十一、一致性原则" class="headerlink" title="十一、一致性原则"></a>十一、一致性原则</h1><ol>
-<li>前端需要哪些字段，API接口应该返回哪些字段，字段不多也不少。</li>
-<li>更新功能尽量做到：初次返回的原始数据参数与提交更新的数据参数结构一致。</li>
-<li>时间参数，尽量以时间戳13位传递。</li>
-<li>其它参数【待更新】</li>
-</ol>
-<h1 id="十二、接口文档"><a href="#十二、接口文档" class="headerlink" title="十二、接口文档"></a>十二、接口文档</h1><ol>
-<li>尽量采用自动化接口文档，可以做到在线测试，同步更新。</li>
-<li>应包含：接口BASE地址、接口版本、接口模块分类等。</li>
-<li>每个接口应包含：<br>接口地址：不包含接口BASE地址。<br>请求方式: get、post、put、delete等。<br>请求参数：数据格式【默认JSON、可选form data】、数据类型、是否必填、中文描述。<br>响应参数：类型、中文描述。</li>
-</ol>
-<h1 id="十三、参考资料"><a href="#十三、参考资料" class="headerlink" title="十三、参考资料"></a>十三、参考资料</h1><ol>
-<li><a href="https://my.oschina.net/qqlet/blog/1922038" target="_blank" rel="noopener">https://my.oschina.net/qqlet/blog/1922038</a></li>
-<li><a href="https://juejin.im/post/5afee0e86fb9a07ab379b371" target="_blank" rel="noopener">https://juejin.im/post/5afee0e86fb9a07ab379b371</a></li>
-<li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
-</ol>
-]]></content>
-      <categories>
-        <category>其他</category>
-      </categories>
-      <tags>
-        <tag>规范</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>11个JavaScript小技巧</title>
     <url>/2020/05/16/11%E4%B8%AAJavaScript%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
     <content><![CDATA[<p>分享11个在日常教程中不常被提及的JavaScript小技巧，他们往往在我们的日常工作中经常出现，但是又很容易被忽略。</p>
@@ -317,24 +162,158 @@ console.log(array.slice(-3)); // Result: [7, 8, 9]</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>PowerDesigner设计CDM类继承关系</title>
-    <url>/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/</url>
-    <content><![CDATA[<h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p>
-<h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p>
+    <title>API接口规范</title>
+    <url>/2020/01/03/API%E6%8E%A5%E5%8F%A3%E8%A7%84%E8%8C%83/</url>
+    <content><![CDATA[<h1 id="一、协议"><a href="#一、协议" class="headerlink" title="一、协议"></a>一、协议</h1><p>API与客户端用户的通信协议，总是使用HTTPS协议，以确保交互数据的传输安全。</p>
+<h1 id="二、域名"><a href="#二、域名" class="headerlink" title="二、域名"></a>二、域名</h1><p>应该尽量将API部署在专用域名之下：                         <a href="https://api.example.com" target="_blank" rel="noopener">https://api.example.com</a><br>如果确定API很简单,不会有进一步扩展,可以考虑放在主域名下：   <a href="https://www.example.com/api" target="_blank" rel="noopener">https://www.example.com/api</a></p>
  <a id="more"></a> 
 
-
-
-<h2 id="建立继承关系"><a href="#建立继承关系" class="headerlink" title="建立继承关系"></a>建立继承关系</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n2.png" alt=""></p>
-<h2 id="配置生成PDM的方式"><a href="#配置生成PDM的方式" class="headerlink" title="配置生成PDM的方式"></a>配置生成PDM的方式</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n3.png" alt=""></p>
-<h2 id="生成PDM-映射成数据库表"><a href="#生成PDM-映射成数据库表" class="headerlink" title="生成PDM(映射成数据库表)"></a>生成PDM(映射成数据库表)</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n4.png" alt=""></p>
-<h2 id="查看生成结果"><a href="#查看生成结果" class="headerlink" title="查看生成结果"></a>查看生成结果</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n5.png" alt=""></p>
+<h1 id="三、版本控制"><a href="#三、版本控制" class="headerlink" title="三、版本控制"></a>三、版本控制</h1><p><a href="https://api.example.com/v{n}" target="_blank" rel="noopener">https://api.example.com/v{n}</a></p>
+<ol>
+<li>应该将API的版本号放入URL。</li>
+<li>采用多版本并存，增量发布的方式。</li>
+<li>n代表版本号，分为整型和浮点型<br>整型：    大功能版本，  如v1、v2、v3 …<br>浮点型：  补充功能版本， 如v1.1、v1.2、v2.1、v2.2 …</li>
+<li>对于一个 API 或服务，应在生产中最多保留 3 个最详细的版本</li>
+</ol>
+<h1 id="四、路径规则"><a href="#四、路径规则" class="headerlink" title="四、路径规则"></a>四、路径规则</h1><p>路径又称”终点”（end point），表示API的具体网址。</p>
+<ol>
+<li>在RESTful架构中，每个网址代表一种资源(resource),所以网址中不能有动词，只能有名词。<br> 【所用的名词往往与数据库的表格名对应】</li>
+<li>数据库中的表一般都是同种记录的”集合”(collection),所以API中的名词也应该使用复数。</li>
+</ol>
+<p>例子: <a href="https://api.example.com/v1/products" target="_blank" rel="noopener">https://api.example.com/v1/products</a><br>      <a href="https://api.example.com/v1/users" target="_blank" rel="noopener">https://api.example.com/v1/users</a><br>      <a href="https://api.example.com/v1/employees" target="_blank" rel="noopener">https://api.example.com/v1/employees</a></p>
+<h1 id="五、请求方式"><a href="#五、请求方式" class="headerlink" title="五、请求方式"></a>五、请求方式</h1><p>GET（SELECT）：    从服务器取出资源（一项或多项）。<br>POST（CREATE）：   在服务器新建一个资源。<br>PUT（UPDATE）：    在服务器更新资源（客户端提供改变后的完整资源）。<br>DELETE（DELETE）： 从服务器删除资源。</p>
+<p>例子：<br>GET    /v1/products      获取所有商品<br>GET    /v1/products/ID   获取某个指定商品的信息<br>POST   /v1/products      新建一个商品<br>PUT    /v1/products/ID   更新某个指定商品的信息<br>DELETE /v1/products/ID   删除某个商品,更合理的设计详见【9、非RESTful API的需求】<br>GET    /v1/products/ID/purchases      列出某个指定商品的所有投资者<br>GET    /v1/products/ID/purchases/ID   获取某个指定商品的指定投资者信息</p>
+<h1 id="六、过滤信息"><a href="#六、过滤信息" class="headerlink" title="六、过滤信息"></a>六、过滤信息</h1><p>若记录数量很多，服务器不可能返回全部记录给用户。<br>API应该提供分页参数及其它筛选参数，过滤返回结果。</p>
+<p>/v1/products?page=1&amp;pageSize=20     指定第几页，以及每页的记录数。<br>/v1/products?sortBy=name&amp;order=asc  指定返回结果按照哪个属性排序，以及排序顺序。</p>
+<h1 id="七、传入参数"><a href="#七、传入参数" class="headerlink" title="七、传入参数"></a>七、传入参数</h1><p>传入参数分为4种类型：</p>
+<ol>
+<li>cookie：         一般用于OAuth认证</li>
+<li>request header： 一般用于OAuth认证</li>
+<li>请求body数据：</li>
+<li>地址栏参数：<br> 1）restful 地址栏参数 /v1/products/ID ID为产品编号，获取产品编号为ID的信息<br> 2）get方式的查询字段 见【六、过滤信息】</li>
+</ol>
+<h1 id="八、公共参数"><a href="#八、公共参数" class="headerlink" title="八、公共参数"></a>八、公共参数</h1><h2 id="1-APP-端请求"><a href="#1-APP-端请求" class="headerlink" title="1.APP 端请求"></a>1.APP 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>network</td>
+<td>网络</td>
+<td>WIFI、4G</td>
+</tr>
+<tr>
+<td>operator</td>
+<td>运营商</td>
+<td>中国联通/移动</td>
+</tr>
+<tr>
+<td>platform</td>
+<td>平台</td>
+<td>iOS、Android</td>
+</tr>
+<tr>
+<td>system</td>
+<td>系统</td>
+<td>ios 13.3、android 9</td>
+</tr>
+<tr>
+<td>device</td>
+<td>设备型号</td>
+<td>iPhone XR、小米9</td>
+</tr>
+<tr>
+<td>udid</td>
+<td>设备唯</td>
+<td>标示</td>
+</tr>
+<tr>
+<td>apiVersion</td>
+<td>API 版本号</td>
+<td>v1.1、v1.2</td>
+</tr>
+</tbody></table>
+<h2 id="2-WEB-端请求"><a href="#2-WEB-端请求" class="headerlink" title="2.WEB 端请求"></a>2.WEB 端请求</h2><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+<th>备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>appKey</td>
+<td>授权Key</td>
+<td>字符串</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>[info] 调用方需向服务方申请 appKey（请求时使用） 和 secretKey（加密时使用）。</p>
+</blockquote>
+<h1 id="九、响应参数"><a href="#九、响应参数" class="headerlink" title="九、响应参数"></a>九、响应参数</h1><p>【response】：</p>
+<hr>
+<pre><code class="json">{
+   status: 200,               // 详见【status】
+   data: {
+      code: 1,                // 详见【code】
+      data: {} || [],         // 数据
+      message: &#39;成功&#39;,        // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+      sysMessage: &#39;success&#39;   // 存放响应信息提示,调试使用,中英文都行
+      ...                     // 其它参数，如 total【总记录数】等
+   },
+   msg: &#39;成功&#39;,            // 存放响应信息提示,显示给客户端用户【须语义化中文提示】
+   sysMsg: &#39;success&#39;       // 存放响应信息提示,调试使用,中英文都行
+}</code></pre>
+<hr>
+<p>【status】:</p>
+<p>200：OK<br>400：Bad Request<br>401：Unauthorized<br>403：Forbidden<br>404：Not Found<br>500：Internal Server Error</p>
+<p>【code】:</p>
+<p>1：获取数据成功 | 操作成功<br>0：获取数据失败 | 操作失败</p>
+<hr>
+<p> 若有分页数据返回的，格式如下：</p>
+<pre><code class="json">{
+    &quot;code&quot;: 1,
+    &quot;showMsg&quot;: &quot;success&quot;,
+    &quot;errorMsg&quot;: &quot;&quot;,
+    &quot;data&quot;: {
+         &quot;list&quot;: [],
+         &quot;pagination&quot;: {
+             &quot;total&quot;: 100,
+             &quot;currentPage&quot;: 1,
+             &quot;prePageCount&quot;: 10
+         }
+     }
+}</code></pre>
+<h1 id="十、非RESTful-API的需求"><a href="#十、非RESTful-API的需求" class="headerlink" title="十、非RESTful API的需求"></a>十、非RESTful API的需求</h1><ol>
+<li>实际业务开展过程中，可能会出现各种的api不是简单的restful 规范能实现的。</li>
+<li>需要有一些api突破restful规范原则。</li>
+<li>特别是移动互联网的api设计，更需要有一些特定的api来优化数据请求的交互。<br> 1)、删除单个 | 批量删除  ： DELETE  /v1/product      body参数{ids：[]}<br> 2)、页面级API           :  把当前页面中需要用到的所有数据通过一个接口一次性返回全部数据</li>
+</ol>
+<h1 id="十一、一致性原则"><a href="#十一、一致性原则" class="headerlink" title="十一、一致性原则"></a>十一、一致性原则</h1><ol>
+<li>前端需要哪些字段，API接口应该返回哪些字段，字段不多也不少。</li>
+<li>更新功能尽量做到：初次返回的原始数据参数与提交更新的数据参数结构一致。</li>
+<li>时间参数，尽量以时间戳13位传递。</li>
+<li>其它参数【待更新】</li>
+</ol>
+<h1 id="十二、接口文档"><a href="#十二、接口文档" class="headerlink" title="十二、接口文档"></a>十二、接口文档</h1><ol>
+<li>尽量采用自动化接口文档，可以做到在线测试，同步更新。</li>
+<li>应包含：接口BASE地址、接口版本、接口模块分类等。</li>
+<li>每个接口应包含：<br>接口地址：不包含接口BASE地址。<br>请求方式: get、post、put、delete等。<br>请求参数：数据格式【默认JSON、可选form data】、数据类型、是否必填、中文描述。<br>响应参数：类型、中文描述。</li>
+</ol>
+<h1 id="十三、参考资料"><a href="#十三、参考资料" class="headerlink" title="十三、参考资料"></a>十三、参考资料</h1><ol>
+<li><a href="https://my.oschina.net/qqlet/blog/1922038" target="_blank" rel="noopener">https://my.oschina.net/qqlet/blog/1922038</a></li>
+<li><a href="https://juejin.im/post/5afee0e86fb9a07ab379b371" target="_blank" rel="noopener">https://juejin.im/post/5afee0e86fb9a07ab379b371</a></li>
+<li><a href="https://www.jianshu.com/p/3f8953f73a79" target="_blank" rel="noopener">https://www.jianshu.com/p/3f8953f73a79</a></li>
+</ol>
 ]]></content>
       <categories>
-        <category>工具</category>
+        <category>其他</category>
       </categories>
       <tags>
-        <tag>SQL</tag>
+        <tag>规范</tag>
       </tags>
   </entry>
   <entry>
@@ -565,6 +544,91 @@ friendslinks:
       </tags>
   </entry>
   <entry>
+    <title>PowerDesigner设计CDM类继承关系</title>
+    <url>/2020/04/18/PowerDesigner%E8%AE%BE%E8%AE%A1CDM%E7%B1%BB%E7%BB%A7%E6%89%BF%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<h2 id="创建CDM"><a href="#创建CDM" class="headerlink" title="创建CDM"></a>创建CDM</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n1.png" alt=""></p>
+<h2 id="CDM类继承关系"><a href="#CDM类继承关系" class="headerlink" title="CDM类继承关系"></a>CDM类继承关系</h2><p>Concrete Table Inheritance(具体表继承)<br>Single Table Inheritance（单表继承）<br>Class Table Inheritance （类表继承）</p>
+ <a id="more"></a> 
+
+
+
+<h2 id="建立继承关系"><a href="#建立继承关系" class="headerlink" title="建立继承关系"></a>建立继承关系</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n2.png" alt=""></p>
+<h2 id="配置生成PDM的方式"><a href="#配置生成PDM的方式" class="headerlink" title="配置生成PDM的方式"></a>配置生成PDM的方式</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n3.png" alt=""></p>
+<h2 id="生成PDM-映射成数据库表"><a href="#生成PDM-映射成数据库表" class="headerlink" title="生成PDM(映射成数据库表)"></a>生成PDM(映射成数据库表)</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n4.png" alt=""></p>
+<h2 id="查看生成结果"><a href="#查看生成结果" class="headerlink" title="查看生成结果"></a>查看生成结果</h2><p><img src="https://blog.zzonn.com/images/1c2ev34b1d95n5.png" alt=""></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Redis的七种数据类型</title>
+    <url>/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
+    <content><![CDATA[<h3 id="字符串（string）类型"><a href="#字符串（string）类型" class="headerlink" title="字符串（string）类型"></a>字符串（string）类型</h3><p>Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：</p>
+<ul>
+<li>int：用于能够使用64位有符号整数表示的字符串；</li>
+<li>embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；</li>
+<li>raw：用于长度大于44字节的字符串。</li>
+</ul>
+<p>可以采用OBJECT ENCODING来查看编码。</p>
+<a id="more"></a>
+
+<h3 id="列表（list）类型"><a href="#列表（list）类型" class="headerlink" title="列表（list）类型"></a>列表（list）类型</h3><p>Redis中的列表与双向链表类似</p>
+<p>LPUSH左端插入，RPUSH右端插入，LINSERT某键之前或之后插入。</p>
+<p>向一个不存在的键中插入元素，Redis会先创建一个空列表并将其与键关联；</p>
+<p>也不需要删除值为空列表的键，Redis会自动回收这种键。</p>
+<p>LINDEX获取指定索引处的元素，LRANGE获取一个范围内的元素。</p>
+<p>列表的索引从左到右指定为0～N-1；从右到左指定为-1～-N。</p>
+<p>因此，获取整个列表就是0～~1（例：LRANGE key 0 -1 就是获取键为key的整个列表）。</p>
+<p>LSET设置列表中指定索引位置处元素的值。</p>
+<p>LPOP从列表左端移除第一个元素，RPOP从列表右端移除第一个元素。对不存在的键使用此命令时，返回nil</p>
+<p>对应的阻塞版本为：BLPOP和BRPOP。当列表为空时，会将客户端阻塞。</p>
+<p>可以设置一个以秒为单位的超时时间，超时时间为0时，表示永久等待。（此特性在任务调度中非常有用）</p>
+<p>Redis在内部使用quicklist存储列表对象，下列配置选项可以调整列表对象的存储逻辑：</p>
+<ul>
+<li>list-max-ziplist-size：一个列表条目中一个内部节点的最大大小。</li>
+<li>list-compress-depth：列表压缩策略（列表两端不被压缩的节点个数，当列表很长且最可能被访问的元素在两端，用此参数精确地进行调优可以实现在压缩比和其它因素之间的平衡）。</li>
+</ul>
+<h3 id="哈希（hash）类型"><a href="#哈希（hash）类型" class="headerlink" title="哈希（hash）类型"></a>哈希（hash）类型</h3><p>哈希表示字段和值之间的映射关系，与某些语言中字典类型类似。</p>
+<p>与列表（list）类型类似，添加字段前无需先初始化一个空的哈希，变为空时Redis会自动将其删除。</p>
+<p>HDEL从哈希中删除字段。</p>
+<p>HGETALL获取一个哈希中的所有字段和值，不建议对数量巨大的哈希使用此命令。（一个哈希最多能够容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B32%7D" alt="2^{32}">-1字段，如果一个哈希字段非常多，执行HGETALL时很可能会阻塞Redis服务器，这种情况下通常使用HSCAN来增量地获取所有字段和值）</p>
+<p>Redis内部使用两种编码来存储哈希对象：</p>
+<ul>
+<li>ziplist：对于那些长度小于配置中hash-max-ziplist-entries选项配置的值（默认为512），且所有元素大小都小于配置中hash-max-ziplist-value选项配置的值（默认为64字节）的哈希，采用此编码。（ziplist对于较小的哈希而言可以节省占用空间）</li>
+<li>hashtable：当ziplist不适用时采用的默认编码。</li>
+</ul>
+<h3 id="集合（set）类型"><a href="#集合（set）类型" class="headerlink" title="集合（set）类型"></a>集合（set）类型</h3><p>由唯一、无序对象组成的集合(collection)。</p>
+<p>它经常用于测试某个成员是否在集合中、重复项删除和集合运算(求并、交、差集)。</p>
+<p>SISMEMBER测试一个元素是否位于集合中，SREM中集合中删除元素，SCARD获取集合中成员的数量。</p>
+<p>一个集合中最多可以容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B23%7D" alt="2^{23}">-1个成员。</p>
+<p>SMEMBERS获取集合中所有元素，成员很多情况下使用可能会阻塞服务器，此时应该使用SSCAN。</p>
+<p>Redis内部两种编码方式来存储集合对象：</p>
+<ul>
+<li>intset：对于那些元素都是整数且元素个数小于配置中set-max-intset-entries选项设置的值（默认12）的集合，对于较小的集合可以节省占用空间。</li>
+<li>hashtable：intset不适用时的默认编码。</li>
+</ul>
+<h3 id="有序集合（sorted-set）类型"><a href="#有序集合（sorted-set）类型" class="headerlink" title="有序集合（sorted set）类型"></a>有序集合（sorted set）类型</h3><p>集合中每个元素都有一个可以用于排序的权重，并且可以按照顺序从集合中获取元素。</p>
+<h3 id="唯一计数（HyperLogLog）类型"><a href="#唯一计数（HyperLogLog）类型" class="headerlink" title="唯一计数（HyperLogLog）类型"></a>唯一计数（HyperLogLog）类型</h3><p>采用集合来进行唯一计数时，当数据量达到上千万就需要考虑内存消耗和性能下降的问题了。</p>
+<p>如果不需要获取数据集的内容，而只是想得到不同值的个数，这时候就使用HyperLogLog类型最好了。</p>
+<p>PFCOUNT获取数量</p>
+<p>优势在于能够使用固定数量的内存（每个键只需占用12KB就可以计算最多2^64个不同元素的基数）和时间复杂度（每个键O(1)）进行唯一计数。不过由于HLL算法返回的基数可能不准确（标准差小于1%），因此在决定是否使用HLL时需要进行权衡。</p>
+<h3 id="地理位置（Geo）类型"><a href="#地理位置（Geo）类型" class="headerlink" title="地理位置（Geo）类型"></a>地理位置（Geo）类型</h3><p>GEORADIUS获取指定坐标指定距离内的地点成员；</p>
+<p>GEODIST获取两点之间的距离；</p>
+<p>GEORADIUSBYMEMBER获取指定成员指定距离内的其他成员</p>
+<p>Geo集合实际上被存储为一个有序集合，因此有序集合支持的命令都可以用于Geo数据类型。</p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis启动和停止(Ubuntu)</title>
     <url>/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/</url>
     <content><![CDATA[<h2 id="版本：Ubuntu-18-04-1，Redis-4-0-11"><a href="#版本：Ubuntu-18-04-1，Redis-4-0-11" class="headerlink" title="版本：Ubuntu 18.04.1，Redis 4.0.11"></a><strong>版本：Ubuntu 18.04.1，Redis 4.0.11</strong></h2><h3 id="1-转到Redis目录下"><a href="#1-转到Redis目录下" class="headerlink" title="1.转到Redis目录下"></a>1.转到Redis目录下</h3><pre><code>$ cd /redis</code></pre><h3 id="2-使用默认配置启动"><a href="#2-使用默认配置启动" class="headerlink" title="2.使用默认配置启动"></a>2.使用默认配置启动</h3><pre><code>$  bin/redis-server</code></pre><p>下图表示启动成功</p>
@@ -669,117 +733,6 @@ friendslinks:
 <p>与Redis事务类似，也必须注意Lua脚本的执行时间。在执行Lua脚本期间，Redis服务器不能处理任何其他命令。因此，我们必须确保Lua脚本可以尽快地执行完。</p>
 <p>在默认情况下，一旦Lua脚本的执行时间超过了Lua脚本运行时长限制（默认为5秒，在Redis配置文件中的lua-time-limit选项可以修改默认值），我们就可以调用SCRIPT KILL来将其终止。但是，如果此正在运行的脚本中已经调用了任何写人相关的命令，那么我们就不得不采用无持久化的SHUTDOWN NOSAVE命令来关闭Redis服务器以中止此脚本的运行。如果某个Lua脚本的执行时间小于Lua脚本运行时长限制，SCRIPT KILL命令则会被阻塞，直到脚本执行超时。</p>
 <p>对于Lua脚本的管理而言，我们可以通过调用SCRIPT EXISTS命令并传人脚本的SHA-1标识来判断一个脚本是否已存在并注册。最后要注意的一点是，因为脚本只是被保存在Redis服务器进程的脚本缓存中，而脚本缓存在重新启动时将会消失，所以在重新启动Redis服务器之后必须重新加载Lua脚本。</p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Redis的七种数据类型</title>
-    <url>/2018/10/08/Redis%E7%9A%84%E4%B8%83%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</url>
-    <content><![CDATA[<h3 id="字符串（string）类型"><a href="#字符串（string）类型" class="headerlink" title="字符串（string）类型"></a>字符串（string）类型</h3><p>Redis使用了三种不同的编码方式来存储字符串对象，并会根据每个字符串值自动决定所使用的编码方式：</p>
-<ul>
-<li>int：用于能够使用64位有符号整数表示的字符串；</li>
-<li>embstr：用于长度小于等于44字节（在Redis3.x版本中是39字节）的字符串；</li>
-<li>raw：用于长度大于44字节的字符串。</li>
-</ul>
-<p>可以采用OBJECT ENCODING来查看编码。</p>
-<a id="more"></a>
-
-<h3 id="列表（list）类型"><a href="#列表（list）类型" class="headerlink" title="列表（list）类型"></a>列表（list）类型</h3><p>Redis中的列表与双向链表类似</p>
-<p>LPUSH左端插入，RPUSH右端插入，LINSERT某键之前或之后插入。</p>
-<p>向一个不存在的键中插入元素，Redis会先创建一个空列表并将其与键关联；</p>
-<p>也不需要删除值为空列表的键，Redis会自动回收这种键。</p>
-<p>LINDEX获取指定索引处的元素，LRANGE获取一个范围内的元素。</p>
-<p>列表的索引从左到右指定为0～N-1；从右到左指定为-1～-N。</p>
-<p>因此，获取整个列表就是0～~1（例：LRANGE key 0 -1 就是获取键为key的整个列表）。</p>
-<p>LSET设置列表中指定索引位置处元素的值。</p>
-<p>LPOP从列表左端移除第一个元素，RPOP从列表右端移除第一个元素。对不存在的键使用此命令时，返回nil</p>
-<p>对应的阻塞版本为：BLPOP和BRPOP。当列表为空时，会将客户端阻塞。</p>
-<p>可以设置一个以秒为单位的超时时间，超时时间为0时，表示永久等待。（此特性在任务调度中非常有用）</p>
-<p>Redis在内部使用quicklist存储列表对象，下列配置选项可以调整列表对象的存储逻辑：</p>
-<ul>
-<li>list-max-ziplist-size：一个列表条目中一个内部节点的最大大小。</li>
-<li>list-compress-depth：列表压缩策略（列表两端不被压缩的节点个数，当列表很长且最可能被访问的元素在两端，用此参数精确地进行调优可以实现在压缩比和其它因素之间的平衡）。</li>
-</ul>
-<h3 id="哈希（hash）类型"><a href="#哈希（hash）类型" class="headerlink" title="哈希（hash）类型"></a>哈希（hash）类型</h3><p>哈希表示字段和值之间的映射关系，与某些语言中字典类型类似。</p>
-<p>与列表（list）类型类似，添加字段前无需先初始化一个空的哈希，变为空时Redis会自动将其删除。</p>
-<p>HDEL从哈希中删除字段。</p>
-<p>HGETALL获取一个哈希中的所有字段和值，不建议对数量巨大的哈希使用此命令。（一个哈希最多能够容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B32%7D" alt="2^{32}">-1字段，如果一个哈希字段非常多，执行HGETALL时很可能会阻塞Redis服务器，这种情况下通常使用HSCAN来增量地获取所有字段和值）</p>
-<p>Redis内部使用两种编码来存储哈希对象：</p>
-<ul>
-<li>ziplist：对于那些长度小于配置中hash-max-ziplist-entries选项配置的值（默认为512），且所有元素大小都小于配置中hash-max-ziplist-value选项配置的值（默认为64字节）的哈希，采用此编码。（ziplist对于较小的哈希而言可以节省占用空间）</li>
-<li>hashtable：当ziplist不适用时采用的默认编码。</li>
-</ul>
-<h3 id="集合（set）类型"><a href="#集合（set）类型" class="headerlink" title="集合（set）类型"></a>集合（set）类型</h3><p>由唯一、无序对象组成的集合(collection)。</p>
-<p>它经常用于测试某个成员是否在集合中、重复项删除和集合运算(求并、交、差集)。</p>
-<p>SISMEMBER测试一个元素是否位于集合中，SREM中集合中删除元素，SCARD获取集合中成员的数量。</p>
-<p>一个集合中最多可以容纳<img src="https://private.codecogs.com/gif.latex?2%5E%7B23%7D" alt="2^{23}">-1个成员。</p>
-<p>SMEMBERS获取集合中所有元素，成员很多情况下使用可能会阻塞服务器，此时应该使用SSCAN。</p>
-<p>Redis内部两种编码方式来存储集合对象：</p>
-<ul>
-<li>intset：对于那些元素都是整数且元素个数小于配置中set-max-intset-entries选项设置的值（默认12）的集合，对于较小的集合可以节省占用空间。</li>
-<li>hashtable：intset不适用时的默认编码。</li>
-</ul>
-<h3 id="有序集合（sorted-set）类型"><a href="#有序集合（sorted-set）类型" class="headerlink" title="有序集合（sorted set）类型"></a>有序集合（sorted set）类型</h3><p>集合中每个元素都有一个可以用于排序的权重，并且可以按照顺序从集合中获取元素。</p>
-<h3 id="唯一计数（HyperLogLog）类型"><a href="#唯一计数（HyperLogLog）类型" class="headerlink" title="唯一计数（HyperLogLog）类型"></a>唯一计数（HyperLogLog）类型</h3><p>采用集合来进行唯一计数时，当数据量达到上千万就需要考虑内存消耗和性能下降的问题了。</p>
-<p>如果不需要获取数据集的内容，而只是想得到不同值的个数，这时候就使用HyperLogLog类型最好了。</p>
-<p>PFCOUNT获取数量</p>
-<p>优势在于能够使用固定数量的内存（每个键只需占用12KB就可以计算最多2^64个不同元素的基数）和时间复杂度（每个键O(1)）进行唯一计数。不过由于HLL算法返回的基数可能不准确（标准差小于1%），因此在决定是否使用HLL时需要进行权衡。</p>
-<h3 id="地理位置（Geo）类型"><a href="#地理位置（Geo）类型" class="headerlink" title="地理位置（Geo）类型"></a>地理位置（Geo）类型</h3><p>GEORADIUS获取指定坐标指定距离内的地点成员；</p>
-<p>GEODIST获取两点之间的距离；</p>
-<p>GEORADIUSBYMEMBER获取指定成员指定距离内的其他成员</p>
-<p>Geo集合实际上被存储为一个有序集合，因此有序集合支持的命令都可以用于Geo数据类型。</p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Redis进行开发</title>
-    <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
-<h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h3><p>还可以用于统计分析的场景。例如，如果想要计算某个功能被使用了多少次，或者想要计算某个API被调用的次数，那么简单地使用INCR命令增加某功能的被点击次数或某API的被调用次数的计数器即可；甚至还可以结合Lua脚本限制公开 API 的请求次数（将 API 的最大请求数限制在每个 IP 地址每秒钟十个之内）。因为所有的Redis命令都是原子的，所以无需担心竞态。基于诸如哈希、有序集合和HyperLoglog等数据类型，还可以构建其他更高级的计数器或统计数据捕获系统。</p>
-<a id="more"></a>
-
-<h3 id="3-排行榜"><a href="#3-排行榜" class="headerlink" title="3.排行榜"></a>3.排行榜</h3><p>利用有序集合（Sorted Set），就可以轻松地实现一个排行榜。例如：可以为投票目标创建一个有序集合并将用户的投票数作为权重。因此，使用ZREVRANGE命令就能够按照投票目标的受欢迎程度返回投票目标的列表。同样的功能也可以在关系数据库中实现，但是SQL查询要比Redis查询慢得多。</p>
-<h3 id="4-队列"><a href="#4-队列" class="headerlink" title="4.队列"></a>4.队列</h3><p>利用列表（List）的PUSH/POP命令（阻塞类型）就能实现任务队列。例如：先使用BLPOP命令从任务列表左端移除并获取第一个任务（没有的时候则阻塞了），相当于获取任务；然后使用RPUSH命令从任务列表右端插入一个新任务，相当于分配任务；此时刚才排队获取任务的客户端就能第一时间拿到新任务。</p>
-<h3 id="5-最新的N个记录"><a href="#5-最新的N个记录" class="headerlink" title="5.最新的N个记录"></a>5.最新的N个记录</h3><p>假设我们想要获取最近新签的10个合同，通常采用一个SQL查询：select top 10 * from contract order by signtime desc</p>
-<p>而采用Redis解决则可以先创建一个列表，新签的合同采用LPUSH命令插入，然后再执行LTRIM命令只保留10个元素。</p>
-<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6.缓存"></a>6.缓存</h3><p>例如：在查询关系数据库之前，我们首先在Redis中查找记录。如果在Redis中找不到记录，则查询关系数据库并将记录放到Redis中。在向关系数据库写入时，我们也同时将记录写入Redis。为了限制缓存的大小，可以对缓存中的记录设置过期时间或应用诸如最近最少使用（LeastRecentlyUsed，LRU）的收回策略。</p>
-<h2 id="二、使用正确的数据类型"><a href="#二、使用正确的数据类型" class="headerlink" title="二、使用正确的数据类型"></a>二、使用正确的数据类型</h2><p>时间-空间的平衡</p>
-<p>例如：10000个用户信息（id，name，sex，age，registertime）</p>
-<p>1.首先存储为字符串类型的键值对，内存消耗4.04M；</p>
-<p>2.改为哈希类型，内存消耗2.29M左右，此时节省了约43%（(4.04-2.29)/4.04）的内存空间；</p>
-<p>3.改为将一个用户信息存储为一个json字符串，内存消耗2.29M，与哈希类型所消耗内存几乎相同（键的数量并没有减少）；</p>
-<p>4.使用Lua脚本，利用msgpack库（<a href="https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；" target="_blank" rel="noopener">https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；</a></p>
-<p>5.</p>
-<p>又例如：计数时可以使用集合、位图或HyperLogLog</p>
-<p>官方一些内存优化的案例：<a href="https://redis.io/topics/memory-optimization" target="_blank" rel="noopener">https://redis.io/topics/memory-optimization</a></p>
-<h2 id="三、使用正确的Redis-API"><a href="#三、使用正确的Redis-API" class="headerlink" title="三、使用正确的Redis API"></a>三、使用正确的Redis API</h2><p>保证性能</p>
-<p>1.尽量将数据操作组合在一起来降低往返延时（RTT），采用管道，采用批量处理的API；</p>
-<p>2.因为Redis是单线程的数据存储服务，所以应该多考虑API的时间复杂度，避免阻塞服务器。</p>
-<h2 id="四、使用C-连接到Redis"><a href="#四、使用C-连接到Redis" class="headerlink" title="四、使用C#连接到Redis"></a>四、使用C#连接到Redis</h2><p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个控制台应用程序</p>
-<p>通过NuGet获取StackExchange.Redis</p>
-<p>简单示例</p>
-<p>。。。后续更新</p>
-<p>使用管道（事务类似）</p>
-<p>。。。后续更新</p>
-<h2 id="五、使用Python连接到Redis"><a href="#五、使用Python连接到Redis" class="headerlink" title="五、使用Python连接到Redis"></a>五、使用Python连接到Redis</h2><p>Python（<a href="https://www.python.org/），我此时使用的是Python3.7.1" target="_blank" rel="noopener">https://www.python.org/），我此时使用的是Python3.7.1</a></p>
-<p>通过PyPI安装redis-py：执行命令pip install redis</p>
-<p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个Python应用程序</p>
-<p>简单示例</p>
-<p>。。。后续更新</p>
-<p>使用管道（事务类似）</p>
-<p>。。。后续更新</p>
-<h2 id="六、使用Redis编写MapReduce作业"><a href="#六、使用Redis编写MapReduce作业" class="headerlink" title="六、使用Redis编写MapReduce作业"></a>六、使用Redis编写MapReduce作业</h2><p> 。。。后续更新</p>
-<h2 id="七、使用Redis编写Spark作业"><a href="#七、使用Redis编写Spark作业" class="headerlink" title="七、使用Redis编写Spark作业"></a>七、使用Redis编写Spark作业</h2><p>。。。后续更新</p>
 ]]></content>
       <categories>
         <category>Redis</category>
@@ -1073,27 +1026,6 @@ select * from cte</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>简单Token验证机制</title>
-    <url>/2020/02/15/%E7%AE%80%E5%8D%95Token%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/</url>
-    <content><![CDATA[<h2 id="登录接口"><a href="#登录接口" class="headerlink" title="登录接口"></a>登录接口</h2><p><img src="https://blog.zzonn.com/images/1586269134119.png" alt="登录认证"></p>
-<a id="more"></a> 
-
-<h2 id="其他接口"><a href="#其他接口" class="headerlink" title="其他接口"></a>其他接口</h2><h4 id="验证token成功"><a href="#验证token成功" class="headerlink" title="验证token成功"></a>验证token成功</h4><p><img src="https://blog.zzonn.com/images/1586269223307.png" alt="验证token成功"></p>
-<h4 id="验证token失败"><a href="#验证token失败" class="headerlink" title="验证token失败"></a>验证token失败</h4><p><img src="https://blog.zzonn.com/images/1586269281641.png" alt="验证token失败"></p>
-<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ol>
-<li>refreshToken过期则要求用户重新登录</li>
-<li>每次使用的时候，更新refreshToken的过期时间</li>
-<li>使用JWT实现无状态Token时，需要尽量缩短Token的有效期，并使refreshToken在服务端有状态（便于控制，注销时可及时作废令牌）</li>
-</ol>
-]]></content>
-      <categories>
-        <category>安全</category>
-      </categories>
-      <tags>
-        <tag>Token</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>数据库设计规范</title>
     <url>/2020/01/15/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1%E8%A7%84%E8%8C%83/</url>
     <content><![CDATA[<h1 id="设计规范"><a href="#设计规范" class="headerlink" title="设计规范"></a>设计规范</h1><p>1.【推荐】字段允许适当冗余，以提高查询性能，但必须考虑数据一致。冗余字段应遵循:</p>
@@ -1230,6 +1162,27 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>规范</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>简单Token验证机制</title>
+    <url>/2020/02/15/%E7%AE%80%E5%8D%95Token%E9%AA%8C%E8%AF%81%E6%9C%BA%E5%88%B6/</url>
+    <content><![CDATA[<h2 id="登录接口"><a href="#登录接口" class="headerlink" title="登录接口"></a>登录接口</h2><p><img src="https://blog.zzonn.com/images/1586269134119.png" alt="登录认证"></p>
+<a id="more"></a> 
+
+<h2 id="其他接口"><a href="#其他接口" class="headerlink" title="其他接口"></a>其他接口</h2><h4 id="验证token成功"><a href="#验证token成功" class="headerlink" title="验证token成功"></a>验证token成功</h4><p><img src="https://blog.zzonn.com/images/1586269223307.png" alt="验证token成功"></p>
+<h4 id="验证token失败"><a href="#验证token失败" class="headerlink" title="验证token失败"></a>验证token失败</h4><p><img src="https://blog.zzonn.com/images/1586269281641.png" alt="验证token失败"></p>
+<h4 id="注："><a href="#注：" class="headerlink" title="注："></a>注：</h4><ol>
+<li>refreshToken过期则要求用户重新登录</li>
+<li>每次使用的时候，更新refreshToken的过期时间</li>
+<li>使用JWT实现无状态Token时，需要尽量缩短Token的有效期，并使refreshToken在服务端有状态（便于控制，注销时可及时作废令牌）</li>
+</ol>
+]]></content>
+      <categories>
+        <category>安全</category>
+      </categories>
+      <tags>
+        <tag>Token</tag>
       </tags>
   </entry>
   <entry>
@@ -1388,6 +1341,53 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>vscode</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用Redis进行开发</title>
+    <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
+<h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h3><p>还可以用于统计分析的场景。例如，如果想要计算某个功能被使用了多少次，或者想要计算某个API被调用的次数，那么简单地使用INCR命令增加某功能的被点击次数或某API的被调用次数的计数器即可；甚至还可以结合Lua脚本限制公开 API 的请求次数（将 API 的最大请求数限制在每个 IP 地址每秒钟十个之内）。因为所有的Redis命令都是原子的，所以无需担心竞态。基于诸如哈希、有序集合和HyperLoglog等数据类型，还可以构建其他更高级的计数器或统计数据捕获系统。</p>
+<a id="more"></a>
+
+<h3 id="3-排行榜"><a href="#3-排行榜" class="headerlink" title="3.排行榜"></a>3.排行榜</h3><p>利用有序集合（Sorted Set），就可以轻松地实现一个排行榜。例如：可以为投票目标创建一个有序集合并将用户的投票数作为权重。因此，使用ZREVRANGE命令就能够按照投票目标的受欢迎程度返回投票目标的列表。同样的功能也可以在关系数据库中实现，但是SQL查询要比Redis查询慢得多。</p>
+<h3 id="4-队列"><a href="#4-队列" class="headerlink" title="4.队列"></a>4.队列</h3><p>利用列表（List）的PUSH/POP命令（阻塞类型）就能实现任务队列。例如：先使用BLPOP命令从任务列表左端移除并获取第一个任务（没有的时候则阻塞了），相当于获取任务；然后使用RPUSH命令从任务列表右端插入一个新任务，相当于分配任务；此时刚才排队获取任务的客户端就能第一时间拿到新任务。</p>
+<h3 id="5-最新的N个记录"><a href="#5-最新的N个记录" class="headerlink" title="5.最新的N个记录"></a>5.最新的N个记录</h3><p>假设我们想要获取最近新签的10个合同，通常采用一个SQL查询：select top 10 * from contract order by signtime desc</p>
+<p>而采用Redis解决则可以先创建一个列表，新签的合同采用LPUSH命令插入，然后再执行LTRIM命令只保留10个元素。</p>
+<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6.缓存"></a>6.缓存</h3><p>例如：在查询关系数据库之前，我们首先在Redis中查找记录。如果在Redis中找不到记录，则查询关系数据库并将记录放到Redis中。在向关系数据库写入时，我们也同时将记录写入Redis。为了限制缓存的大小，可以对缓存中的记录设置过期时间或应用诸如最近最少使用（LeastRecentlyUsed，LRU）的收回策略。</p>
+<h2 id="二、使用正确的数据类型"><a href="#二、使用正确的数据类型" class="headerlink" title="二、使用正确的数据类型"></a>二、使用正确的数据类型</h2><p>时间-空间的平衡</p>
+<p>例如：10000个用户信息（id，name，sex，age，registertime）</p>
+<p>1.首先存储为字符串类型的键值对，内存消耗4.04M；</p>
+<p>2.改为哈希类型，内存消耗2.29M左右，此时节省了约43%（(4.04-2.29)/4.04）的内存空间；</p>
+<p>3.改为将一个用户信息存储为一个json字符串，内存消耗2.29M，与哈希类型所消耗内存几乎相同（键的数量并没有减少）；</p>
+<p>4.使用Lua脚本，利用msgpack库（<a href="https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；" target="_blank" rel="noopener">https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；</a></p>
+<p>5.</p>
+<p>又例如：计数时可以使用集合、位图或HyperLogLog</p>
+<p>官方一些内存优化的案例：<a href="https://redis.io/topics/memory-optimization" target="_blank" rel="noopener">https://redis.io/topics/memory-optimization</a></p>
+<h2 id="三、使用正确的Redis-API"><a href="#三、使用正确的Redis-API" class="headerlink" title="三、使用正确的Redis API"></a>三、使用正确的Redis API</h2><p>保证性能</p>
+<p>1.尽量将数据操作组合在一起来降低往返延时（RTT），采用管道，采用批量处理的API；</p>
+<p>2.因为Redis是单线程的数据存储服务，所以应该多考虑API的时间复杂度，避免阻塞服务器。</p>
+<h2 id="四、使用C-连接到Redis"><a href="#四、使用C-连接到Redis" class="headerlink" title="四、使用C#连接到Redis"></a>四、使用C#连接到Redis</h2><p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个控制台应用程序</p>
+<p>通过NuGet获取StackExchange.Redis</p>
+<p>简单示例</p>
+<p>。。。后续更新</p>
+<p>使用管道（事务类似）</p>
+<p>。。。后续更新</p>
+<h2 id="五、使用Python连接到Redis"><a href="#五、使用Python连接到Redis" class="headerlink" title="五、使用Python连接到Redis"></a>五、使用Python连接到Redis</h2><p>Python（<a href="https://www.python.org/），我此时使用的是Python3.7.1" target="_blank" rel="noopener">https://www.python.org/），我此时使用的是Python3.7.1</a></p>
+<p>通过PyPI安装redis-py：执行命令pip install redis</p>
+<p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个Python应用程序</p>
+<p>简单示例</p>
+<p>。。。后续更新</p>
+<p>使用管道（事务类似）</p>
+<p>。。。后续更新</p>
+<h2 id="六、使用Redis编写MapReduce作业"><a href="#六、使用Redis编写MapReduce作业" class="headerlink" title="六、使用Redis编写MapReduce作业"></a>六、使用Redis编写MapReduce作业</h2><p> 。。。后续更新</p>
+<h2 id="七、使用Redis编写Spark作业"><a href="#七、使用Redis编写Spark作业" class="headerlink" title="七、使用Redis编写Spark作业"></a>七、使用Redis编写Spark作业</h2><p>。。。后续更新</p>
+]]></content>
+      <categories>
+        <category>Redis</category>
+      </categories>
+      <tags>
+        <tag>Redis</tag>
       </tags>
   </entry>
 </search>
