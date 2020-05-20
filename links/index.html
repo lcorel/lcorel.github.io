@@ -415,7 +415,7 @@
                 
 
                     <div class="card">
-                        <img class="ava nofancybox" src="https://yuzhouwan_logo_128x128.ico"/>
+                        <img class="ava nofancybox" src="https://yuzhouwan.com/yuzhouwan_logo_128x128.ico"/>
                         <div class="card-header">
                         <div><a href="https://yuzhouwan.com/" target="_blank"> 宇宙湾</a> <a href="https://yuzhouwan.com/" target="_blank" rel="noopener"><span class="focus-links"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;关注</span></a></div>
                         <div class="info">主要是大数据和人工智能的原创文章</div>
@@ -712,19 +712,6 @@
 
   
 
-
-<script>
-NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
-    new Valine(Object.assign({
-      el         : '#valine-comments',
-      path       : location.pathname,
-    }, {"enable":true,"appId":"IfFLPWezWyHXgKQbu4uDyqP0-gzGzoHsz","appKey":"kzm58JKFshQUbSJ8uDXle255","notify":false,"verify":false,"placeholder":"请输入你的评论内容","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":true,"serverURLs":null}
-    ));
-  }, window.Valine);
-});
-</script>
-
 <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
 
 <script>
@@ -742,6 +729,19 @@ NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
     });
     gitalk.render('gitalk-container');
   }, window.Gitalk);
+});
+</script>
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/valine@1/dist/Valine.min.js', () => {
+    new Valine(Object.assign({
+      el         : '#valine-comments',
+      path       : location.pathname,
+    }, {"enable":true,"appId":"IfFLPWezWyHXgKQbu4uDyqP0-gzGzoHsz","appKey":"kzm58JKFshQUbSJ8uDXle255","notify":false,"verify":false,"placeholder":"请输入你的评论内容","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"language":null,"visitor":false,"comment_count":true,"recordIP":true,"serverURLs":null}
+    ));
+  }, window.Valine);
 });
 </script>
 
