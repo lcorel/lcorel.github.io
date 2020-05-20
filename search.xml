@@ -364,7 +364,7 @@ type: &quot;links&quot;
 
 </code></pre>
 <h3 id="添加友链布局文件"><a href="#添加友链布局文件" class="headerlink" title="添加友链布局文件"></a>添加友链布局文件</h3><p>在 <code>hexo/themes/next/layout</code> 目录下新建 <code>links.njk</code>文件，写入以下代码</p>
-<pre><code class="scss">
+<pre><code class="html">
 {% block content %}
   {######################}
   {### LINKS BLOCK ###}
@@ -534,7 +534,7 @@ friendslinks:
   - nickname: ZZONN     # 昵称
       site: https://blog.zzonn.com/ #友链地址
     avatar: https://blog.zzonn.com/images/avatar2.gif    # 头像地址
-    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我</code></pre><p><code>defaultlinks:</code>呼应的是<code>link.swig</code>文件中 <code>👨‍🎓 跟着大佬走，成为小大佬</code>段落，此处链接写大佬的博客；<br><code>friendslinks:</code>呼应的是<code>link.swig</code>文件中 <code>🍭 五湖四海的朋友们</code>段落，此处链接写朋友的博客。<br>此处内容可以根据自己需要自行修改 </p>
+    info: 提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我</code></pre><p><code>defaultlinks:</code>呼应的是<code>link.njk</code>文件中 <code>👨‍🎓 跟着大佬走，成为小大佬</code>段落，此处链接写大佬的博客；<br><code>friendslinks:</code>呼应的是<code>link.njk</code>文件中 <code>🍭 五湖四海的朋友们</code>段落，此处链接写朋友的博客。<br>此处内容可以根据自己需要自行修改 </p>
 ]]></content>
       <categories>
         <category>博客</category>
