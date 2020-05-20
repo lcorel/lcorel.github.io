@@ -1392,7 +1392,7 @@ select * from cte</code></pre>
   </entry>
   <entry>
     <title>.NetCore最具代表性的几个项目</title>
-    <url>/2020/05/20/NetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
+    <url>/2020/05/20/DotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
     <content><![CDATA[<p>近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目.</p>
 <h2 id="Ocelot"><a href="#Ocelot" class="headerlink" title="Ocelot"></a>Ocelot</h2><p>Ocelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json配置文件即可使用，非常方便。Ocelot是系统中对外暴露的一个请求入口，所有外部接口都必须通过这个网关才能向下游API发出请求，就如地铁中的安检系统，所有人都必须经过安检才能乘坐地铁。</p>
 <p><a href="https://github.com/ThreeMammals/Ocelot" target="_blank" rel="noopener">https://github.com/ThreeMammals/Ocelot</a></p>
