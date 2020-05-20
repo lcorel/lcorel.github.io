@@ -34,7 +34,8 @@ if (screen.width >= 768) {
 		initWidget({
 			waifuPath: live2d_path + "waifu-tips.json",
 			//apiPath: "https://live2d.fghrsh.net/api/",
-			apiPath: "https://api.zdl.one/live2d/"
+			//apiPath: "https://api.zdl.one/live2d/"
+			apiPath: "http://blog.zzonn.com:9010/"
 		});
 	});
 }
