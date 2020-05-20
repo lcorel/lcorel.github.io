@@ -742,6 +742,21 @@ friendslinks:
       </tags>
   </entry>
   <entry>
+    <title>Windows错误代码对应解决方案</title>
+    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
+<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
+<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
+</ol>
+ <a id="more"></a> ]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用Redis进行开发</title>
     <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
     <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
@@ -819,86 +834,6 @@ redis-check-aof  redis-cli        redis-server</code></pre><h3 id="11-这样就�
       </categories>
       <tags>
         <tag>Redis</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Windows错误代码对应解决方案</title>
-    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
-<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
-<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
-</ol>
- <a id="more"></a> ]]></content>
-      <categories>
-        <category>Windows</category>
-      </categories>
-      <tags>
-        <tag>Windows</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常用SQL备忘</title>
-    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
-    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
-<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
-<p>  结果：2.18</p>
-<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
-<p>结果：2.18</p>
-<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
-<p>结果：2.180000</p>
- <a id="more"></a> 
-
-<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
-<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
-where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
-<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
-(
-    select Id,Pid,Name from 表名
-    where Id = 1
-    union all
-    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
-    on c.Id = t.Pid
-)
-select * from cte</code></pre>
-]]></content>
-      <categories>
-        <category>SQL</category>
-      </categories>
-      <tags>
-        <tag>SQL</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>开源工具推荐：Postwoman</title>
-    <url>/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/</url>
-    <content><![CDATA[<h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
-<li><p>快速：实时发送请求并获取/复制响应</p>
-</li>
-<li><p>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</p>
-</li>
-<li><p>支持验证</p>
-</li>
-<li><p>实时，发送请求即可获取响应。</p>
- <a id="more"></a> 
-
-</li>
-</ul>
-<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
-<ul>
-<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
-<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
-<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
-<li>支持身份验证，具有更高的安全性</li>
-<li>实时，发送请求即可获取响应。</li>
-<li>轻松，快速地创建和共享动态API文档</li>
-</ul>
-<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>接口</tag>
       </tags>
   </entry>
   <entry>
@@ -981,25 +916,68 @@ select * from cte</code></pre>
       </tags>
   </entry>
   <entry>
-    <title>搭建NuGet服务并使用</title>
-    <url>/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
-<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
-<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
-<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
+    <title>常用SQL备忘</title>
+    <url>/2020/01/22/%E5%B8%B8%E7%94%A8SQL%E5%A4%87%E5%BF%98/</url>
+    <content><![CDATA[<h1 id="保留两位小数"><a href="#保留两位小数" class="headerlink" title="保留两位小数"></a>保留两位小数</h1><p><strong>sql server:</strong></p>
+<pre><code class="sql">select **Convert**(decimal(18,2),2.176544)  </code></pre>
+<p>  结果：2.18</p>
+<pre><code class="sql">select **CAST**(2.176544 as decimal(18,2))</code></pre>
+<p>结果：2.18</p>
+<pre><code class="sql">select **Round**(2.176544,2)　　</code></pre>
+<p>结果：2.180000</p>
  <a id="more"></a> 
 
-<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
-<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
-<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
-<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
-<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
+<p><strong>oracle:</strong><br>select trunc(1.23856789,2)<br>round(m,n) 四舍五入<br>trunc(m,n) 不四舍五入，直接丢弃。</p>
+<h1 id="查询重复数据"><a href="#查询重复数据" class="headerlink" title="查询重复数据"></a>查询重复数据</h1><pre><code class="sql">select * from 表名 a 
+where exists (select 1 from 表名 where 字段1=a.字段1 and 字段2=a.字段2 group by 字段1,字段2 having count(1)&gt;1)</code></pre>
+<h1 id="递归查询数据"><a href="#递归查询数据" class="headerlink" title="递归查询数据"></a>递归查询数据</h1><pre><code class="sql">with cte as
+(
+    select Id,Pid,Name from 表名
+    where Id = 1
+    union all
+    select t.Id,t.Pid,t.Name from cte c inner join 表名 t
+    on c.Id = t.Pid
+)
+select * from cte</code></pre>
+]]></content>
+      <categories>
+        <category>SQL</category>
+      </categories>
+      <tags>
+        <tag>SQL</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>开源工具推荐：Postwoman</title>
+    <url>/2020/01/27/%E5%BC%80%E6%BA%90%E5%B7%A5%E5%85%B7%E6%8E%A8%E8%8D%90%EF%BC%9APostwoman/</url>
+    <content><![CDATA[<h3 id="Postwoman主要特性如下："><a href="#Postwoman主要特性如下：" class="headerlink" title="Postwoman主要特性如下："></a>Postwoman主要特性如下：</h3><ul>
+<li><p>快速：实时发送请求并获取/复制响应</p>
+</li>
+<li><p>支持 GET, HEAD, POST, PUT, DELETE, OPTIONS, PATCH 等方法；</p>
+</li>
+<li><p>支持验证</p>
+</li>
+<li><p>实时，发送请求即可获取响应。</p>
+ <a id="more"></a> 
+
+</li>
+</ul>
+<p>除此之外，随着开发的不断深入，Postwoman又添加了许多新特性，从而大大提高了可扩展性：</p>
+<ul>
+<li>自定义选项：<br>选择主题：Kinda Dark（默认），Clear White，Just Black和System主题<br>选择强调颜色：绿色（默认），黄色，粉红色，红色，紫色，橙色，青色和蓝色<br>切换彩色标题</li>
+<li>PWA：<br>与Service Workers同时加载<br>离线支持<br>低RAM /内存和CPU使用率<br>添加到主屏幕（页脚中的按钮）<br>桌面PWA支持（页脚中的按钮）</li>
+<li>WebSocket：通过单个TCP连接建立全双工通信通道。</li>
+<li>支持身份验证，具有更高的安全性</li>
+<li>实时，发送请求即可获取响应。</li>
+<li>轻松，快速地创建和共享动态API文档</li>
+</ul>
+<h3 id="最后附上PostWoman相关的网站地址："><a href="#最后附上PostWoman相关的网站地址：" class="headerlink" title="最后附上PostWoman相关的网站地址："></a>最后附上PostWoman相关的网站地址：</h3><p>GitHub :<a href="https://github.com/liyasthomas/postwoman" target="_blank" rel="noopener">https://github.com/liyasthomas/postwoman</a><br>PostWoman官网：<a href="https://postwoman.launchaco.com/" target="_blank" rel="noopener">https://postwoman.launchaco.com/</a><br>PostWoman在线体验地址：<a href="https://postwoman.io/" target="_blank" rel="noopener">https://postwoman.io/</a></p>
 ]]></content>
       <categories>
         <category>工具</category>
       </categories>
       <tags>
-        <tag>服务</tag>
+        <tag>接口</tag>
       </tags>
   </entry>
   <entry>
@@ -1053,6 +1031,28 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>微服务</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>搭建NuGet服务并使用</title>
+    <url>/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
+<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
+<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
+<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
+ <a id="more"></a> 
+
+<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
+<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
+<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
+<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
+<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>服务</tag>
       </tags>
   </entry>
   <entry>
