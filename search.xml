@@ -629,6 +629,21 @@ friendslinks:
       </tags>
   </entry>
   <entry>
+    <title>Windows错误代码对应解决方案</title>
+    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
+    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
+<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
+<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
+</ol>
+ <a id="more"></a> ]]></content>
+      <categories>
+        <category>Windows</category>
+      </categories>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Redis启动和停止(Ubuntu)</title>
     <url>/2018/10/05/Redis%E5%90%AF%E5%8A%A8%E5%92%8C%E5%81%9C%E6%AD%A2(Ubuntu)/</url>
     <content><![CDATA[<h2 id="版本：Ubuntu-18-04-1，Redis-4-0-11"><a href="#版本：Ubuntu-18-04-1，Redis-4-0-11" class="headerlink" title="版本：Ubuntu 18.04.1，Redis 4.0.11"></a><strong>版本：Ubuntu 18.04.1，Redis 4.0.11</strong></h2><h3 id="1-转到Redis目录下"><a href="#1-转到Redis目录下" class="headerlink" title="1.转到Redis目录下"></a>1.转到Redis目录下</h3><pre><code>$ cd /redis</code></pre><h3 id="2-使用默认配置启动"><a href="#2-使用默认配置启动" class="headerlink" title="2.使用默认配置启动"></a>2.使用默认配置启动</h3><pre><code>$  bin/redis-server</code></pre><p>下图表示启动成功</p>
@@ -742,18 +757,50 @@ friendslinks:
       </tags>
   </entry>
   <entry>
-    <title>Windows错误代码对应解决方案</title>
-    <url>/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/</url>
-    <content><![CDATA[<h1 id="错误代码0x80131500"><a href="#错误代码0x80131500" class="headerlink" title="错误代码0x80131500"></a>错误代码0x80131500</h1><ol>
-<li>打开“运行”输入 inetcpl.cpl （“WINDOWS”+“R”键，输入 inetcpl.cpl亦可）</li>
-<li>点开高级往下拉，勾上”使用TLS 1.2”选项，或者点还原高级设置。</li>
-</ol>
- <a id="more"></a> ]]></content>
+    <title>使用Redis进行开发</title>
+    <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
+    <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
+<h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h3><p>还可以用于统计分析的场景。例如，如果想要计算某个功能被使用了多少次，或者想要计算某个API被调用的次数，那么简单地使用INCR命令增加某功能的被点击次数或某API的被调用次数的计数器即可；甚至还可以结合Lua脚本限制公开 API 的请求次数（将 API 的最大请求数限制在每个 IP 地址每秒钟十个之内）。因为所有的Redis命令都是原子的，所以无需担心竞态。基于诸如哈希、有序集合和HyperLoglog等数据类型，还可以构建其他更高级的计数器或统计数据捕获系统。</p>
+<a id="more"></a>
+
+<h3 id="3-排行榜"><a href="#3-排行榜" class="headerlink" title="3.排行榜"></a>3.排行榜</h3><p>利用有序集合（Sorted Set），就可以轻松地实现一个排行榜。例如：可以为投票目标创建一个有序集合并将用户的投票数作为权重。因此，使用ZREVRANGE命令就能够按照投票目标的受欢迎程度返回投票目标的列表。同样的功能也可以在关系数据库中实现，但是SQL查询要比Redis查询慢得多。</p>
+<h3 id="4-队列"><a href="#4-队列" class="headerlink" title="4.队列"></a>4.队列</h3><p>利用列表（List）的PUSH/POP命令（阻塞类型）就能实现任务队列。例如：先使用BLPOP命令从任务列表左端移除并获取第一个任务（没有的时候则阻塞了），相当于获取任务；然后使用RPUSH命令从任务列表右端插入一个新任务，相当于分配任务；此时刚才排队获取任务的客户端就能第一时间拿到新任务。</p>
+<h3 id="5-最新的N个记录"><a href="#5-最新的N个记录" class="headerlink" title="5.最新的N个记录"></a>5.最新的N个记录</h3><p>假设我们想要获取最近新签的10个合同，通常采用一个SQL查询：select top 10 * from contract order by signtime desc</p>
+<p>而采用Redis解决则可以先创建一个列表，新签的合同采用LPUSH命令插入，然后再执行LTRIM命令只保留10个元素。</p>
+<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6.缓存"></a>6.缓存</h3><p>例如：在查询关系数据库之前，我们首先在Redis中查找记录。如果在Redis中找不到记录，则查询关系数据库并将记录放到Redis中。在向关系数据库写入时，我们也同时将记录写入Redis。为了限制缓存的大小，可以对缓存中的记录设置过期时间或应用诸如最近最少使用（LeastRecentlyUsed，LRU）的收回策略。</p>
+<h2 id="二、使用正确的数据类型"><a href="#二、使用正确的数据类型" class="headerlink" title="二、使用正确的数据类型"></a>二、使用正确的数据类型</h2><p>时间-空间的平衡</p>
+<p>例如：10000个用户信息（id，name，sex，age，registertime）</p>
+<p>1.首先存储为字符串类型的键值对，内存消耗4.04M；</p>
+<p>2.改为哈希类型，内存消耗2.29M左右，此时节省了约43%（(4.04-2.29)/4.04）的内存空间；</p>
+<p>3.改为将一个用户信息存储为一个json字符串，内存消耗2.29M，与哈希类型所消耗内存几乎相同（键的数量并没有减少）；</p>
+<p>4.使用Lua脚本，利用msgpack库（<a href="https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；" target="_blank" rel="noopener">https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；</a></p>
+<p>5.</p>
+<p>又例如：计数时可以使用集合、位图或HyperLogLog</p>
+<p>官方一些内存优化的案例：<a href="https://redis.io/topics/memory-optimization" target="_blank" rel="noopener">https://redis.io/topics/memory-optimization</a></p>
+<h2 id="三、使用正确的Redis-API"><a href="#三、使用正确的Redis-API" class="headerlink" title="三、使用正确的Redis API"></a>三、使用正确的Redis API</h2><p>保证性能</p>
+<p>1.尽量将数据操作组合在一起来降低往返延时（RTT），采用管道，采用批量处理的API；</p>
+<p>2.因为Redis是单线程的数据存储服务，所以应该多考虑API的时间复杂度，避免阻塞服务器。</p>
+<h2 id="四、使用C-连接到Redis"><a href="#四、使用C-连接到Redis" class="headerlink" title="四、使用C#连接到Redis"></a>四、使用C#连接到Redis</h2><p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个控制台应用程序</p>
+<p>通过NuGet获取StackExchange.Redis</p>
+<p>简单示例</p>
+<p>。。。后续更新</p>
+<p>使用管道（事务类似）</p>
+<p>。。。后续更新</p>
+<h2 id="五、使用Python连接到Redis"><a href="#五、使用Python连接到Redis" class="headerlink" title="五、使用Python连接到Redis"></a>五、使用Python连接到Redis</h2><p>Python（<a href="https://www.python.org/），我此时使用的是Python3.7.1" target="_blank" rel="noopener">https://www.python.org/），我此时使用的是Python3.7.1</a></p>
+<p>通过PyPI安装redis-py：执行命令pip install redis</p>
+<p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个Python应用程序</p>
+<p>简单示例</p>
+<p>。。。后续更新</p>
+<p>使用管道（事务类似）</p>
+<p>。。。后续更新</p>
+<h2 id="六、使用Redis编写MapReduce作业"><a href="#六、使用Redis编写MapReduce作业" class="headerlink" title="六、使用Redis编写MapReduce作业"></a>六、使用Redis编写MapReduce作业</h2><p> 。。。后续更新</p>
+<h2 id="七、使用Redis编写Spark作业"><a href="#七、使用Redis编写Spark作业" class="headerlink" title="七、使用Redis编写Spark作业"></a>七、使用Redis编写Spark作业</h2><p>。。。后续更新</p>
+]]></content>
       <categories>
-        <category>Windows</category>
+        <category>Redis</category>
       </categories>
       <tags>
-        <tag>Windows</tag>
+        <tag>Redis</tag>
       </tags>
   </entry>
   <entry>
@@ -934,6 +981,28 @@ select * from cte</code></pre>
       </tags>
   </entry>
   <entry>
+    <title>搭建NuGet服务并使用</title>
+    <url>/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
+<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
+<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
+<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
+ <a id="more"></a> 
+
+<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
+<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
+<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
+<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
+<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
+]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
+      <tags>
+        <tag>服务</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>微服务架构技术栈</title>
     <url>/2020/04/03/%E5%BE%AE%E6%9C%8D%E5%8A%A1%E6%9E%B6%E6%9E%84%E6%8A%80%E6%9C%AF%E6%A0%88/</url>
     <content><![CDATA[<h2 id="微服务的前世今生"><a href="#微服务的前世今生" class="headerlink" title="微服务的前世今生"></a>微服务的前世今生</h2><p>与微服务架构相对的，叫单体架构。这是我们最熟悉的开发方式，就是一个项目搞定业务全过程，在同一个进程里面完成。随着业务发展，数据量和并发上去了，一般会选择右边的垂直拆分，拆分后的每个系统，依旧是单体架构的。</p>
@@ -984,28 +1053,6 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>微服务</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>搭建NuGet服务并使用</title>
-    <url>/2020/03/01/%E6%90%AD%E5%BB%BANuGet%E6%9C%8D%E5%8A%A1%E5%B9%B6%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<h2 id="搭建NuGet服务"><a href="#搭建NuGet服务" class="headerlink" title="搭建NuGet服务"></a>搭建NuGet服务</h2><p>使用BaGet（<a href="https://loic-sharma.github.io/BaGet/）快速搭建服务" target="_blank" rel="noopener">https://loic-sharma.github.io/BaGet/）快速搭建服务</a></p>
-<p>可以直接部署到Web服务器，Docker或者其他云服务上，挺方便快捷的</p>
-<h2 id="上传NuGet包"><a href="#上传NuGet包" class="headerlink" title="上传NuGet包"></a>上传NuGet包</h2><p><strong>Nuget服务地址</strong>：<a href="https://www.example.com" target="_blank" rel="noopener">https://www.example.com</a></p>
-<p><strong>各种上传方式</strong>：<a href="https://www.example.com/upload" target="_blank" rel="noopener">https://www.example.com/upload</a></p>
- <a id="more"></a> 
-
-<p><img src="https://blog.zzonn.com/images/img-4.png" alt="上传NuGet包"></p>
-<h2 id="配置本地包源"><a href="#配置本地包源" class="headerlink" title="配置本地包源"></a>配置本地包源</h2><p> VS =&gt; 工具 =&gt; 选项 =&gt; NuGet包管理器 =&gt;程序包源</p>
-<p> <strong>包源</strong>：<a href="https://www.example.com/v3/index.json" target="_blank" rel="noopener">https://www.example.com/v3/index.json</a> </p>
-<p><img src="https://blog.zzonn.com/images/img-3.png" alt="配置本地包源"></p>
-<h2 id="使用本地包源"><a href="#使用本地包源" class="headerlink" title="使用本地包源"></a>使用本地包源</h2><p><img src="https://blog.zzonn.com/images/img-1.png" alt="本地包源"></p>
-]]></content>
-      <categories>
-        <category>工具</category>
-      </categories>
-      <tags>
-        <tag>服务</tag>
       </tags>
   </entry>
   <entry>
@@ -1341,53 +1388,6 @@ select * from cte</code></pre>
       </categories>
       <tags>
         <tag>vscode</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>使用Redis进行开发</title>
-    <url>/2018/11/06/%E4%BD%BF%E7%94%A8Redis%E8%BF%9B%E8%A1%8C%E5%BC%80%E5%8F%91/</url>
-    <content><![CDATA[<h2 id="一、常见应用场景"><a href="#一、常见应用场景" class="headerlink" title="一、常见应用场景"></a>一、常见应用场景</h2><h3 id="1-会话存储"><a href="#1-会话存储" class="headerlink" title="1.会话存储"></a>1.会话存储</h3><p>在现代的架构中，通常多个服务器位于一个或多个负载均衡器之后。会话（Session）通常需要存储在外部存储系统中。如果有一个服务器宕机，其他的服务器可以从外部存储中获取会话并继续服务。因为与关系数据库相比Redis的访问延迟非常低，所以使用Redis来保存会话数据堪称是一种完美的会话存储机制。并且Redis中对键过期的支持可以天然地用于会话的超时管理。</p>
-<h3 id="2-分析"><a href="#2-分析" class="headerlink" title="2.分析"></a>2.分析</h3><p>还可以用于统计分析的场景。例如，如果想要计算某个功能被使用了多少次，或者想要计算某个API被调用的次数，那么简单地使用INCR命令增加某功能的被点击次数或某API的被调用次数的计数器即可；甚至还可以结合Lua脚本限制公开 API 的请求次数（将 API 的最大请求数限制在每个 IP 地址每秒钟十个之内）。因为所有的Redis命令都是原子的，所以无需担心竞态。基于诸如哈希、有序集合和HyperLoglog等数据类型，还可以构建其他更高级的计数器或统计数据捕获系统。</p>
-<a id="more"></a>
-
-<h3 id="3-排行榜"><a href="#3-排行榜" class="headerlink" title="3.排行榜"></a>3.排行榜</h3><p>利用有序集合（Sorted Set），就可以轻松地实现一个排行榜。例如：可以为投票目标创建一个有序集合并将用户的投票数作为权重。因此，使用ZREVRANGE命令就能够按照投票目标的受欢迎程度返回投票目标的列表。同样的功能也可以在关系数据库中实现，但是SQL查询要比Redis查询慢得多。</p>
-<h3 id="4-队列"><a href="#4-队列" class="headerlink" title="4.队列"></a>4.队列</h3><p>利用列表（List）的PUSH/POP命令（阻塞类型）就能实现任务队列。例如：先使用BLPOP命令从任务列表左端移除并获取第一个任务（没有的时候则阻塞了），相当于获取任务；然后使用RPUSH命令从任务列表右端插入一个新任务，相当于分配任务；此时刚才排队获取任务的客户端就能第一时间拿到新任务。</p>
-<h3 id="5-最新的N个记录"><a href="#5-最新的N个记录" class="headerlink" title="5.最新的N个记录"></a>5.最新的N个记录</h3><p>假设我们想要获取最近新签的10个合同，通常采用一个SQL查询：select top 10 * from contract order by signtime desc</p>
-<p>而采用Redis解决则可以先创建一个列表，新签的合同采用LPUSH命令插入，然后再执行LTRIM命令只保留10个元素。</p>
-<h3 id="6-缓存"><a href="#6-缓存" class="headerlink" title="6.缓存"></a>6.缓存</h3><p>例如：在查询关系数据库之前，我们首先在Redis中查找记录。如果在Redis中找不到记录，则查询关系数据库并将记录放到Redis中。在向关系数据库写入时，我们也同时将记录写入Redis。为了限制缓存的大小，可以对缓存中的记录设置过期时间或应用诸如最近最少使用（LeastRecentlyUsed，LRU）的收回策略。</p>
-<h2 id="二、使用正确的数据类型"><a href="#二、使用正确的数据类型" class="headerlink" title="二、使用正确的数据类型"></a>二、使用正确的数据类型</h2><p>时间-空间的平衡</p>
-<p>例如：10000个用户信息（id，name，sex，age，registertime）</p>
-<p>1.首先存储为字符串类型的键值对，内存消耗4.04M；</p>
-<p>2.改为哈希类型，内存消耗2.29M左右，此时节省了约43%（(4.04-2.29)/4.04）的内存空间；</p>
-<p>3.改为将一个用户信息存储为一个json字符串，内存消耗2.29M，与哈希类型所消耗内存几乎相同（键的数量并没有减少）；</p>
-<p>4.使用Lua脚本，利用msgpack库（<a href="https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；" target="_blank" rel="noopener">https://msgpack.org/）序列化原始json字符串，内存消耗2.06M，此时节省了约49%（(4.04-2.06)/4.04）的内存空间；</a></p>
-<p>5.</p>
-<p>又例如：计数时可以使用集合、位图或HyperLogLog</p>
-<p>官方一些内存优化的案例：<a href="https://redis.io/topics/memory-optimization" target="_blank" rel="noopener">https://redis.io/topics/memory-optimization</a></p>
-<h2 id="三、使用正确的Redis-API"><a href="#三、使用正确的Redis-API" class="headerlink" title="三、使用正确的Redis API"></a>三、使用正确的Redis API</h2><p>保证性能</p>
-<p>1.尽量将数据操作组合在一起来降低往返延时（RTT），采用管道，采用批量处理的API；</p>
-<p>2.因为Redis是单线程的数据存储服务，所以应该多考虑API的时间复杂度，避免阻塞服务器。</p>
-<h2 id="四、使用C-连接到Redis"><a href="#四、使用C-连接到Redis" class="headerlink" title="四、使用C#连接到Redis"></a>四、使用C#连接到Redis</h2><p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个控制台应用程序</p>
-<p>通过NuGet获取StackExchange.Redis</p>
-<p>简单示例</p>
-<p>。。。后续更新</p>
-<p>使用管道（事务类似）</p>
-<p>。。。后续更新</p>
-<h2 id="五、使用Python连接到Redis"><a href="#五、使用Python连接到Redis" class="headerlink" title="五、使用Python连接到Redis"></a>五、使用Python连接到Redis</h2><p>Python（<a href="https://www.python.org/），我此时使用的是Python3.7.1" target="_blank" rel="noopener">https://www.python.org/），我此时使用的是Python3.7.1</a></p>
-<p>通过PyPI安装redis-py：执行命令pip install redis</p>
-<p>通过VS（<em>Visual</em> <em>Studio 2017</em>）创建一个Python应用程序</p>
-<p>简单示例</p>
-<p>。。。后续更新</p>
-<p>使用管道（事务类似）</p>
-<p>。。。后续更新</p>
-<h2 id="六、使用Redis编写MapReduce作业"><a href="#六、使用Redis编写MapReduce作业" class="headerlink" title="六、使用Redis编写MapReduce作业"></a>六、使用Redis编写MapReduce作业</h2><p> 。。。后续更新</p>
-<h2 id="七、使用Redis编写Spark作业"><a href="#七、使用Redis编写Spark作业" class="headerlink" title="七、使用Redis编写Spark作业"></a>七、使用Redis编写Spark作业</h2><p>。。。后续更新</p>
-]]></content>
-      <categories>
-        <category>Redis</category>
-      </categories>
-      <tags>
-        <tag>Redis</tag>
       </tags>
   </entry>
 </search>
