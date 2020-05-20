@@ -1390,4 +1390,35 @@ select * from cte</code></pre>
         <tag>vscode</tag>
       </tags>
   </entry>
+  <entry>
+    <title>.NetCore最具代表性的几个项目</title>
+    <url>/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/</url>
+    <content><![CDATA[<p>近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目.</p>
+<h2 id="Ocelot"><a href="#Ocelot" class="headerlink" title="Ocelot"></a>Ocelot</h2><p>Ocelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json配置文件即可使用，非常方便。Ocelot是系统中对外暴露的一个请求入口，所有外部接口都必须通过这个网关才能向下游API发出请求，就如地铁中的安检系统，所有人都必须经过安检才能乘坐地铁。</p>
+<p><a href="https://github.com/ThreeMammals/Ocelot" target="_blank" rel="noopener">https://github.com/ThreeMammals/Ocelot</a></p>
+<a id="more"></a>
+
+<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>CAP 是基于 .Net 标准的库，它是处理分布式事务的解决方案，具有 EventBusS 的功能，重量轻、使用方便、高效。</p>
+<p>在构建SOA或微服务系统的过程中，我们通常需要使用事件来集成每个服务。在此过程中，简单使用消息队列并不能保证可靠性。CAP 采用与当前数据库集成的本地消息表程序，以解决分布式系统相互调用过程中可能发生的异常。它可以确保事件消息在任何情况下都不会丢失。</p>
+<p>您还可以使用 CAP 作为<code>EventBus</code>。CAP 提供了一种更简单的方式来实现事件发布和订阅。在订阅和发送过程中，您不需要继承或实现任何接口。</p>
+<p><a href="https://github.com/dotnetcore/CAP" target="_blank" rel="noopener">https://github.com/dotnetcore/CAP</a></p>
+<h2 id="surging"><a href="#surging" class="headerlink" title="surging"></a>surging</h2><p>surging 是一个分布式微服务框架,提供高性能RPC远程服务调用，采用Zookeeper、Consul作为surging服务的注册中心，集成了哈希，随机，轮询，压力最小优先作为负载均衡的算法，RPC可以选择采用netty或thrift框架，采用异步非阻塞传输。</p>
+<p><a href="https://github.com/fanliang11/surging" target="_blank" rel="noopener">https://github.com/fanliang11/surging</a></p>
+<h2 id="DotnetSpider"><a href="#DotnetSpider" class="headerlink" title="DotnetSpider"></a>DotnetSpider</h2><p>DotnetSpider 是一个轻量、灵活、高性能、跨平台的分布式网络爬虫框架，可以帮助 .NET 工程师快速的完成爬虫的开发。</p>
+<p>整个爬虫设计是纯异步的，利用消息队列进行各个组件的解耦，若是只需要单机爬虫则不需要做任何额外的配置，默认使用了一个内存型的消息队列；若是想要实一个纯分布式爬虫，则需要引入一个消息队列即可。</p>
+<p><a href="https://github.com/dotnetcore/DotnetSpider" target="_blank" rel="noopener">https://github.com/dotnetcore/DotnetSpider</a></p>
+<h2 id="Avalonia"><a href="#Avalonia" class="headerlink" title="Avalonia"></a>Avalonia</h2><p>Avalonia是一个基于 XAML 的跨平台 UI 框架，提供灵活的样式系统，并支持各种操作系统，如 Windows （.NET Framework， .NET Core）、 Linux （通过 Xorg）、 macOS）。</p>
+<p><a href="https://github.com/AvaloniaUI/Avalonia" target="_blank" rel="noopener">https://github.com/AvaloniaUI/Avalonia</a></p>
+<h2 id="ABP-vNext"><a href="#ABP-vNext" class="headerlink" title="ABP vNext"></a>ABP vNext</h2><p>ABP是一个开源应用程序框架，专注于基于ASP.NET Core的Web应用程序开发，也支持开发其他类型的应用程序。非常的强大。</p>
+<p>ABP vNext 是 ABP 框架作者所发起的新项目，新的 ABP vNext 框架完全是基于 ASP .NET Core 进行开发，其完全模块化的组件库能够让开发人员拥有更多的选择空间。</p>
+<p>ABP vNext 框架核心库比 ABP 框架更加精简，因为将原有许多的组件从其核心库抽离成独立的组件。这样开发人员可以更加灵活的选择自己需要的功能进行集成，使项目远离臃肿的库。</p>
+<p><a href="https://github.com/abpframework/abp" target="_blank" rel="noopener">https://github.com/abpframework/abp</a></p>
+]]></content>
+      <categories>
+        <category>.NetCore</category>
+      </categories>
+      <tags>
+        <tag>.NetCore</tag>
+      </tags>
+  </entry>
 </search>

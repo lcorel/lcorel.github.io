@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://blog.zzonn.com/"/>
-  <updated>2020-05-16T07:42:11.000Z</updated>
+  <updated>2020-05-20T13:50:36.000Z</updated>
   <id>https://blog.zzonn.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.NetCore最具代表性的几个项目</title>
+    <link href="https://blog.zzonn.com/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/"/>
+    <id>https://blog.zzonn.com/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/</id>
+    <published>2020-05-20T13:50:36.000Z</published>
+    <updated>2020-05-20T13:50:36.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目.</p><h2 id="Ocelot"><a href="#Ocelot" class="headerlink" title="Ocelot"></a>Ocelot</h2><p>Ocelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json配置文件即可使用，非常方便。Ocelot是系统中对外暴露的一个请求入口，所有外部接口都必须通过这个网关才能向下游API发出请求，就如地铁中的安检系统，所有人都必须经过安检才能乘坐地铁。</p><p><a href="https://github.com/ThreeMammals/Ocelot" target="_blank" rel="noopener">https://github.com/ThreeMammals/Ocelot</a></p><a id="more"></a><h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>CAP 是基于 .Net 标准的库，它是处理分布式事务的解决方案，具有 EventBusS 的功能，重量轻、使用方便、高效。</p><p>在构建SOA或微服务系统的过程中，我们通常需要使用事件来集成每个服务。在此过程中，简单使用消息队列并不能保证可靠性。CAP 采用与当前数据库集成的本地消息表程序，以解决分布式系统相互调用过程中可能发生的异常。它可以确保事件消息在任何情况下都不会丢失。</p><p>您还可以使用 CAP 作为<code>EventBus</code>。CAP 提供了一种更简单的方式来实现事件发布和订阅。在订阅和发送过程中，您不需要继承或实现任何接口。</p><p><a href="https://github.com/dotnetcore/CAP" target="_blank" rel="noopener">https://github.com/dotnetcore/CAP</a></p><h2 id="surging"><a href="#surging" class="headerlink" title="surging"></a>surging</h2><p>surging 是一个分布式微服务框架,提供高性能RPC远程服务调用，采用Zookeeper、Consul作为surging服务的注册中心，集成了哈希，随机，轮询，压力最小优先作为负载均衡的算法，RPC可以选择采用netty或thrift框架，采用异步非阻塞传输。</p><p><a href="https://github.com/fanliang11/surging" target="_blank" rel="noopener">https://github.com/fanliang11/surging</a></p><h2 id="DotnetSpider"><a href="#DotnetSpider" class="headerlink" title="DotnetSpider"></a>DotnetSpider</h2><p>DotnetSpider 是一个轻量、灵活、高性能、跨平台的分布式网络爬虫框架，可以帮助 .NET 工程师快速的完成爬虫的开发。</p><p>整个爬虫设计是纯异步的，利用消息队列进行各个组件的解耦，若是只需要单机爬虫则不需要做任何额外的配置，默认使用了一个内存型的消息队列；若是想要实一个纯分布式爬虫，则需要引入一个消息队列即可。</p><p><a href="https://github.com/dotnetcore/DotnetSpider" target="_blank" rel="noopener">https://github.com/dotnetcore/DotnetSpider</a></p><h2 id="Avalonia"><a href="#Avalonia" class="headerlink" title="Avalonia"></a>Avalonia</h2><p>Avalonia是一个基于 XAML 的跨平台 UI 框架，提供灵活的样式系统，并支持各种操作系统，如 Windows （.NET Framework， .NET Core）、 Linux （通过 Xorg）、 macOS）。</p><p><a href="https://github.com/AvaloniaUI/Avalonia" target="_blank" rel="noopener">https://github.com/AvaloniaUI/Avalonia</a></p><h2 id="ABP-vNext"><a href="#ABP-vNext" class="headerlink" title="ABP vNext"></a>ABP vNext</h2><p>ABP是一个开源应用程序框架，专注于基于ASP.NET Core的Web应用程序开发，也支持开发其他类型的应用程序。非常的强大。</p><p>ABP vNext 是 ABP 框架作者所发起的新项目，新的 ABP vNext 框架完全是基于 ASP .NET Core 进行开发，其完全模块化的组件库能够让开发人员拥有更多的选择空间。</p><p>ABP vNext 框架核心库比 ABP 框架更加精简，因为将原有许多的组件从其核心库抽离成独立的组件。这样开发人员可以更加灵活的选择自己需要的功能进行集成，使项目远离臃肿的库。</p><p><a href="https://github.com/abpframework/abp" target="_blank" rel="noopener">https://github.com/abpframework/abp</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目.&lt;/p&gt;
+&lt;h2 id=&quot;Ocelot&quot;&gt;&lt;a href=&quot;#Ocelot&quot; class=&quot;headerlink&quot; title=&quot;Ocelot&quot;&gt;&lt;/a&gt;Ocelot&lt;/h2&gt;&lt;p&gt;Ocelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json配置文件即可使用，非常方便。Ocelot是系统中对外暴露的一个请求入口，所有外部接口都必须通过这个网关才能向下游API发出请求，就如地铁中的安检系统，所有人都必须经过安检才能乘坐地铁。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/ThreeMammals/Ocelot&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/ThreeMammals/Ocelot&lt;/a&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term=".NetCore" scheme="https://blog.zzonn.com/categories/NetCore/"/>
+    
+    
+      <category term=".NetCore" scheme="https://blog.zzonn.com/tags/NetCore/"/>
+    
+  </entry>
   
   <entry>
     <title>11个JavaScript小技巧</title>
@@ -515,32 +540,6 @@ console.log(uniqueArray); // [1, 2, 3, 5]&lt;/code&gt;&lt;/pre&gt;
     <summary type="html">
     
       &lt;h2 id=&quot;版本：Ubuntu-18-04-1，Redis-4-0-11&quot;&gt;&lt;a href=&quot;#版本：Ubuntu-18-04-1，Redis-4-0-11&quot; class=&quot;headerlink&quot; title=&quot;版本：Ubuntu 18.04.1，Redis 4.0.11&quot;&gt;&lt;/a&gt;&lt;strong&gt;版本：Ubuntu 18.04.1，Redis 4.0.11&lt;/strong&gt;&lt;/h2&gt;&lt;h3 id=&quot;1-转到Redis目录下&quot;&gt;&lt;a href=&quot;#1-转到Redis目录下&quot; class=&quot;headerlink&quot; title=&quot;1.转到Redis目录下&quot;&gt;&lt;/a&gt;1.转到Redis目录下&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ cd /redis&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;2-使用默认配置启动&quot;&gt;&lt;a href=&quot;#2-使用默认配置启动&quot; class=&quot;headerlink&quot; title=&quot;2.使用默认配置启动&quot;&gt;&lt;/a&gt;2.使用默认配置启动&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$  bin/redis-server&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;下图表示启动成功&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Redis" scheme="https://blog.zzonn.com/categories/Redis/"/>
-    
-    
-      <category term="Redis" scheme="https://blog.zzonn.com/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>安装Redis服务(Ubuntu)</title>
-    <link href="https://blog.zzonn.com/2018/10/03/%E5%AE%89%E8%A3%85Redis%E6%9C%8D%E5%8A%A1(Ubuntu)/"/>
-    <id>https://blog.zzonn.com/2018/10/03/%E5%AE%89%E8%A3%85Redis%E6%9C%8D%E5%8A%A1(Ubuntu)/</id>
-    <published>2018-10-03T08:31:04.000Z</published>
-    <updated>2018-10-03T08:31:04.000Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="版本：Ubuntu-18-04-1，Redis-4-0-11"><a href="#版本：Ubuntu-18-04-1，Redis-4-0-11" class="headerlink" title="版本：Ubuntu 18.04.1，Redis 4.0.11"></a><strong>版本：Ubuntu 18.04.1，Redis 4.0.11</strong></h2><h2 id="安装方式一：从源码编译构建Redis"><a href="#安装方式一：从源码编译构建Redis" class="headerlink" title="安装方式一：从源码编译构建Redis"></a>安装方式一：从源码编译构建Redis</h2><h3 id="1-安装编译工具："><a href="#1-安装编译工具：" class="headerlink" title="1.安装编译工具："></a>1.安装编译工具：</h3><pre><code class="shell">$ sudo apt-get install build-essential</code></pre><p>apt-get：Advanced Package Tool，是一款适用于<a href="https://baike.baidu.com/item/Unix" target="_blank" rel="noopener">Unix</a>和<a href="https://baike.baidu.com/item/Linux" target="_blank" rel="noopener">Linux</a>系统的应用程序管理器。</p><p>build-essential：<a href="https://baike.baidu.com/item/ubuntu" target="_blank" rel="noopener">Ubuntu</a>缺省情况下，并没有提供C/C++的编译环境。还好只要安装了该软件包，编译c/c++所需要的软件包也都会被安装。</p><h3 id="2-为Redis创建目录"><a href="#2-为Redis创建目录" class="headerlink" title="2.为Redis创建目录"></a>2.为Redis创建目录</h3><pre><code>$ sudo mkdir /redis</code></pre><p>mkdir：Make Directory 创建目录。</p><a id="more"></a><h3 id="3-切换到所创建的目录下"><a href="#3-切换到所创建的目录下" class="headerlink" title="3.切换到所创建的目录下"></a>3.切换到所创建的目录下</h3><pre><code>$ cd /redis</code></pre><p>cd：Change Directory 变更目录。</p><h3 id="4-下载Redis源码"><a href="#4-下载Redis源码" class="headerlink" title="4.下载Redis源码"></a>4.下载Redis源码</h3><pre><code>$ sudo wget http://download.redis.io/releases/redis-4.0.11.tar.gz</code></pre><p>wget：是一个下载文件的工具，支持HTTP，HTTPS和FTP协议，可以使用HTTP代理。</p><h3 id="5-解压下载的源码"><a href="#5-解压下载的源码" class="headerlink" title="5.解压下载的源码"></a>5.解压下载的源码</h3><pre><code>$ sudo tar zxvf redis-4.0.11.tar.gz</code></pre><p>tar：<a href="https://baike.baidu.com/item/Unix" target="_blank" rel="noopener">Unix</a>和<a href="https://baike.baidu.com/item/类Unix系统" target="_blank" rel="noopener">类Unix系统</a>上的压缩打包工具。</p><p>z：调用<a href="https://baike.baidu.com/item/gzip" target="_blank" rel="noopener">gzip</a>执行压缩或解压缩。</p><p>x：解压缩。c是压缩。</p><p>v：在压缩或解压缩过程中显示处理的文件信息。</p><p>f:：文件名，切记，这个参数是最后一个参数，后面只能接文件名称。</p><h3 id="6-切换到解压后的目录下"><a href="#6-切换到解压后的目录下" class="headerlink" title="6.切换到解压后的目录下"></a>6.切换到解压后的目录下</h3><pre><code>$ cd redis-4.0.11</code></pre><h3 id="7-编译依赖项"><a href="#7-编译依赖项" class="headerlink" title="7.编译依赖项"></a>7.编译依赖项</h3><pre><code>$ cd deps$ sudo make hiredis lua jemalloc linenoise </code></pre><p>make：是一个命令工具，它解释 Makefile 中的指令（应该说是规则）。在 Makefile文件中描述了整个工程所有文件的编译顺序、编译规则。所以在执行 make 之前，需要一个命名为 Makefile 的特殊文件。</p><p>hiredis lua jemalloc linenoise：四个文件夹名</p><h3 id="8-返回上级目录，并编译Redis"><a href="#8-返回上级目录，并编译Redis" class="headerlink" title="8.返回上级目录，并编译Redis"></a>8.返回上级目录，并编译Redis</h3><pre><code>$ cd ..$ sudo make</code></pre><h3 id="9-安装Redis"><a href="#9-安装Redis" class="headerlink" title="9.安装Redis"></a>9.安装Redis</h3><pre><code>$ sudo make PREFIX=/redis install</code></pre><p>PREFIX= ：指定安装目录。</p><h3 id="10-进入Reids目录并验证生成了Redis的二进制可执行文件"><a href="#10-进入Reids目录并验证生成了Redis的二进制可执行文件" class="headerlink" title="10.进入Reids目录并验证生成了Redis的二进制可执行文件"></a>10.进入Reids目录并验证生成了Redis的二进制可执行文件</h3><pre><code>$ ls /redis/bin</code></pre><p>ls ：命令的含义是list显示当前目录中的文件名字。不加参数时它显示除隐藏文件外的所有文件及目录的名字。</p><p>文件如下：</p><pre><code>redis-benchmark  redis-check-rdb  redis-sentinelredis-check-aof  redis-cli        redis-server</code></pre><h3 id="11-这样就完成Redis的编译和安装了"><a href="#11-这样就完成Redis的编译和安装了" class="headerlink" title="11.这样就完成Redis的编译和安装了"></a>11.这样就完成Redis的编译和安装了</h3><h2 id="安装方式二：从软件仓库进行安装（相对简单）"><a href="#安装方式二：从软件仓库进行安装（相对简单）" class="headerlink" title="安装方式二：从软件仓库进行安装（相对简单）"></a>安装方式二：从软件仓库进行安装（相对简单）</h2><h2 id="1-更新软件仓库的索引"><a href="#1-更新软件仓库的索引" class="headerlink" title="1.更新软件仓库的索引"></a>1.更新软件仓库的索引</h2><pre><code>$ sudo apt-get update</code></pre><h3 id="2-安装Redis"><a href="#2-安装Redis" class="headerlink" title="2.安装Redis"></a>2.安装Redis</h3><pre><code>$ sudo apt-get install redis-server</code></pre><h3 id="3-安装完成验证"><a href="#3-安装完成验证" class="headerlink" title="3.安装完成验证"></a>3.安装完成验证</h3><p>查找可执行文件redis-server</p><pre><code>$ which redis-server</code></pre>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h2 id=&quot;版本：Ubuntu-18-04-1，Redis-4-0-11&quot;&gt;&lt;a href=&quot;#版本：Ubuntu-18-04-1，Redis-4-0-11&quot; class=&quot;headerlink&quot; title=&quot;版本：Ubuntu 18.04.1，Redis 4.0.11&quot;&gt;&lt;/a&gt;&lt;strong&gt;版本：Ubuntu 18.04.1，Redis 4.0.11&lt;/strong&gt;&lt;/h2&gt;&lt;h2 id=&quot;安装方式一：从源码编译构建Redis&quot;&gt;&lt;a href=&quot;#安装方式一：从源码编译构建Redis&quot; class=&quot;headerlink&quot; title=&quot;安装方式一：从源码编译构建Redis&quot;&gt;&lt;/a&gt;安装方式一：从源码编译构建Redis&lt;/h2&gt;&lt;h3 id=&quot;1-安装编译工具：&quot;&gt;&lt;a href=&quot;#1-安装编译工具：&quot; class=&quot;headerlink&quot; title=&quot;1.安装编译工具：&quot;&gt;&lt;/a&gt;1.安装编译工具：&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;shell&quot;&gt;$ sudo apt-get install build-essential&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;apt-get：Advanced Package Tool，是一款适用于&lt;a href=&quot;https://baike.baidu.com/item/Unix&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Unix&lt;/a&gt;和&lt;a href=&quot;https://baike.baidu.com/item/Linux&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Linux&lt;/a&gt;系统的应用程序管理器。&lt;/p&gt;
-&lt;p&gt;build-essential：&lt;a href=&quot;https://baike.baidu.com/item/ubuntu&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Ubuntu&lt;/a&gt;缺省情况下，并没有提供C/C++的编译环境。还好只要安装了该软件包，编译c/c++所需要的软件包也都会被安装。&lt;/p&gt;
-&lt;h3 id=&quot;2-为Redis创建目录&quot;&gt;&lt;a href=&quot;#2-为Redis创建目录&quot; class=&quot;headerlink&quot; title=&quot;2.为Redis创建目录&quot;&gt;&lt;/a&gt;2.为Redis创建目录&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;$ sudo mkdir /redis&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;mkdir：Make Directory 创建目录。&lt;/p&gt;
     
     </summary>
     

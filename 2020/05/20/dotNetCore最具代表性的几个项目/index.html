@@ -23,22 +23,20 @@
     var CONFIG = {"hostname":"blog.zzonn.com","root":"/","scheme":"Gemini","version":"8.0.0-rc.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":true},"copycode":{"enable":true,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine | gitalk | changyan","storage":true,"lazyload":false,"nav":{"valine":{"text":"评论（valine）","order":-3},"gitalk":{"text":"评论（gitalk）","order":-2}}},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
-<meta property="og:type" content="website">
-<meta property="og:title" content="ZZONN">
-<meta property="og:url" content="https://blog.zzonn.com/categories/Windows/index.html">
+  <meta name="description" content="近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目. OcelotOcelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json">
+<meta property="og:type" content="article">
+<meta property="og:title" content=".NetCore最具代表性的几个项目">
+<meta property="og:url" content="https://blog.zzonn.com/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/index.html">
 <meta property="og:site_name" content="ZZONN">
-<meta property="og:description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+<meta property="og:description" content="近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目. OcelotOcelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-20T13:50:36.000Z">
+<meta property="article:modified_time" content="2020-05-20T13:50:36.000Z">
 <meta property="article:author" content="LiPan">
-<meta property="article:tag" content="lipan">
-<meta property="article:tag" content="zzonn">
-<meta property="article:tag" content="LiPan">
-<meta property="article:tag" content="ZZONN">
-<meta property="article:tag" content="PanLee">
+<meta property="article:tag" content=".NetCore">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://blog.zzonn.com/categories/Windows/">
+<link rel="canonical" href="https://blog.zzonn.com/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/">
 
 
 <script id="page-configurations">
@@ -46,12 +44,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>分类: Windows | ZZONN</title>
+  <title>.NetCore最具代表性的几个项目 | ZZONN</title>
   
 
 
@@ -206,57 +204,182 @@
         <div class="content-wrap">
           
 
-          <div class="content category">
+          <div class="content post posts-expand">
             
 
+    
   
   
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.zzonn.com/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="LiPan">
+      <meta itemprop="description" content="一个码农的博客，记录生活，提高生产力，促进中国特色社会主义的发展，维护世界和平，放飞自我">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="ZZONN">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          .NetCore最具代表性的几个项目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-05-20 21:50:36" itemprop="dateCreated datePublished" datetime="2020-05-20T21:50:36+08:00">2020-05-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/NetCore/" itemprop="url" rel="index"><span itemprop="name">.NetCore</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
   
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h2 class="collection-header">Windows
-          <small>分类</small>
-        </h2>
-      </div>
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2020/05/20/dotNetCore%E6%9C%80%E5%85%B7%E4%BB%A3%E8%A1%A8%E6%80%A7%E7%9A%84%E5%87%A0%E4%B8%AA%E9%A1%B9%E7%9B%AE/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2019</span>
-    </div>
+        <p>近几年.NET Core的关注度持续上升，微服务及云原生应用开发上采用.NET Core也越来越多，基于 .NET Core 平台的项目也犹如雨后春笋般拔地而起，这里介绍其中最具代表性的几个项目.</p>
+<h2 id="Ocelot"><a href="#Ocelot" class="headerlink" title="Ocelot"></a>Ocelot</h2><p>Ocelot是一个基于.NET Core的开源WebAPI服务网关项目，它的功能非常强大，包括了路由、请求聚合、服务发现、认证鉴权、限流、负载均衡等功能。而这些功能都可以直接通过修改json配置文件即可使用，非常方便。Ocelot是系统中对外暴露的一个请求入口，所有外部接口都必须通过这个网关才能向下游API发出请求，就如地铁中的安检系统，所有人都必须经过安检才能乘坐地铁。</p>
+<p><a href="https://github.com/ThreeMammals/Ocelot" target="_blank" rel="noopener">https://github.com/ThreeMammals/Ocelot</a></p>
+<a id="more"></a>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-11-17T10:21:42+08:00"
-              content="2019-11-17">
-          11-17
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/11/17/Windows%E9%94%99%E8%AF%AF%E4%BB%A3%E7%A0%81%E5%AF%B9%E5%BA%94%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" itemprop="url">
-            <span itemprop="name">Windows错误代码对应解决方案</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<h2 id="CAP"><a href="#CAP" class="headerlink" title="CAP"></a>CAP</h2><p>CAP 是基于 .Net 标准的库，它是处理分布式事务的解决方案，具有 EventBusS 的功能，重量轻、使用方便、高效。</p>
+<p>在构建SOA或微服务系统的过程中，我们通常需要使用事件来集成每个服务。在此过程中，简单使用消息队列并不能保证可靠性。CAP 采用与当前数据库集成的本地消息表程序，以解决分布式系统相互调用过程中可能发生的异常。它可以确保事件消息在任何情况下都不会丢失。</p>
+<p>您还可以使用 CAP 作为<code>EventBus</code>。CAP 提供了一种更简单的方式来实现事件发布和订阅。在订阅和发送过程中，您不需要继承或实现任何接口。</p>
+<p><a href="https://github.com/dotnetcore/CAP" target="_blank" rel="noopener">https://github.com/dotnetcore/CAP</a></p>
+<h2 id="surging"><a href="#surging" class="headerlink" title="surging"></a>surging</h2><p>surging 是一个分布式微服务框架,提供高性能RPC远程服务调用，采用Zookeeper、Consul作为surging服务的注册中心，集成了哈希，随机，轮询，压力最小优先作为负载均衡的算法，RPC可以选择采用netty或thrift框架，采用异步非阻塞传输。</p>
+<p><a href="https://github.com/fanliang11/surging" target="_blank" rel="noopener">https://github.com/fanliang11/surging</a></p>
+<h2 id="DotnetSpider"><a href="#DotnetSpider" class="headerlink" title="DotnetSpider"></a>DotnetSpider</h2><p>DotnetSpider 是一个轻量、灵活、高性能、跨平台的分布式网络爬虫框架，可以帮助 .NET 工程师快速的完成爬虫的开发。</p>
+<p>整个爬虫设计是纯异步的，利用消息队列进行各个组件的解耦，若是只需要单机爬虫则不需要做任何额外的配置，默认使用了一个内存型的消息队列；若是想要实一个纯分布式爬虫，则需要引入一个消息队列即可。</p>
+<p><a href="https://github.com/dotnetcore/DotnetSpider" target="_blank" rel="noopener">https://github.com/dotnetcore/DotnetSpider</a></p>
+<h2 id="Avalonia"><a href="#Avalonia" class="headerlink" title="Avalonia"></a>Avalonia</h2><p>Avalonia是一个基于 XAML 的跨平台 UI 框架，提供灵活的样式系统，并支持各种操作系统，如 Windows （.NET Framework， .NET Core）、 Linux （通过 Xorg）、 macOS）。</p>
+<p><a href="https://github.com/AvaloniaUI/Avalonia" target="_blank" rel="noopener">https://github.com/AvaloniaUI/Avalonia</a></p>
+<h2 id="ABP-vNext"><a href="#ABP-vNext" class="headerlink" title="ABP vNext"></a>ABP vNext</h2><p>ABP是一个开源应用程序框架，专注于基于ASP.NET Core的Web应用程序开发，也支持开发其他类型的应用程序。非常的强大。</p>
+<p>ABP vNext 是 ABP 框架作者所发起的新项目，新的 ABP vNext 框架完全是基于 ASP .NET Core 进行开发，其完全模块化的组件库能够让开发人员拥有更多的选择空间。</p>
+<p>ABP vNext 框架核心库比 ABP 框架更加精简，因为将原有许多的组件从其核心库抽离成独立的组件。这样开发人员可以更加灵活的选择自己需要的功能进行集成，使项目远离臃肿的库。</p>
+<p><a href="https://github.com/abpframework/abp" target="_blank" rel="noopener">https://github.com/abpframework/abp</a></p>
 
     </div>
+
+    
+    
+    
+        <div class="reward-container">
+  <div>有钱的捧个钱场，没钱的捧个人场，空闲的捧个留场，喜欢的捧个情场</div>
+  <button onclick="var qr = document.getElementById('qr'); qr.style.display = (qr.style.display === 'none') ? 'block' : 'none';">
+    打赏
+  </button>
+  <div id="qr" style="display: none;">
+      
+      <div style="display: inline-block;">
+        <img src="/images/alipay.jpg" alt="LiPan 支付宝">
+        <p>支付宝</p>
+      </div>
+      
+      <div style="display: inline-block;">
+        <img src="/images/wechatpay.png" alt="LiPan 微信支付">
+        <p>微信支付</p>
+      </div>
+
   </div>
-  
-  
-  
+</div>
 
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/NetCore/" rel="tag"><i class="fa fa-tag"></i> .NetCore</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/05/16/11%E4%B8%AAJavaScript%E5%B0%8F%E6%8A%80%E5%B7%A7/" rel="prev" title="11个JavaScript小技巧">
+      <i class="fa fa-chevron-left"></i> 11个JavaScript小技巧
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
 
           </div>
           
+      <div class="tabs tabs-comment">
+        <ul class="nav-tabs">
+            <li class="tab"><a href="#comment-valine">评论（valine）</a></li>
+            <li class="tab"><a href="#comment-gitalk">评论（gitalk）</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane valine" id="comment-valine">
+              <div class="comments" id="valine-comments"></div>
+            </div>
+            <div class="tab-pane gitalk" id="comment-gitalk">
+              <div class="comments" id="gitalk-container"></div>
+            </div>
+        </div>
+      </div>
 
 <script>
   window.addEventListener('tabs:register', () => {
@@ -303,6 +426,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Ocelot"><span class="nav-number">1.</span> <span class="nav-text">Ocelot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP"><span class="nav-number">2.</span> <span class="nav-text">CAP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#surging"><span class="nav-number">3.</span> <span class="nav-text">surging</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DotnetSpider"><span class="nav-number">4.</span> <span class="nav-text">DotnetSpider</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Avalonia"><span class="nav-number">5.</span> <span class="nav-text">Avalonia</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ABP-vNext"><span class="nav-number">6.</span> <span class="nav-text">ABP vNext</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -475,6 +599,25 @@
 
   
 
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '0429533df119e83c016c',
+      clientSecret: '0b7186f18dab9ab2d1c7c532d4477a5e8e5882e0',
+      repo        : 'lcorel.github.io',
+      owner       : 'lcorel',
+      admin       : ['lcorel'],
+      id          : '28cc3f9448fe2ea560c293aaadfaa99e',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
 
 
 <script>
