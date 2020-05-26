@@ -1421,4 +1421,79 @@ select * from cte</code></pre>
         <tag>.NetCore</tag>
       </tags>
   </entry>
+  <entry>
+    <title>初探ML.NET</title>
+    <url>/2020/05/26/%E5%88%9D%E6%8E%A2ML.NET/</url>
+    <content><![CDATA[<h2 id="什么是-ML-NET"><a href="#什么是-ML-NET" class="headerlink" title="什么是 ML.NET"></a>什么是 ML.NET</h2><p><code>ML.NET</code> 使你能够在联机或脱机场景中将机器学习添加到 .NET 应用程序中。 借助此功能，可以使用应用程序的可用数据进行自动预测。 机器学习应用程序利用数据中的模式来进行预测，而不需要进行显式编程。</p>
+<p>ML.NET 的核心是机器学习模型 。 该模型指定将输入数据转换为预测所需的步骤。 借助 ML.NET，可以通过指定算法来训练自定义模型，也可以导入预训练的 TensorFlow 和 ONNX 模型。</p>
+<p>拥有模型后，可以将其添加到应用程序中进行预测。</p>
+<p>ML.NET 在使用 .NET Core 的 Windows、Linux 和 macOS 或使用 .NET Framework 的 Windows 上运行。 所有平台均支持 64 位。 Windows 支持 32 位，TensorFlow、LightGBM 和 ONNX 相关功能除外。</p>
+<a id="more"></a>
+
+
+
+<h2 id="可以使用-ML-NET-进行的预测类型的示例"><a href="#可以使用-ML-NET-进行的预测类型的示例" class="headerlink" title="可以使用 ML.NET 进行的预测类型的示例"></a>可以使用 ML.NET 进行的预测类型的示例</h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>分类/类别划分</td>
+<td>自动将客户反馈划分为正面和负面类别</td>
+</tr>
+<tr>
+<td>回归/预测连续值</td>
+<td>根据大小和位置预测房屋价格</td>
+</tr>
+<tr>
+<td>异常情况检测</td>
+<td>检测欺诈性银行交易</td>
+</tr>
+<tr>
+<td>建议</td>
+<td>根据在线购物者之前的购买情况向其建议可能想要购买的产品</td>
+</tr>
+<tr>
+<td>时序/顺序数据</td>
+<td>预测天气/产品销售额</td>
+</tr>
+<tr>
+<td>图像分类</td>
+<td>对医学影像中的病状进行分类</td>
+</tr>
+</tbody></table>
+<h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><h3 id="官方文档"><a href="#官方文档" class="headerlink" title="官方文档"></a>官方文档</h3><p>ML.NET 文档地址：<a href="https://docs.microsoft.com/zh-cn/dotnet/machine-learning/" target="_blank" rel="noopener">https://docs.microsoft.com/zh-cn/dotnet/machine-learning/</a></p>
+<h3 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h3><p>给 <code>VS2019</code> 安装扩展 <code>ML.NET Model Builder</code></p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526212808802.png" alt="image-20200526212808802"></p>
+<h3 id="准备数据"><a href="#准备数据" class="headerlink" title="准备数据"></a>准备数据</h3><p>模型生成器支持 .tsv、.csv、.txt 格式以及 SQL 数据库格式的数据集。 如果你有一个 .txt 文件，则应使用 <code>,</code>、<code>;</code> 或 <code>/t</code> 分隔列，并且该文件必须具有标题行。</p>
+<p>如果数据集由图像组成，则支持的文件类型为 <code>.jpg</code> 和 <code>.png</code>。</p>
+<p>有关详细信息，可以参阅<a href="https://docs.microsoft.com/zh-cn/dotnet/machine-learning/how-to-guides/load-data-model-builder" target="_blank" rel="noopener">将训练数据加载到模型生成器</a>。</p>
+<h2 id="创建项目"><a href="#创建项目" class="headerlink" title="创建项目"></a>创建项目</h2><p>用VS新建一个控制台应用程序，把准备用于机器学习的数据集文件（.csv之类的）包含进来。</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526213857220.png" alt="image-20200526213857220"></p>
+<p>对着项目<code>右键</code>=&gt;<code>添加</code>=&gt;<code>Machine Learning</code></p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526213943583.png" alt="image-20200526213943583"></p>
+<p>选择一个最合适的场景，我这里就选价格预测吧</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526214312848.png" alt="image-20200526214312848"></p>
+<p>选择数据文件</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526214506574.png" alt="image-20200526214506574"></p>
+<p>开始训练</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526214733744.png" alt="image-20200526214733744"></p>
+<p>预测结果</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526215537140.png" alt="image-20200526215537140"></p>
+<p>生成代码</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526215604480.png" alt="image-20200526215604480"></p>
+<p>生成的代码如下</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526215821888.png" alt="image-20200526215821888"></p>
+<p>运行生成的代码</p>
+<p><img src="https://blog.zzonn.com/images/ML.NET/image-20200526215735022.png" alt="image-20200526215735022"></p>
+]]></content>
+      <categories>
+        <category>.NET</category>
+      </categories>
+      <tags>
+        <tag>ML.NET</tag>
+      </tags>
+  </entry>
 </search>
