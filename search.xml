@@ -1496,4 +1496,60 @@ select * from cte</code></pre>
         <tag>ML.NET</tag>
       </tags>
   </entry>
+  <entry>
+    <title>OLTP和OLAP</title>
+    <url>/2020/05/27/OLTP%E5%92%8COLAP/</url>
+    <content><![CDATA[<h2 id="OLTP-和-OLAP"><a href="#OLTP-和-OLAP" class="headerlink" title="OLTP 和 OLAP"></a>OLTP 和 OLAP</h2><p>OLTP 和 OLAP在互联网时代，海量数据的存储与访问成为系统设计与使用的瓶颈问题，对于海量数据处理，按照使用场景， 主要分为两种类型：联机事务处理（OLTP）和联机分析处理（OLAP）。 </p>
+<p>联机事务处理（OLTP）也称为面向交易的处理系统，其基本特征是原始数据可以立即传送到计算中心进行处 理，并在很短的时间内给出处理结果。</p>
+<p> 联机分析处理（OLAP）是指通过多维的方式对数据进行分析、查询和报表，可以同数据挖掘工具、统计分析 工具配合使用，增强决策分析功能。 </p>
+<a id="more"></a>
+
+<p>对于两者的主要区别可以用下表来说明：</p>
+<table>
+<thead>
+<tr>
+<th>—-</th>
+<th>OLTP</th>
+<th>OLAP</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>系统功能</td>
+<td>日常交易处理</td>
+<td>统计、分析、报表</td>
+</tr>
+<tr>
+<td>DB 设计</td>
+<td>面向实时交易类应用</td>
+<td>面向统计分析类应用</td>
+</tr>
+<tr>
+<td>数据处理</td>
+<td>当前的, 最新的细节的, 二维的分立的</td>
+<td>历史的, 聚集的, 多维的集成的, 统 一的</td>
+</tr>
+<tr>
+<td>实时性</td>
+<td>实时读写要求高</td>
+<td>实时读写要求低</td>
+</tr>
+<tr>
+<td>事务</td>
+<td>强一致性</td>
+<td>弱事务</td>
+</tr>
+<tr>
+<td>分析要求</td>
+<td>低、简单</td>
+<td>高、复杂</td>
+</tr>
+</tbody></table>
+]]></content>
+      <categories>
+        <category>数据库</category>
+      </categories>
+      <tags>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
 </search>
