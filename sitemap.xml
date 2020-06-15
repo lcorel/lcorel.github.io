@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://blog.zzonn.com/2020/06/15/%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8CNoSQL%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    
+    <lastmod>2020-06-15T14:01:23.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://blog.zzonn.com/2020/05/27/OLTP%E5%92%8COLAP/</loc>
     
     <lastmod>2020-05-27T06:55:37.000Z</lastmod>
